@@ -773,6 +773,23 @@
   margin-block-end: calc(var(--ps-slide-copy-top) - 110px + var(--ps-slide-mark-pull));
 }
 
+/* CONTENT CENTRED UNDER THE TITLE. The block below the title (a list, table,
+   columns, plans, a schedule, the founders) is `.ps-canvas__content`. It is
+   centred vertically in the space between the title and the slide number:
+   auto margins on both sides, and the foot trades its own auto margin for a
+   fixed 56px, so the free space splits in two, not three. When the content needs all the room, the
+   auto margins collapse to zero and it simply starts under the title, so
+   centring can never push anything off the slide. The title's own bottom margin
+   stays as the minimum gap. */
+.ps-canvas--slide > .ps-canvas__content {
+  position: relative;
+  z-index: 2;
+  margin-block: auto;
+}
+.ps-canvas--slide:has(> .ps-canvas__content) > .ps-canvas__foot {
+  margin-block-start: 56px;   /* mirrors the title's minimum air, so the centre is true */
+}
+
 /* The foot carries the slide number alone, and it is PINNED to the
    bottom-right corner — mirroring the mark in the top-right, pulled out by the
    same `--ps-slide-mark-pull`. Without the auto top margin the number simply

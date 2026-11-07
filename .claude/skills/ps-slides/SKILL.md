@@ -56,6 +56,14 @@ Placement is the TOP-RIGHT corner, pulled tighter to the edge than the copy is.
 no height: the eyebrow (or the title, when there is no eyebrow) sits on the same
 top band as the mark, 68px from the top edge, not a row below it. `social.css`
 does this; never add top margin or a spacer above the first line of copy.
+
+**Content under the title is centred vertically.** Wrap the block below the
+title (list, table, columns, plans, schedule, founders) in ONE direct child of
+the canvas with `class="ps-canvas__content"`, a sibling of the title block, not
+inside it. `social.css` centres it in the space between the title and the slide
+number. When it needs all the room it simply starts under the title. Never
+centre it by hand with `margin-top:auto`, spacers or padding. Slides whose whole
+copy is one centred block (quote, section break, welcome) don't use it.
 A slide with a photo (variant D, `--wide`, `--split`) is the one exception: there
 the mark goes TOP-LEFT of the block, on flat colour, as far from the block's corner
 as other marks are from the canvas corner. A predictable
