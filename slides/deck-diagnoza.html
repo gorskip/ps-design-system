@@ -33,7 +33,7 @@ const counter=document.querySelector('[data-counter]');
 // The canvas keeps its true 1920x1080 size and is scaled to fit, so what is
 // on screen is exactly what exports.
 function fit(){
-  const pad=64;
+  const pad=0;   // full-bleed: any margin shows as an edge around the slide
   const k=Math.min((innerWidth-pad)/1920,(innerHeight-pad)/1080);
   const mx=(1920*(k-1))/2, my=(1080*(k-1))/2;
   document.querySelectorAll('.ps-deck__fit').forEach(el=>{

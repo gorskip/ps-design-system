@@ -35,8 +35,8 @@ Usually `a` is light, `b` mint, `c` dark and `d` beside a photo, with three
 exceptions. Ogólny is four layouts on a light field: `a` two columns, `b` three
 columns, `c` table, `d` paragraph with `.ps-canvas__imgslot`, replaced with a real
 image. Powitanie and podziękowanie cannot use mint, so powitanie `a` is the full
-photo, powitanie `b` the dark gradient, podziękowanie `a` and `b` are the founders in circles on dark and on
-cream, and podziękowanie `c` is the dark slide with large QR codes.
+photo, powitanie `b` the dark gradient, podziękowanie `a` and `b` are the founders in circles on the green gradient and on
+cream, and podziękowanie `c` is the green-gradient slide with large QR codes.
 
 ## Type floors
 
@@ -103,6 +103,16 @@ not scan copies saved elsewhere, so check yours by eye.
 
 `--gradient` is for quote slides and covers only, and never more than one in a deck.
 The signature gradient loses its force if it is on every slide.
+
+**A dark thank-you slide is the green gradient** (`.ps-canvas--gradient-green`,
+which paints `--ps-gradient-green-deep`), the same field as welcome `c`. Never
+`--deep` and never a flat teal-900: podziękowanie `a` and `c` already use it, so
+keep the class when you copy them.
+
+**Slides are full-bleed.** Keep the deck shell's `.ps-deck` CSS and its `fit()`
+script as they are: the slide fills the frame exactly, with no padding, shadow
+or light backdrop. Any margin around a slide shows as a pale line in Claude
+Design and on a projector. Never wrap a slide in a card, frame or padded box.
 
 ## Specific slides
 

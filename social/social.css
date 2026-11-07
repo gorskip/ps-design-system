@@ -1032,9 +1032,13 @@
    "Save as PDF" with background graphics on produces a deliverable deck.
    ========================================================================== */
 
+/* FULL-BLEED. The slide is scaled to fill the frame exactly, with no padding,
+   no shadow and no light backdrop. Claude Design and a projector show the deck
+   in a 16:9 frame; any margin here shows up as a pale line around every slide.
+   On a frame that is not 16:9 the leftover space is coal, never paper. */
 .ps-deck {
   margin: 0;
-  background: var(--ps-cream-deep);
+  background: var(--ps-coal);
   scroll-snap-type: y mandatory;
   overflow-y: auto;
   height: 100vh;
@@ -1045,7 +1049,7 @@
   display: grid;
   place-items: center;
   min-height: 100vh;
-  padding: 32px;
+  padding: 0;
   box-sizing: border-box;
   overflow: hidden;
 }
@@ -1057,7 +1061,6 @@
   height: 1080px;
   flex: none;
   transform-origin: center center;
-  box-shadow: 0 18px 60px rgb(0 0 0 / .28);
 }
 
 .ps-deck__hud {
