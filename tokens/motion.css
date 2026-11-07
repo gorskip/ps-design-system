@@ -1,0 +1,33 @@
+/* ==========================================================================
+   Przeskalowani — Motion tokens
+   Two durations, two easings. Motion is for feedback, not decoration.
+   No scroll-triggered fade-ins, no parallax, no floating particles.
+   ========================================================================== */
+
+:root {
+  --ps-duration-fast: 140ms;
+  --ps-duration-base: 260ms;
+
+  --ps-ease-out: cubic-bezier(0.22, 0.68, 0.32, 1);
+  --ps-ease-in-out: cubic-bezier(0.62, 0.02, 0.26, 1);
+
+  --ps-transition-colors:
+    color var(--ps-duration-fast) var(--ps-ease-out),
+    background-color var(--ps-duration-fast) var(--ps-ease-out),
+    border-color var(--ps-duration-fast) var(--ps-ease-out);
+  --ps-transition-transform:
+    transform var(--ps-duration-base) var(--ps-ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ps-duration-fast: 0.01ms;
+    --ps-duration-base: 0.01ms;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

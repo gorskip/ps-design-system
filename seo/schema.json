@@ -1,0 +1,128 @@
+{
+  "_README": [
+    "JSON-LD for przeskalowani.pl. Paste the @graph into a <script type=\"application/ld+json\"> in the site <head>.",
+    "Placeholders are marked TODO — an invented value is worse than an absent property, so delete any node you cannot fill truthfully.",
+    "Validate at https://validator.schema.org and in Search Console's Rich Results Test before shipping.",
+    "Review markup is deliberately absent: the testimonial on the site is anonymous, and self-hosted first-party reviews are not rich-result eligible."
+  ],
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://przeskalowani.pl/#organization",
+      "name": "Przeskalowani",
+      "url": "https://przeskalowani.pl/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://przeskalowani.pl/assets/logo/lockup-light.svg"
+      },
+      "sameAs": [
+        "https://www.instagram.com/przeskalowani/",
+        "TODO: LinkedIn company page URL"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://przeskalowani.pl/#business",
+      "name": "Przeskalowani",
+      "parentOrganization": { "@id": "https://przeskalowani.pl/#organization" },
+      "url": "https://przeskalowani.pl/",
+      "description": "Warsztaty, coaching i interim management dla firm, które rosną szybciej niż ich struktury.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ul. Stawna 10/5",
+        "addressLocality": "Poznań",
+        "postalCode": "TODO",
+        "addressCountry": "PL"
+      },
+      "geo": { "@type": "GeoCoordinates", "latitude": "TODO", "longitude": "TODO" },
+      "telephone": "TODO",
+      "email": "TODO",
+      "areaServed": { "@type": "Country", "name": "Polska" },
+      "priceRange": "TODO: e.g. $$",
+      "knowsAbout": [
+        "Process Communication Model",
+        "Analiza Transakcyjna",
+        "Świadome przywództwo",
+        "Skuteczna komunikacja",
+        "Zarządzanie stresem",
+        "Interim management"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Usługi",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Warsztaty", "description": "Świadome przywództwo i skuteczna komunikacja." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Coaching i mentoring", "description": "Indywidualna praca z liderami." } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagnoza współpracy menedżerskiej" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interim management", "description": "Prowadzenie zmiany operacyjnie, a nie doradczo." } }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://przeskalowani.pl/#zuzanna-wozniak",
+      "name": "Zuzanna Woźniak",
+      "jobTitle": "TODO: potwierdzić",
+      "worksFor": { "@id": "https://przeskalowani.pl/#organization" },
+      "knowsAbout": ["Operacje", "Strategia", "HR"],
+      "sameAs": ["TODO: LinkedIn profile URL"]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://przeskalowani.pl/#joanna-nowak",
+      "name": "Joanna Nowak",
+      "jobTitle": "TODO: potwierdzić",
+      "worksFor": { "@id": "https://przeskalowani.pl/#organization" },
+      "knowsAbout": ["Process Communication Model", "Analiza Transakcyjna", "Coaching"],
+      "sameAs": ["TODO: LinkedIn profile URL"]
+    },
+    {
+      "@type": "Course",
+      "@id": "https://przeskalowani.pl/warsztaty-pcm-starter/#course",
+      "name": "PCM Starter",
+      "description": "TODO: 1–2 zdania o warsztacie.",
+      "provider": { "@id": "https://przeskalowani.pl/#organization" },
+      "inLanguage": "pl",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "onsite",
+        "courseWorkload": "TODO: np. P2D",
+        "location": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Poznań", "addressCountry": "PL" } }
+      },
+      "offers": { "@type": "Offer", "category": "Paid", "priceCurrency": "PLN", "price": "TODO", "availability": "https://schema.org/InStock" }
+    },
+    {
+      "@type": "Course",
+      "@id": "https://przeskalowani.pl/swiadome-przywodztwo/#course",
+      "name": "Świadome Przywództwo",
+      "description": "TODO",
+      "provider": { "@id": "https://przeskalowani.pl/#organization" },
+      "inLanguage": "pl"
+    },
+    {
+      "@type": "Course",
+      "@id": "https://przeskalowani.pl/skuteczna-komunikacja/#course",
+      "name": "Skuteczna komunikacja",
+      "description": "TODO",
+      "provider": { "@id": "https://przeskalowani.pl/#organization" },
+      "inLanguage": "pl"
+    },
+    {
+      "@type": "Course",
+      "@id": "https://przeskalowani.pl/pcm-stres/#course",
+      "name": "PCM Stres",
+      "description": "TODO",
+      "provider": { "@id": "https://przeskalowani.pl/#organization" },
+      "inLanguage": "pl"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://przeskalowani.pl/#website",
+      "url": "https://przeskalowani.pl/",
+      "name": "Przeskalowani",
+      "inLanguage": "pl-PL",
+      "publisher": { "@id": "https://przeskalowani.pl/#organization" }
+    }
+  ]
+}

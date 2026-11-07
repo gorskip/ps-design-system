@@ -1,0 +1,37 @@
+/* ==========================================================================
+   Przeskalowani Design System
+   Single entry point. Import this one file and you have the whole system.
+
+     <link rel="stylesheet" href="/ps-design-system.css">
+
+   Order matters: tokens → base → components → patterns.
+   ========================================================================== */
+
+/* 1 — Tokens (primitives; no selectors beyond :root) */
+@import url('./tokens/color.css');
+@import url('./tokens/type.css');
+@import url('./tokens/space.css');
+@import url('./tokens/radius.css');
+@import url('./tokens/motion.css');
+@import url('./tokens/elevation.css');
+
+/* 2 — Base (semantic layer, reset, element defaults) */
+@import url('./base/theme-light.css');
+@import url('./base/theme-dark.css');
+@import url('./base/reset.css');
+@import url('./base/typography.css');
+
+/* 3 — Components (closed set) */
+@import url('./components/logo.css');
+@import url('./components/button.css');
+@import url('./components/card.css');
+@import url('./components/form.css');
+@import url('./components/nav.css');
+@import url('./components/badge.css');
+@import url('./components/section.css');
+
+/* 4 — Patterns (page-level compositions) */
+@import url('./patterns/hero.css');
+@import url('./patterns/feature-grid.css');
+@import url('./patterns/quote.css');
+@import url('./patterns/footer.css');

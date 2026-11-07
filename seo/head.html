@@ -1,0 +1,67 @@
+<!-- ==========================================================================
+     THE <head> CONTRACT
+     --------------------------------------------------------------------------
+     Copy this into every page template and replace the {{...}} placeholders.
+     Order matters: charset and viewport first, then anything that starts a
+     network request, then the stylesheet.
+
+     Every line here earns its place. Nothing is decorative.
+     ========================================================================== -->
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Tells the browser which background to paint BEFORE the CSS arrives.
+     Without it, dark-mode visitors get a white flash on every navigation. -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#156064">
+
+<!-- UNIQUE PER PAGE. 50–60 characters, brand last. -->
+<title>{{Tytuł strony}} | Przeskalowani</title>
+
+<!-- UNIQUE PER PAGE. 140–160 characters. Google rewrites it roughly two-thirds
+     of the time, but it is still what gets shown when it doesn't. Write it as
+     a promise to the reader, not a keyword list. -->
+<meta name="description" content="{{Opis, 140–160 znaków}}">
+
+<!-- Absolute, self-referencing, no query string, no trailing-slash ambiguity. -->
+<link rel="canonical" href="https://przeskalowani.pl{{/sciezka/}}">
+
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+
+<!-- Open Graph. og:image must be absolute, ≥1200×630, and under ~1 MB. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Przeskalowani">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:title" content="{{Tytuł strony}}">
+<meta property="og:description" content="{{Opis}}">
+<meta property="og:url" content="https://przeskalowani.pl{{/sciezka/}}">
+<meta property="og:image" content="https://przeskalowani.pl/assets/og/{{obraz}}.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="{{Opis obrazu}}">
+
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- FONT — the whole reason tokens/type.css no longer contains an @import.
+     Self-hosted: one request, same origin, discoverable by the preload
+     scanner, and it rides the connection the HTML already opened. -->
+<link rel="preload" href="/assets/fonts/Montserrat-Variable.woff2"
+      as="font" type="font/woff2" crossorigin>
+
+<!-- LCP IMAGE — preload it so its fetch starts with the HTML instead of
+     waiting for the CSSOM to prove it is in the viewport. Only ever preload
+     the ONE above-the-fold hero image; preloading more slows the first. -->
+<link rel="preload" as="image"
+      href="/assets/photo/hero-800.webp"
+      imagesrcset="/assets/photo/hero-480.webp 480w, /assets/photo/hero-800.webp 800w, /assets/photo/hero-1200.webp 1200w"
+      imagesizes="(max-width: 60rem) 100vw, 40vw"
+      fetchpriority="high">
+
+<!-- ONE stylesheet, built by `node build/bundle.mjs`. Never link the
+     @import-based source file in production: see build/bundle.mjs. -->
+<link rel="stylesheet" href="/dist/ps-design-system.css">
+
+<link rel="icon" href="/assets/logo/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/logo/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">

@@ -1,0 +1,63 @@
+/* ==========================================================================
+   .ps-card — THREE variants: default | outlined | gradient
+   --------------------------------------------------------------------------
+   Radius comes from the mark (30px). No drop shadow: depth in this system is
+   the cream outline and flat colour, exactly as in the logo.
+   ========================================================================== */
+
+.ps-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ps-space-3);
+  padding: var(--ps-space-8);
+  border-radius: var(--ps-radius-lg);
+  background: var(--ps-color-surface-card);
+  color: var(--ps-color-text);
+  border: var(--ps-outline-medium) solid transparent;
+  transition: var(--ps-transition-colors);
+}
+
+.ps-card__title {
+  font-size: var(--ps-text-h3);
+  font-weight: var(--ps-weight-medium);
+  letter-spacing: var(--ps-tracking-heading);
+}
+
+.ps-card__body { color: var(--ps-color-text-muted); margin: 0; }
+
+.ps-card__footer { margin-block-start: auto; padding-block-start: var(--ps-space-4); }
+
+/* Outlined — the cream outline made literal. The brand's signature surface. */
+.ps-card--outlined {
+  background: var(--ps-color-surface);
+  border-color: var(--ps-color-border-strong);
+}
+
+/* Gradient — the ONE place a card may carry the signature gradient.
+   Maximum one per viewport. Uses the DEEP gradient, not the bright one: this
+   card carries text, and cream on the bright teal end measures 1.71:1. */
+.ps-card--gradient {
+  background: var(--ps-gradient-mark-deep);
+  color: var(--ps-cream);
+  border-color: transparent;
+}
+.ps-card--gradient .ps-card__body { color: var(--ps-cream); }
+.ps-card--gradient .ps-card__body { max-width: var(--ps-measure-narrow); }
+
+/* Interactive card (whole card is a link). Lift is 2px, not 8px — restraint. */
+.ps-card--link { text-decoration: none; }
+.ps-card--link:hover { border-color: var(--ps-color-accent); }
+.ps-card--link:focus-within { outline: var(--ps-outline-medium) solid var(--ps-color-focus); outline-offset: 3px; }
+
+/* Numbered card — for the "Wyzwania" and process lists. The numeral is a
+   design element at display scale, in bright teal (non-text-critical, so the
+   low contrast of teal-500 is acceptable here: it is decorative, and the real
+   information is the heading beneath it). */
+.ps-card__index {
+  font-size: var(--ps-text-h1);
+  font-weight: var(--ps-weight-bold);
+  line-height: 1;
+  letter-spacing: var(--ps-tracking-display);
+  color: var(--ps-color-accent-bright);
+  font-variant-numeric: tabular-nums;
+}

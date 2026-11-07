@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Przeskalowani — Radius tokens
+   --------------------------------------------------------------------------
+   Tight and restrained. The logo's 38px/30px rounding belongs to the MARK,
+   at mark scale — it is not a UI radius. Interface corners are softened just
+   enough to feel considered, never enough to read as bubbly.
+
+   The pill is reserved for genuinely circular things (the dots from the mark,
+   avatars, status indicators). Buttons are NOT pills.
+   ========================================================================== */
+
+:root {
+  --ps-radius-none: 0;
+  --ps-radius-sm:   0.375rem;   /*  6px — inputs, checkboxes, small chips  */
+  --ps-radius-md:   0.625rem;   /* 10px — buttons, badges                  */
+  --ps-radius-lg:   0.875rem;   /* 14px — cards, panels, media             */
+  --ps-radius-xl:   1.25rem;    /* 20px — the largest surfaces only        */
+  --ps-radius-pill: 999px;      /* circles and dots ONLY, never buttons    */
+
+  /* Outline weights, from the mark (20/15/10px at logo scale). Scaled down
+     for UI but kept deliberate — a 1px hairline is not this brand. The cream
+     outline is how this system expresses depth. */
+  --ps-outline-thick:  3px;
+  --ps-outline-medium: 2px;
+  --ps-outline-thin:   1.5px;
+}

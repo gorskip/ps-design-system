@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="136 67 734 595" aria-hidden="true">
+  <!-- Flat, single-colour, NO cream outline. Built for .ps-canvas__motif, which
+       is a low-opacity crop used as texture. mark-mono.svg cannot be used there
+       because currentColor does not inherit through an <img>, and mark-dark.svg
+       drags its 10–20px cream stroke through the decoration as a hairline. -->
+  <g fill="#EBE8E7">
+    <path d="M 377.77 224.88 A 38 38 0 0 1 444.10 223.83 L 656.92 590.94 A 38 38 0 0 1 624.05 648.00 L 213.61 648.00 A 38 38 0 0 1 180.15 591.99 Z" opacity="0.55"/>
+    <path d="M 623.73 151.65 A 30 30 0 0 1 676.08 151.76 L 833.12 433.39 A 30 30 0 0 1 806.92 478.00 L 491.32 478.00 A 30 30 0 0 1 465.18 433.28 Z"/>
+    <circle cx="517" cy="126" r="50"/>
+    <circle cx="775" cy="568" r="52" opacity="0.55"/>
+  </g>
+</svg>

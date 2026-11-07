@@ -1,0 +1,26 @@
+/* ==========================================================================
+   Przeskalowani — Elevation tokens
+   --------------------------------------------------------------------------
+   This system has almost no shadows. Depth is expressed the way the LOGO
+   expresses it: a thick cream outline and flat colour, with overlap for
+   stacking. Soft blurred shadows under every card are an anti-pattern here.
+
+   Two shadows exist, both for genuinely floating UI (menus, toasts) where a
+   user needs to read the layer as detached from the page.
+   ========================================================================== */
+
+:root {
+  --ps-shadow-none: none;
+
+  --ps-shadow-raised:
+    0 1px 2px color-mix(in srgb, var(--ps-ink) 6%, transparent),
+    0 8px 24px -12px color-mix(in srgb, var(--ps-teal-900) 28%, transparent);
+
+  --ps-shadow-overlay:
+    0 2px 4px color-mix(in srgb, var(--ps-ink) 8%, transparent),
+    0 20px 48px -16px color-mix(in srgb, var(--ps-teal-900) 36%, transparent);
+
+  /* Focus ring. Always visible, always teal, never removed. */
+  --ps-focus-ring: 0 0 0 3px var(--ps-color-surface),
+                   0 0 0 6px var(--ps-color-focus);
+}

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2210 400" role="img" aria-label="Przeskalowani">
+  <title>Przeskalowani</title>
+  <!-- The wordmark is live text in Outfit. If this file is used somewhere the
+       font is not loaded (email signature, third-party platform, print), open
+       it in a vector editor and convert the text to outlines first. -->
+  <defs>
+    <linearGradient id="psBig" gradientUnits="userSpaceOnUse" x1="150" y1="648" x2="690" y2="600">
+      <stop offset="0" stop-color="#8661C1"/>
+      <stop offset="0.52" stop-color="#156064"/>
+      <stop offset="1" stop-color="#40C9A2"/>
+    </linearGradient>
+    <linearGradient id="psSmall" gradientUnits="userSpaceOnUse" x1="772" y1="140" x2="486" y2="470">
+      <stop offset="0" stop-color="#156064"/>
+      <stop offset="1" stop-color="#40C9A2"/>
+    </linearGradient>
+    <linearGradient id="psDotA" gradientUnits="userSpaceOnUse" x1="478" y1="88" x2="556" y2="164">
+      <stop offset="0" stop-color="#156064"/>
+      <stop offset="1" stop-color="#40C9A2"/>
+    </linearGradient>
+    <linearGradient id="psDotB" gradientUnits="userSpaceOnUse" x1="723" y1="568" x2="827" y2="568">
+      <stop offset="0" stop-color="#8661C1"/>
+      <stop offset="1" stop-color="#156064"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(-69.1,-38.9) scale(0.6555)">
+    <g stroke="#EBE8E7" stroke-linejoin="round" fill="none">
+      <path d="M 377.77 224.88 A 38 38 0 0 1 444.10 223.83 L 656.92 590.94 A 38 38 0 0 1 624.05 648.00 L 213.61 648.00 A 38 38 0 0 1 180.15 591.99 Z" fill="url(#psBig)" stroke-width="20"/>
+      <circle cx="517" cy="126" r="50" fill="url(#psDotA)" stroke-width="10"/>
+      <path d="M 623.73 151.65 A 30 30 0 0 1 676.08 151.76 L 833.12 433.39 A 30 30 0 0 1 806.92 478.00 L 491.32 478.00 A 30 30 0 0 1 465.18 433.28 Z" fill="url(#psSmall)" stroke-width="15"/>
+      <circle cx="775" cy="568" r="52" fill="url(#psDotB)" stroke-width="10"/>
+    </g>
+  </g>
+  <text x="556" y="272"
+        font-family="Montserrat, 'Century Gothic', 'Avenir Next', sans-serif"
+        font-size="207" font-weight="400" letter-spacing="-2"
+        fill="#EBE8E7">Przeskalowani</text>
+</svg>

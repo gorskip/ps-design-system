@@ -1,0 +1,73 @@
+/* ==========================================================================
+   Przeskalowani — Semantic layer, DARK
+   --------------------------------------------------------------------------
+   Applies via an explicit [data-theme="dark"] attribute AND via the OS
+   preference, so it works whether or not the site ships a toggle.
+
+   Note the accent swap: teal-900 is only 2.84:1 on black and is therefore
+   BANNED as dark-mode text. Dark mode promotes teal-500 (10.09:1) instead.
+   ========================================================================== */
+
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --ps-color-page:        var(--ps-coal);
+  --ps-color-surface:     var(--ps-coal);
+  --ps-color-surface-alt: color-mix(in srgb, var(--ps-cream) 9%, var(--ps-coal));
+  --ps-color-surface-sunk: color-mix(in srgb, var(--ps-cream) 5%, var(--ps-coal));
+  --ps-color-surface-card: color-mix(in srgb, var(--ps-cream) 9%, var(--ps-coal));
+  --ps-color-surface-invert: var(--ps-cream);
+
+  --ps-color-text:         var(--ps-cream);
+  --ps-color-text-muted:   color-mix(in srgb, var(--ps-cream) 70%, var(--ps-coal));
+  --ps-color-text-invert:  var(--ps-coal);
+  --ps-color-text-on-accent: var(--ps-coal);
+
+  --ps-color-accent:        var(--ps-teal-500);
+  --ps-color-accent-hover:  var(--ps-cream);
+  --ps-color-accent-quiet:  color-mix(in srgb, var(--ps-teal-500) 14%, transparent);
+  --ps-color-accent-bright: var(--ps-teal-500);
+  --ps-color-counter:       var(--ps-violet-500);
+
+  --ps-color-border:       color-mix(in srgb, var(--ps-cream) 20%, var(--ps-coal));
+  --ps-color-border-strong: var(--ps-cream);
+  --ps-color-outline:      var(--ps-cream);
+
+  --ps-color-focus:  var(--ps-teal-500);
+  --ps-color-error:  color-mix(in srgb, var(--ps-violet-500) 70%, var(--ps-cream));
+}
+
+/* LIGHT IS THE DEFAULT. Dark applies only when asked for — either explicitly
+   via [data-theme="dark"] above, or via [data-theme="auto"] below, which
+   defers to the operating system. A page with no attribute is always light,
+   so the brand's default surface never depends on a visitor's OS setting. */
+@media (prefers-color-scheme: dark) {
+  [data-theme='auto'] {
+    color-scheme: dark;
+
+    --ps-color-page:        var(--ps-coal);
+    --ps-color-surface:     var(--ps-coal);
+    --ps-color-surface-alt: color-mix(in srgb, var(--ps-cream) 9%, var(--ps-coal));
+    --ps-color-surface-sunk: color-mix(in srgb, var(--ps-cream) 5%, var(--ps-coal));
+    --ps-color-surface-card: color-mix(in srgb, var(--ps-cream) 9%, var(--ps-coal));
+    --ps-color-surface-invert: var(--ps-cream);
+
+    --ps-color-text:         var(--ps-cream);
+    --ps-color-text-muted:   color-mix(in srgb, var(--ps-cream) 70%, var(--ps-coal));
+    --ps-color-text-invert:  var(--ps-coal);
+    --ps-color-text-on-accent: var(--ps-coal);
+
+    --ps-color-accent:        var(--ps-teal-500);
+    --ps-color-accent-hover:  var(--ps-cream);
+    --ps-color-accent-quiet:  color-mix(in srgb, var(--ps-teal-500) 14%, transparent);
+    --ps-color-accent-bright: var(--ps-teal-500);
+    --ps-color-counter:       var(--ps-violet-500);
+
+    --ps-color-border:       color-mix(in srgb, var(--ps-cream) 20%, var(--ps-coal));
+    --ps-color-border-strong: var(--ps-cream);
+    --ps-color-outline:      var(--ps-cream);
+
+    --ps-color-focus:  var(--ps-teal-500);
+    --ps-color-error:  color-mix(in srgb, var(--ps-violet-500) 70%, var(--ps-cream));
+  }
+}

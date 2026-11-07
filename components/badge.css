@@ -1,0 +1,38 @@
+/* ==========================================================================
+   .ps-badge — small pill label. Tags, categories, workshop names.
+   ========================================================================== */
+
+.ps-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ps-space-2);
+  padding: var(--ps-space-1) var(--ps-space-3);
+  font-size: var(--ps-text-eyebrow);
+  font-weight: var(--ps-weight-medium);
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  border-radius: var(--ps-radius-md);
+  background: var(--ps-color-accent-quiet);
+  color: var(--ps-color-accent);
+  border: var(--ps-outline-thin) solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.ps-badge--outline {
+  background: transparent;
+  border-color: var(--ps-color-accent);
+}
+
+.ps-badge--solid {
+  background: var(--ps-color-accent);
+  color: var(--ps-color-text-on-accent);
+}
+
+/* The dot motif, taken from the two small circles in the mark. */
+.ps-badge__dot {
+  width: 0.5rem; height: 0.5rem;
+  border-radius: var(--ps-radius-pill);
+  background: var(--ps-color-accent-bright);
+  flex: none;
+}

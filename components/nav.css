@@ -1,0 +1,120 @@
+/* ==========================================================================
+   .ps-nav — site header, desktop + mobile
+   --------------------------------------------------------------------------
+   No sticky blurred glass bar. The header is flat, sits on the page, and uses
+   a hairline rule to separate itself. Mobile menu is a full-sheet panel,
+   driven by [data-open] — no framework required, no backdrop-filter.
+   ========================================================================== */
+
+.ps-nav {
+  position: relative;
+  z-index: 50;
+  background: var(--ps-color-page);
+  border-block-end: var(--ps-outline-thin) solid var(--ps-color-border);
+}
+
+.ps-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ps-space-6);
+  max-width: var(--ps-container);
+  margin-inline: auto;
+  padding: var(--ps-space-4) var(--ps-gutter);
+}
+
+.ps-nav__menu {
+  display: flex;
+  align-items: center;
+  gap: var(--ps-space-8);
+}
+
+.ps-nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--ps-space-6);
+  list-style: none;
+  margin: 0; padding: 0;
+}
+
+.ps-nav__link {
+  font-size: var(--ps-text-small);
+  font-weight: var(--ps-weight-medium);
+  color: var(--ps-color-text);
+  text-decoration: none;
+  padding-block: var(--ps-space-2);
+  position: relative;
+}
+
+/* Underline grows from the left on hover — one small, specific motion. */
+.ps-nav__link::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  height: 2px;
+  background: var(--ps-color-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--ps-duration-base) var(--ps-ease-out);
+}
+.ps-nav__link:hover::after,
+.ps-nav__link[aria-current='page']::after { transform: scaleX(1); }
+.ps-nav__link[aria-current='page'] { color: var(--ps-color-accent); }
+
+.ps-nav__actions { display: flex; align-items: center; gap: var(--ps-space-3); }
+
+/* --- Mobile toggle ------------------------------------------------------ */
+.ps-nav__toggle {
+  display: none;
+  width: 2.875rem; height: 2.875rem;
+  align-items: center; justify-content: center;
+  background: none;
+  border: var(--ps-outline-medium) solid var(--ps-color-border-strong);
+  border-radius: var(--ps-radius-md);
+  cursor: pointer;
+}
+.ps-nav__toggle-bar {
+  display: block;
+  width: 1.1rem; height: 2px;
+  background: currentColor;
+  position: relative;
+  transition: var(--ps-transition-transform);
+}
+.ps-nav__toggle-bar::before,
+.ps-nav__toggle-bar::after {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  height: 2px;
+  background: currentColor;
+  transition: var(--ps-transition-transform);
+}
+.ps-nav__toggle-bar::before { top: -6px; }
+.ps-nav__toggle-bar::after  { top: 6px; }
+
+.ps-nav__toggle[aria-expanded='true'] .ps-nav__toggle-bar { background: transparent; }
+.ps-nav__toggle[aria-expanded='true'] .ps-nav__toggle-bar::before { transform: translateY(6px) rotate(45deg); }
+.ps-nav__toggle[aria-expanded='true'] .ps-nav__toggle-bar::after  { transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 52rem) {
+  .ps-nav__toggle { display: inline-flex; }
+
+  .ps-nav__menu {
+    position: absolute;
+    inset-inline: 0;
+    top: 100%;
+    display: none;
+    flex-direction: column;
+    gap: var(--ps-space-5);
+    padding: var(--ps-space-8) var(--ps-gutter) var(--ps-space-10);
+    background: var(--ps-color-page);
+    border-block-end: var(--ps-outline-thin) solid var(--ps-color-border);
+  }
+  .ps-nav__menu[data-open='true'] { display: flex; }
+
+  .ps-nav__list { flex-direction: column; align-items: stretch; gap: var(--ps-space-4); }
+  .ps-nav__link { font-size: var(--ps-text-h3); }
+  .ps-nav__link::after { display: none; }
+  .ps-nav__actions { flex-direction: column; align-items: stretch; }
+}

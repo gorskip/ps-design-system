@@ -1,0 +1,114 @@
+/* ==========================================================================
+   Przeskalowani — Typography tokens
+   --------------------------------------------------------------------------
+   One family: Montserrat. Geometric, circular bowls, double-storey 'a' —
+   matched against the actual wordmark in baseline/, not guessed. Complete
+   Polish diacritic coverage (ą ć ę ł ń ó ś ź ż) in all four weights; it was
+   drawn with Latin Extended in mind, which matters for a Polish brand.
+
+   Self-hosting: drop Montserrat's variable woff2 into assets/fonts/ and swap the
+   @import below for the commented @font-face. A production WordPress site
+   should not depend on a third-party font request.
+   ========================================================================== */
+
+/* NO @import HERE, EVER.
+   An @import inside an already-imported stylesheet is invisible to the
+   browser's preload scanner, so the font request could not start until this
+   file had been downloaded AND parsed — four serial round trips, two of them
+   cold cross-origin handshakes, before a single glyph could paint.
+
+   The font is loaded from the document <head> instead. Self-hosting is the
+   default; see docs/head.html for the exact markup. */
+
+/* Two subsets, both the VARIABLE face (300–700 in one file). The browser
+   downloads latin-ext only when a character in that range actually appears —
+   which for Polish copy it always does, but it keeps English-only pages to
+   35 KB. Together 103 KB, against ~120–180 KB for the four static weights
+   Google was serving. */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat-latin.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+                 U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122,
+                 U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* Latin Extended-A — ą ć ę ł ń ó ś ź ż live here. */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat-latin-ext.woff2') format('woff2-variations');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+                 U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF,
+                 U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Metric-matched fallback. Without this the swap from the system font to
+   Montserrat re-measures every line on the page — and because the type scale
+   uses `ch` units (--ps-measure, and max-width:14ch on the hero h1), the
+   headline's own box changes width and can change line count. That is a
+   layout shift right next to the LCP element, which is the most expensive
+   place to have one. These overrides make the fallback occupy almost exactly
+   the same space as the real font, so the swap is close to invisible. */
+@font-face {
+  font-family: 'Montserrat Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Liberation Sans');
+  size-adjust: 112%;
+  ascent-override: 86%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+:root {
+  --ps-font-sans:
+    'Montserrat', 'Montserrat Fallback',
+    ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --ps-font-mono:
+    ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', monospace;
+
+  /* --- Weights ---------------------------------------------------------- */
+  --ps-weight-light:   300;  /* display sizes only — never below 2rem */
+  --ps-weight-regular: 400;
+  --ps-weight-medium:  500;
+  --ps-weight-bold:    700;
+
+  /* --- Fluid scale -------------------------------------------------------
+     A deliberately wide gap between body and display. Hierarchy should be
+     unmistakable at a glance; a timid 1.2 ratio reads as a template. */
+  --ps-text-display:  clamp(2.75rem, 1.6rem + 4.8vw, 5rem);
+  --ps-text-h1:       clamp(2rem,    1.4rem + 2.6vw, 3.25rem);
+  --ps-text-h2:       clamp(1.5rem,  1.2rem + 1.3vw, 2.25rem);
+  --ps-text-h3:       clamp(1.1875rem, 1.1rem + 0.4vw, 1.375rem);
+  --ps-text-lead:     clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
+  --ps-text-body:     1.0625rem;
+  --ps-text-small:    0.875rem;
+  --ps-text-eyebrow:  0.8125rem;
+
+  /* --- Line heights ------------------------------------------------------ */
+  --ps-leading-tight:  1.04;   /* display */
+  --ps-leading-snug:   1.16;   /* headings */
+  --ps-leading-normal: 1.45;   /* leads */
+  --ps-leading-relaxed:1.65;   /* body — Polish runs long, give it room */
+
+  /* --- Tracking ---------------------------------------------------------- */
+  --ps-tracking-display: -0.03em;
+  --ps-tracking-heading: -0.02em;
+  --ps-tracking-normal:   0;
+  --ps-tracking-eyebrow:  0.12em;
+
+  /* --- Lockup proportions ------------------------------------------------
+     Measured off the original artwork: a mark 390 units tall is followed by
+     55 units of space, then a wordmark whose cap height is 145. Expressed
+     against the mark's HEIGHT, that is 0.141 and 0.53. Never hard-code a gap
+     next to a lockup — set the size and let these do the work. */
+  --ps-lockup-gap-ratio:  0.141;
+  --ps-lockup-word-ratio: 0.53;
+
+  /* --- Measure ----------------------------------------------------------- */
+  --ps-measure:        65ch;
+  --ps-measure-narrow: 46ch;
+}

@@ -1,0 +1,51 @@
+/* ==========================================================================
+   .ps-footer — contact block and site footer
+   ========================================================================== */
+
+.ps-footer {
+  background: var(--ps-color-surface-invert);
+  color: var(--ps-color-text-invert);
+  padding-block: var(--ps-space-section) var(--ps-space-10);
+}
+
+/* Footer links sit among plain text, so they take their own colour and a medium
+   weight. Never an underline. */
+.ps-footer a:not(.ps-btn) {
+  color: var(--ps-teal-on-deep);
+  font-weight: var(--ps-weight-medium);
+}
+.ps-footer a:not(.ps-btn):hover { color: var(--ps-teal-500); }
+
+.ps-footer__grid {
+  display: grid;
+  grid-template-columns: 5fr 3fr 4fr;
+  gap: var(--ps-space-12);
+  padding-block-end: var(--ps-space-16);
+  border-block-end: var(--ps-outline-thin) solid color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.ps-footer__heading {
+  font-size: var(--ps-text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--ps-tracking-eyebrow);
+  font-weight: var(--ps-weight-medium);
+  color: var(--ps-teal-500);
+  margin-block-end: var(--ps-space-5);
+}
+
+.ps-footer__list { display: flex; flex-direction: column; gap: var(--ps-space-3); list-style: none; padding: 0; }
+
+.ps-footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ps-space-4) var(--ps-space-8);
+  justify-content: space-between;
+  align-items: center;
+  padding-block-start: var(--ps-space-8);
+  font-size: var(--ps-text-small);
+  color: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+@media (max-width: 60rem) {
+  .ps-footer__grid { grid-template-columns: 1fr; gap: var(--ps-space-10); }
+}
