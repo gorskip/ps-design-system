@@ -15,13 +15,24 @@ isn't in it, it isn't in the system.
 - **Claude Code** (website): clone this repo and run Claude Code in it. The skills
   load automatically.
 
-| Skill | For |
-|---|---|
-| `ps-design-system` | General rules for every surface. The other skills read it first. |
-| `ps-www` | Website pages and components, SEO, Core Web Vitals. |
-| `ps-social-post` | Instagram and LinkedIn graphics. |
-| `ps-slides` | Presentations and the slide library. |
-| `ps-forms` | Google Forms headers. |
+## Which skill to use
+
+Always pair **`ps-design-system`** with the skill for what you're making. It holds
+the rules every surface shares. Use it on its own only for brand questions:
+colours, gradients, typography, logo, QR codes, photography, tone of voice or
+the founders.
+
+| You're making | Skill | Where | Example prompt |
+|---|---|---|---|
+| Instagram or LinkedIn graphic: post, carousel, story, Reels cover, quote card | `ps-social-post` | Claude Design | `Użyj skilla ps-social-post i przygotuj grafikę: instagram-liczby-a.` |
+| Presentation or single slide | `ps-slides` | Claude Design | `Użyj skilla ps-slides i zbuduj prezentację ze slajdów: powitanie-c, agenda-a, podziekowanie-a.` |
+| Google Forms header (1600×400) | `ps-forms` | Claude Design | `Użyj skilla ps-forms i przygotuj nagłówek formularza na bazie forms/01-zapisy.` |
+| Website page, section, component, email, HTML/CSS, WordPress theme, SEO | `ps-www` | Claude Code | `Użyj skilla ps-www i zbuduj sekcję oferty na stronę.` |
+
+Ask for templates by name (`instagram-liczby-a`, `cytat-b`, `podziekowanie-a`).
+New designs start as a copy of an existing template, not from scratch. The skills
+never invent colours, radii, spacing or data. Where a fact is missing, they leave
+a placeholder.
 
 ## Use it on a website
 
