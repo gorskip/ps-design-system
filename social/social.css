@@ -759,6 +759,20 @@
 }
 .ps-canvas--slide .ps-canvas__lockup--mark { --ps-lockup-size: 53px; }
 
+/* TITLE UP. On a full-width slide the head takes no height in the flow: the
+   mark hangs in its corner band, and the copy starts on that same band, so the
+   eyebrow sits level with the mark instead of a full row below it. The copy
+   still starts at --ps-slide-copy-top whatever lockup the head carries.
+   Two-column and photo slides keep their own head placement (see below). The
+   mark and the copy share a band but not a column: the mark is in the right
+   corner, the copy starts at the left padding. */
+.ps-canvas--slide { --ps-slide-copy-top: 68px; }
+.ps-canvas--slide:not(.ps-canvas--wide):not(.ps-canvas--split):not(.ps-canvas--photo) > .ps-canvas__head {
+  height: 0;
+  align-items: flex-start;
+  margin-block-end: calc(var(--ps-slide-copy-top) - 110px + var(--ps-slide-mark-pull));
+}
+
 /* The foot carries the slide number alone, and it is PINNED to the
    bottom-right corner — mirroring the mark in the top-right, pulled out by the
    same `--ps-slide-mark-pull`. Without the auto top margin the number simply

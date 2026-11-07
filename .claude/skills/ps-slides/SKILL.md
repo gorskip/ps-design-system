@@ -52,6 +52,10 @@ the full lockup. Every slide between them carries the MARK ALONE
 watermark, not identification. Slide marks also run about 30% smaller than the
 social stamp — from across a room the mark only has to be recognisable.
 Placement is the TOP-RIGHT corner, pulled tighter to the edge than the copy is.
+**The title starts level with the mark.** On a full-width slide the head takes
+no height: the eyebrow (or the title, when there is no eyebrow) sits on the same
+top band as the mark, 68px from the top edge, not a row below it. `social.css`
+does this; never add top margin or a spacer above the first line of copy.
 A slide with a photo (variant D, `--wide`, `--split`) is the one exception: there
 the mark goes TOP-LEFT of the block, on flat colour, as far from the block's corner
 as other marks are from the canvas corner. A predictable
