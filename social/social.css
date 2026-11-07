@@ -655,6 +655,20 @@
    lines and leaves the right half empty. 26ch uses the room the canvas has. */
 .ps-canvas--slide .ps-canvas__title { font-size: 82px; max-width: 26ch; line-height: 1.06; }
 .ps-canvas--slide .ps-canvas__body { font-size: 40px; max-width: 34ch; }
+
+/* TITLE SPACING. Two gaps, set here and never inline:
+   - title → content (list, table, columns…): --ps-slide-title-gap
+   - title or hook → the lead line of text under it: --ps-slide-lead-gap
+   The eyebrow sits 16px above the title. */
+.ps-canvas--slide {
+  --ps-slide-title-gap: 72px;
+  --ps-slide-lead-gap: 44px;
+}
+.ps-canvas--slide .ps-canvas__title { margin: 16px 0 var(--ps-slide-title-gap); }
+.ps-canvas--slide .ps-canvas__title:has(+ .ps-canvas__body) { margin-bottom: 0; }
+.ps-canvas--slide :is(.ps-canvas__title, .ps-canvas__hook) + .ps-canvas__body {
+  margin-top: var(--ps-slide-lead-gap);
+}
 /* The main text of a quote or recommendation takes 3/4 of the slide's width, or
    its column when the slide also holds a photo. A narrow block breaks a sentence
    into a tower that reads slowly from across a room. */
@@ -776,8 +790,8 @@
 /* CONTENT CENTRED UNDER THE TITLE. The block below the title (a list, table,
    columns, plans, a schedule, the founders) is `.ps-canvas__content`. It is
    centred vertically in the space between the title and the slide number:
-   auto margins on both sides, and the foot trades its own auto margin for a
-   fixed 56px, so the free space splits in two, not three. When the content needs all the room, the
+   auto margins on both sides, and the foot trades its own auto margin for
+   --ps-slide-title-gap, so the free space splits in two, not three. When the content needs all the room, the
    auto margins collapse to zero and it simply starts under the title, so
    centring can never push anything off the slide. The title's own bottom margin
    stays as the minimum gap. */
@@ -787,7 +801,7 @@
   margin-block: auto;
 }
 .ps-canvas--slide:has(> .ps-canvas__content) > .ps-canvas__foot {
-  margin-block-start: 56px;   /* mirrors the title's minimum air, so the centre is true */
+  margin-block-start: var(--ps-slide-title-gap);   /* mirrors the gap under the title, so the centre is true */
 }
 
 /* The foot carries the slide number alone, and it is PINNED to the

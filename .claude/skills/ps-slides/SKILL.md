@@ -41,7 +41,10 @@ cream, and podziękowanie `c` is the green-gradient slide with large QR codes.
 ## Type floors
 
 34px for content. 28px for eyebrows, slide numbers, labels, captions and founder
-titles. A title keeps at least 56px of air above whatever follows it.
+titles. A title keeps at least 72px of air above the content below it
+(`--ps-slide-title-gap`), and 44px above a lead line of text directly under it
+(`--ps-slide-lead-gap`). Both live in `social.css`: never set a title's or a lead
+line's margin inline.
 
 ## Mark and slide number
 
