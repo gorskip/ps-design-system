@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Content patterns mapped from the live site.
+   --------------------------------------------------------------------------
+   .ps-challenges  → "Jeśli mierzysz się z:"   (five pain points)
+   .ps-services    → "Te działania rozwiążą…"  (four service blocks)
+   .ps-outcomes    → "Efekty, które obserwujemy…" (five outcome cards)
+   .ps-people      → founder bios (Zuza & Asia)
+
+   Note none of these is a symmetric three-card row. That shape is banned by
+   the system's layout rules; where a grid is genuinely right it is offset.
+   ========================================================================== */
+
+/* --- Challenges: a numbered list, not cards. Reads as a conversation. ---- */
+.ps-challenges {
+  display: grid;
+  gap: 0;
+  counter-reset: ps-challenge;
+  border-block-start: var(--ps-outline-thin) solid var(--ps-color-border);
+}
+
+.ps-challenge {
+  counter-increment: ps-challenge;
+  display: grid;
+  grid-template-columns: 4rem 1fr;
+  gap: var(--ps-space-6);
+  align-items: baseline;
+  padding-block: var(--ps-space-8);
+  border-block-end: var(--ps-outline-thin) solid var(--ps-color-border);
+  transition: var(--ps-transition-colors);
+}
+.ps-challenge::before {
+  content: counter(ps-challenge, decimal-leading-zero);
+  font-size: var(--ps-text-small);
+  font-weight: var(--ps-weight-medium);
+  letter-spacing: var(--ps-tracking-eyebrow);
+  color: var(--ps-color-accent);
+  font-variant-numeric: tabular-nums;
+}
+/* Sized below the section's own h2 — an h3 that renders larger than the
+   h2 above it teaches implementers to pick levels by size. */
+.ps-challenge__title { font-size: var(--ps-text-h3); font-weight: var(--ps-weight-medium); }
+.ps-challenge__body  { color: var(--ps-color-text-muted); margin-block-start: var(--ps-space-2); }
+
+/* --- Services: a 2-column grid where every second cell is nudged down. --- */
+.ps-services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--ps-space-8);
+}
+.ps-services > :nth-child(even) { margin-block-start: var(--ps-space-12); }
+
+/* --- Outcomes: an asymmetric 12-column arrangement, five items. ---------- */
+.ps-outcomes {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--ps-space-6);
+}
+.ps-outcomes > :nth-child(1) { grid-column: span 7; }
+.ps-outcomes > :nth-child(2) { grid-column: span 5; }
+.ps-outcomes > :nth-child(3) { grid-column: span 5; }
+.ps-outcomes > :nth-child(4) { grid-column: span 7; }
+.ps-outcomes > :nth-child(5) { grid-column: span 12; }
+
+/* --- People: portrait + bio, alternating side. -------------------------- */
+.ps-people { display: flex; flex-direction: column; gap: var(--ps-space-16); }
+
+.ps-person {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: var(--ps-space-10);
+  align-items: center;
+}
+.ps-person:nth-child(even) { grid-template-columns: 3fr 2fr; }
+.ps-person:nth-child(even) .ps-person__portrait { order: 2; }
+
+.ps-person__portrait {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--ps-radius-lg);
+  overflow: hidden;
+  background: var(--ps-color-surface-alt);
+}
+.ps-person__portrait img { width: 100%; height: 100%; object-fit: cover; }
+
+.ps-person__name { font-size: var(--ps-text-h3); font-weight: var(--ps-weight-medium); }
+.ps-person__role {
+  font-size: var(--ps-text-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: var(--ps-tracking-eyebrow);
+  color: var(--ps-color-accent);
+  margin-block-start: var(--ps-space-2);
+}
+.ps-person__bio { margin-block-start: var(--ps-space-5); color: var(--ps-color-text-muted); }
+
+@media (max-width: 60rem) {
+  .ps-services { grid-template-columns: 1fr; }
+  .ps-services > :nth-child(even) { margin-block-start: 0; }
+  .ps-outcomes > * { grid-column: span 12 !important; }
+  .ps-person,
+  .ps-person:nth-child(even) { grid-template-columns: 1fr; gap: var(--ps-space-6); }
+  .ps-person:nth-child(even) .ps-person__portrait { order: 0; }
+  .ps-person__portrait { aspect-ratio: 16 / 10; }
+}
+
+@media (max-width: 36rem) {
+  .ps-challenge { grid-template-columns: 1fr; gap: var(--ps-space-2); }
+}

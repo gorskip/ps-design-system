@@ -1,0 +1,77 @@
+/* ==========================================================================
+   Przeskalowani — Tailwind v4 theme
+   --------------------------------------------------------------------------
+   Optional. Only needed if a project is built with Tailwind v4.
+
+     @import "tailwindcss";
+     @import "../ps-design-system.css";
+     @import "../tailwind/theme.css";
+
+   This file DOES NOT restate any value. It re-points Tailwind's theme at the
+   tokens defined in tokens/*.css, so there is exactly one source of truth and
+   nothing to keep in sync. Deleting Tailwind does not touch the palette.
+
+   The same rules apply here as everywhere else: prefer the .ps-* components
+   over re-assembling a button out of utilities. Utilities are for layout and
+   one-off spacing, not for inventing new variants.
+   ========================================================================== */
+
+@theme inline {
+  /* White is paper, so bg-white and text-white can't produce pure #FFF. */
+  --color-white: var(--ps-paper);
+
+  /* Colour — semantic roles. Use these (bg-ps-accent), not raw brand names. */
+  --color-ps-page:        var(--ps-color-page);
+  --color-ps-surface:     var(--ps-color-surface);
+  --color-ps-surface-alt: var(--ps-color-surface-alt);
+  --color-ps-text:        var(--ps-color-text);
+  --color-ps-text-muted:  var(--ps-color-text-muted);
+  --color-ps-accent:      var(--ps-color-accent);
+  --color-ps-accent-hover: var(--ps-color-accent-hover);
+  --color-ps-counter:     var(--ps-color-counter);
+  --color-ps-border:      var(--ps-color-border);
+
+  /* Colour — brand primitives, for shapes and illustration only. */
+  --color-ps-teal-900:   var(--ps-teal-900);
+  --color-ps-teal-700:   var(--ps-teal-700);
+  --color-ps-teal-500:   var(--ps-teal-500);
+  --color-ps-violet-500: var(--ps-violet-500);
+  --color-ps-cream:      var(--ps-cream);
+  --color-ps-ink:        var(--ps-ink);
+
+  /* Type */
+  --font-sans: var(--ps-font-sans);
+  --text-ps-display: var(--ps-text-display);
+  --text-ps-h1:      var(--ps-text-h1);
+  --text-ps-h2:      var(--ps-text-h2);
+  --text-ps-h3:      var(--ps-text-h3);
+  --text-ps-lead:    var(--ps-text-lead);
+  --text-ps-body:    var(--ps-text-body);
+  --text-ps-small:   var(--ps-text-small);
+
+  /* Radius — note the deliberate absence of a midrange default. */
+  --radius-ps-sm:   var(--ps-radius-sm);
+  --radius-ps-md:   var(--ps-radius-md);
+  --radius-ps-lg:   var(--ps-radius-lg);
+  --radius-ps-pill: var(--ps-radius-pill);
+
+  /* Spacing additions beyond Tailwind's own scale */
+  --spacing-ps-section: var(--ps-space-section);
+  --container-ps:        var(--ps-container);
+  --container-ps-narrow: var(--ps-container-narrow);
+
+  /* Motion */
+  --ease-ps-out:    var(--ps-ease-out);
+  --ease-ps-in-out: var(--ps-ease-in-out);
+}
+
+/* The signature gradient as a utility. Still one per viewport. */
+@utility bg-ps-gradient {
+  background-image: var(--ps-gradient-mark);
+}
+@utility bg-ps-gradient-deep {
+  background-image: var(--ps-gradient-mark-deep);
+}
+@utility bg-ps-gradient-v {
+  background-image: var(--ps-gradient-mark-v);
+}

@@ -1,0 +1,122 @@
+/* ==========================================================================
+   .ps-field / .ps-input — form controls
+   --------------------------------------------------------------------------
+   Modelled on the existing "Porozmawiajmy" contact form. Form controls are
+   the ONE place --ps-radius-sm is permitted: a 30px radius on a text input
+   wastes horizontal space and hurts legibility.
+   ========================================================================== */
+
+.ps-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ps-space-2);
+}
+
+.ps-label {
+  font-size: var(--ps-text-small);
+  font-weight: var(--ps-weight-medium);
+  color: var(--ps-color-text);
+}
+
+.ps-label__required { color: var(--ps-color-error); margin-inline-start: 0.15em; }
+
+.ps-input,
+.ps-textarea,
+.ps-select {
+  width: 100%;
+  padding: var(--ps-space-3) var(--ps-space-4);
+  min-height: 2.875rem;
+  font-size: var(--ps-text-body);
+  color: var(--ps-color-text);
+  background: var(--ps-color-surface);
+  border: var(--ps-outline-thin) solid var(--ps-color-border-strong);
+  border-radius: var(--ps-radius-sm);
+  transition: var(--ps-transition-colors);
+}
+
+.ps-input::placeholder,
+.ps-textarea::placeholder { color: var(--ps-color-text-muted); opacity: 1; }
+
+.ps-input:hover,
+.ps-textarea:hover,
+.ps-select:hover { border-color: var(--ps-color-accent); }
+
+.ps-textarea { min-height: 8rem; resize: vertical; line-height: var(--ps-leading-relaxed); }
+
+.ps-select {
+  appearance: none;
+  padding-inline-end: var(--ps-space-10);
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+                    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position: calc(100% - 20px) 50%, calc(100% - 14px) 50%;
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+}
+
+/* Error state. Carries BOTH colour and text — colour alone is not a message. */
+.ps-field--error .ps-input,
+.ps-field--error .ps-textarea,
+.ps-field--error .ps-select { border-color: var(--ps-color-error); }
+
+.ps-field__error {
+  font-size: var(--ps-text-small);
+  color: var(--ps-color-error);
+  font-weight: var(--ps-weight-medium);
+}
+
+.ps-field__hint { font-size: var(--ps-text-small); color: var(--ps-color-text-muted); }
+
+/* Checkbox / radio — e.g. the RODO consent on the contact form. */
+.ps-check {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--ps-space-3);
+  align-items: start;
+  font-size: var(--ps-text-small);
+  line-height: var(--ps-leading-normal);
+  color: var(--ps-color-text-muted);
+  cursor: pointer;
+}
+.ps-check input {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.25rem; height: 1.25rem;
+  margin: 0;
+  margin-block-start: 0.1em;
+  flex: none;
+  display: grid;
+  place-content: center;
+  border: var(--ps-outline-medium) solid var(--ps-color-border-strong);
+  border-radius: var(--ps-radius-sm);
+  background: var(--ps-color-surface);
+  cursor: pointer;
+  transition: var(--ps-transition-colors);
+}
+
+/* The tick is drawn with two borders on a rotated box, not faked with stacked
+   linear-gradients — gradients cannot make a clean diagonal and rendered as a
+   smudge at this size. This scales crisply and inherits the accent's
+   foreground colour. */
+.ps-check input[type='checkbox']::after {
+  content: '';
+  width: 0.3125rem;
+  height: 0.625rem;
+  border: solid var(--ps-color-text-on-accent);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg) translate(-1px, -1px);
+  opacity: 0;
+  transition: opacity var(--ps-duration-fast) var(--ps-ease-out);
+}
+
+.ps-check input:checked {
+  background: var(--ps-color-accent);
+  border-color: var(--ps-color-accent);
+}
+.ps-check input[type='checkbox']:checked::after { opacity: 1; }
+
+.ps-check input[type='radio'] { border-radius: var(--ps-radius-pill); }
+.ps-check input[type='radio']:checked {
+  box-shadow: inset 0 0 0 3.5px var(--ps-color-surface);
+}
+
+.ps-check input:hover:not(:checked) { border-color: var(--ps-color-accent); }

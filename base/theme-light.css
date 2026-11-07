@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Przeskalowani — Semantic layer, LIGHT (default)
+   --------------------------------------------------------------------------
+   Components reference ONLY these semantic tokens, never the primitives.
+   That is what makes dark mode a five-line change instead of a rewrite.
+   ========================================================================== */
+
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* Surfaces */
+  --ps-color-page:        var(--ps-paper);
+  --ps-color-surface:     var(--ps-paper);
+  --ps-color-surface-alt: var(--ps-cream);
+  --ps-color-surface-sunk: var(--ps-cream-soft);
+  --ps-color-surface-card: var(--ps-cream);
+  --ps-color-surface-invert: var(--ps-coal);
+
+  /* Text */
+  --ps-color-text:         var(--ps-coal);
+  --ps-color-text-muted:   var(--ps-ink-soft);
+  --ps-color-text-invert:  var(--ps-cream);
+  --ps-color-text-on-accent: var(--ps-cream);
+
+  /* Brand roles */
+  --ps-color-accent:        var(--ps-teal-900);
+  --ps-color-accent-hover:  var(--ps-teal-700);
+  --ps-color-accent-quiet:  var(--ps-teal-ghost);
+  --ps-color-accent-bright: var(--ps-teal-500);   /* non-text */
+  --ps-color-counter:       var(--ps-violet-600);
+
+  /* Lines */
+  --ps-color-border:       var(--ps-ink-faint);
+  --ps-color-border-strong: var(--ps-coal);
+  --ps-color-outline:      var(--ps-cream);  /* the logo's cream outline */
+
+  /* State */
+  --ps-color-focus:  var(--ps-teal-900);
+  --ps-color-error:  var(--ps-violet-600);
+}

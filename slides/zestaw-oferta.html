@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zestaw · krótka oferta · Przeskalowani</title>
+<link rel="stylesheet" href="../ps-design-system.css">
+<link rel="stylesheet" href="../social/social.css">
+<style>html,body{margin:0;height:100%}</style>
+</head>
+<body class="ps-deck">
+<!-- 5 slajdów. Zestaw pokazowy: tytuł, problem, zakres, rekomendacja, CTA. -->
+<section class="ps-deck__slide"><div class="ps-deck__fit"><div class="ps-canvas ps-canvas--slide ps-canvas--sand"><div class="ps-canvas__head"><span class="ps-canvas__lockup"><img src="../assets/logo/mark-light.svg" alt="">Przeskalowani</span></div><div style="position:relative;z-index:2;margin-top:auto"><hr class="ps-canvas__rule"><p class="ps-canvas__eyebrow">Propozycja</p><h1 class="ps-canvas__hook" style="margin-top:24px">Trzy miesiące,<br>jeden priorytet</h1><p class="ps-canvas__body" style="margin-top:32px">Krótka wersja oferty: pięć slajdów na spotkanie, nie dwadzieścia na maila.</p></div><div class="ps-canvas__foot"><span class="ps-canvas__slideno"></span></div></div></div></section>
+<section class="ps-deck__slide"><div class="ps-deck__fit"><div class="ps-canvas ps-canvas--slide"><div class="ps-canvas__head"><span class="ps-canvas__lockup ps-canvas__lockup--mark"><img src="../assets/logo/mark-light.svg" alt=""></span></div><div style="position:relative;z-index:2"><p class="ps-canvas__eyebrow" style="color:var(--ps-teal-900)">Punkt wyjścia</p><h2 class="ps-canvas__title" style="font-size:68px;margin:18px 0 34px">Jeśli mierzycie się z:</h2><div class="ps-canvas__item"><b>01</b><span>Decyzjami, które wracają do właściciela</span></div><div class="ps-canvas__item"><b>02</b><span>Awansami bez przygotowania do roli</span></div><div class="ps-canvas__item"><b>03</b><span>Spotkaniami, z których nic nie wynika</span></div></div><div class="ps-canvas__foot"><span class="ps-canvas__slideno">02</span></div></div></div></section>
+<section class="ps-deck__slide"><div class="ps-deck__fit"><div class="ps-canvas ps-canvas--slide ps-canvas--gradient-green"><div class="ps-canvas__head"><span class="ps-canvas__lockup ps-canvas__lockup--mark"><img src="../assets/logo/mark-dark.svg" alt=""></span></div><img class="ps-canvas__motif ps-canvas__motif--br" src="../assets/logo/mark-texture-dark.svg" alt="" style="width:860px;right:-270px;bottom:-280px"><div style="position:relative;z-index:2"><hr class="ps-canvas__rule"><p class="ps-canvas__eyebrow" style="color:var(--ps-teal-on-deep);margin-top:28px">Co robimy</p><h2 class="ps-canvas__title" style="font-size:72px;margin:18px 0 56px">Diagnoza, warsztat, coaching</h2><p class="ps-canvas__body" style="margin-top:30px;opacity:.84">W tej kolejności. Warsztat bez diagnozy trafia w objaw, nie w przyczynę.</p></div><div class="ps-canvas__foot"><span class="ps-canvas__slideno">03</span></div></div></div></section>
+<section class="ps-deck__slide"><div class="ps-deck__fit"><div class="ps-canvas ps-canvas--slide ps-canvas--mint"><div class="ps-canvas__arc ps-canvas__arc--bl"></div><div class="ps-canvas__head"><span class="ps-canvas__lockup ps-canvas__lockup--mark"><img src="../assets/logo/mark-light.svg" alt=""></span></div><div style="position:relative;z-index:2"><p class="ps-canvas__eyebrow" style="opacity:.75">Rekomendacja</p><blockquote class="ps-canvas__quote" style="font-size:72px;margin-top:26px">Zespół zaczął współpracować, zamiast rywalizować.</blockquote><p class="ps-canvas__body" style="margin-top:38px;opacity:.8">CEO, firma SaaS, 80 osób</p></div><div class="ps-canvas__foot"><span class="ps-canvas__slideno">04</span></div></div></div></section>
+<section class="ps-deck__slide"><div class="ps-deck__fit"><div class="ps-canvas ps-canvas--slide ps-canvas--deep"><div class="ps-canvas__head"><span class="ps-canvas__lockup"><img src="../assets/logo/mark-dark.svg" alt="">Przeskalowani</span></div><img class="ps-canvas__motif ps-canvas__motif--br" src="../assets/logo/mark-texture-dark.svg" alt="" style="width:900px;right:-280px;bottom:-300px"><div style="position:relative;z-index:2;margin-top:auto"><hr class="ps-canvas__rule"><h2 class="ps-canvas__hook">Następny krok</h2><p class="ps-canvas__body" style="margin-top:30px;opacity:.8">30 minut rozmowy. Bez prezentacji i bez oferty na siłę.</p></div><div style="position:relative;z-index:2;margin-top:auto;display:grid;gap:40px"><span class="ps-canvas__callout ps-canvas__callout--onDark">Umówmy rozmowę</span></div><div class="ps-canvas__foot"><span class="ps-canvas__slideno"></span></div></div></div></section>
+<div class="ps-deck__hud">
+  <button type="button" data-prev aria-label="Poprzedni slajd">&#8249;</button>
+  <span data-counter>1 / 5</span>
+  <button type="button" data-next aria-label="Następny slajd">&#8250;</button>
+</div>
+<script>
+const slides=[...document.querySelectorAll('.ps-deck__slide')];
+const counter=document.querySelector('[data-counter]');
+// The canvas keeps its true 1920x1080 size and is scaled to fit, so what is
+// on screen is exactly what exports.
+function fit(){
+  const pad=64;
+  const k=Math.min((innerWidth-pad)/1920,(innerHeight-pad)/1080);
+  const mx=(1920*(k-1))/2, my=(1080*(k-1))/2;
+  document.querySelectorAll('.ps-deck__fit').forEach(el=>{
+    el.style.transform=`scale(${k})`;
+    el.style.margin=`${my}px ${mx}px`;   // reclaim the layout space scale() left behind
+  });
+  document.querySelectorAll('.ps-deck__slide').forEach(el=>{
+    el.style.minHeight=Math.max(1080*k+pad,innerHeight)+'px';
+  });
+}
+addEventListener('resize',fit); fit();
+function current(){
+  let best=0,d=Infinity;
+  slides.forEach((s,i)=>{const o=Math.abs(s.getBoundingClientRect().top);if(o<d){d=o;best=i;}});
+  return best;
+}
+function go(i){
+  i=Math.max(0,Math.min(slides.length-1,i));
+  slides[i].scrollIntoView({behavior:'smooth',block:'center'});
+}
+document.querySelector('[data-prev]').onclick=()=>go(current()-1);
+document.querySelector('[data-next]').onclick=()=>go(current()+1);
+addEventListener('keydown',e=>{
+  if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(current()+1);}
+  if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(current()-1);}
+  if(e.key==='Home'){e.preventDefault();go(0);}
+  if(e.key==='End'){e.preventDefault();go(slides.length-1);}
+});
+const io=new IntersectionObserver(()=>{counter.textContent=(current()+1)+' / '+slides.length;},{threshold:.5});
+slides.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Przeskalowani — Colour tokens
+   --------------------------------------------------------------------------
+   Layer 1: primitives. Eight brand colours, taken from the brand palette and
+   the logo construction spec. NOTHING outside this file may declare a hex
+   value. If you need a colour that isn't here, you need a design decision,
+   not a new hex.
+
+   Contrast notes are measured WCAG 2.1 ratios, not estimates. They are
+   binding: a token marked "non-text" must never carry text.
+   ========================================================================== */
+
+:root {
+  /* --- Brand primitives ------------------------------------------------- */
+
+  /* Deepest teal. The brand's workhorse.
+     on white 7.38:1  AA ✓  AAA ✓   |  on cream 6.06:1  AA ✓
+     on black 2.84:1  ✗ — never use teal-900 text on a dark surface. */
+  --ps-teal-900: #156064;
+
+  /* Mid teal. Hover states, borders, dark-mode body accents.
+     on white 3.35:1  large text only  |  on black 6.27:1  AA ✓ */
+  --ps-teal-700: #2F9C95;
+
+  /* Bright teal. The logo's signature green.
+     on white 2.08:1  ✗ NON-TEXT ONLY — shapes, fills, rules, never type.
+     on black 10.09:1 AA ✓ AAA ✓ — safe for text in dark mode. */
+  --ps-teal-500: #40C9A2;
+
+  /* Violet counter-accent. Use sparingly; it is the rarer half of the logo.
+     on PAPER 4.37:1  large text / shapes only — it does NOT clear AA for body
+     text on our warmed page surface (it managed 4.73:1 on pure white).
+     on COAL  4.52:1  large text only in practice.
+     For violet TEXT use --ps-violet-600 below. */
+  --ps-violet-500: #8661C1;
+
+  /* Warm off-white. This is the logo's outline colour — it is structural,
+     not decorative. on black 17.23:1 ✓ */
+  --ps-cream: #EBE8E7;
+
+  /* Pure black stays in the palette because the LOGO uses it, but is never a page
+     surface: #000 crushes, and text on it feels brittle. */
+  --ps-ink: #000000;
+
+  /* --- Derived neutrals --------------------------------------------------
+     Mixed from the primitives above so the greys stay warm and in-family
+     rather than drifting to a generic cool slate. Still no new hexes. */
+  --ps-cream-deep:  color-mix(in srgb, var(--ps-cream) 72%, var(--ps-ink));
+  --ps-cream-soft:  color-mix(in srgb, var(--ps-cream) 45%, #FFFFFF);
+
+  /* --- The two real surfaces --------------------------------------------
+     PAPER is the light page: white warmed toward the brand cream just enough
+     to take the glare off. COAL is the dark page: black lifted just enough
+     that type sits on it rather than being cut out of it.
+     Measured against each other: 17.4:1.
+
+     PAPER IS THE BRAND'S WHITE. There is no pure white in this system, because
+     #FFF glares. Whenever anyone asks for white, they get paper. --ps-white only
+     exists so that the name resolves to the right colour. */
+  --ps-paper: color-mix(in srgb, var(--ps-cream) 34%, #FFFFFF);
+  --ps-white: var(--ps-paper);
+  --ps-coal:  color-mix(in srgb, var(--ps-ink) 92%, var(--ps-cream));
+
+  /* Violet deepened so it still clears AA for body text on PAPER. On pure
+     white the brand violet measured 4.73:1; on the warmer paper it drops to
+     4.43:1, which fails. This one measures 4.99:1. */
+  --ps-violet-600: color-mix(in srgb, var(--ps-violet-500) 92%, var(--ps-ink));
+
+  /* Teal-500 measures only 3.49:1 on the deep teal surface — large text at
+     best. This lightened teal reaches 4.79:1 and is the ONLY teal legal as
+     TEXT on --ps-teal-900. Teal-500 stays for rules, chips and shapes. */
+  --ps-teal-on-deep: color-mix(in srgb, var(--ps-teal-500) 40%, var(--ps-cream));
+  --ps-ink-soft:    color-mix(in srgb, var(--ps-ink) 68%, var(--ps-cream));
+  --ps-ink-faint:   color-mix(in srgb, var(--ps-ink) 12%, var(--ps-cream));
+  --ps-teal-ghost:  color-mix(in srgb, var(--ps-teal-900) 8%, transparent);
+
+  /* Mint. The pale teal field that dominates the real @przeskalowani feed —
+     their graphic posts sit on this, not on black. Mixed from the brand teal
+     and cream, so it introduces no new hex. */
+  --ps-mint:      color-mix(in srgb, var(--ps-teal-500) 26%, var(--ps-cream));
+  /* Deep enough to read as an edge; at 46% it measured 1.12:1 against mint. */
+  --ps-mint-deep: color-mix(in srgb, var(--ps-teal-500) 92%, var(--ps-cream));
+
+  /* --- The signature gradient -------------------------------------------
+     ONE gradient. It is lifted from the large triangle of the mark: violet
+     on the left, through deep teal at the centre, to bright teal on the
+     right. Rule: at most once per viewport, and never behind body text. */
+  --ps-gradient-mark:
+    linear-gradient(100deg,
+      var(--ps-violet-500) 0%,
+      var(--ps-teal-900)  52%,
+      var(--ps-teal-500) 100%);
+
+  /* Text-safe variant. The full gradient above CANNOT carry body text: cream
+     on teal-500 is 1.71:1 and cream on violet-500 is 3.88:1 — both illegal.
+     This is the dark half of the same gradient, with violet deepened until
+     every point along it clears 4.5:1 against cream. Use it on ANY gradient
+     surface that carries type; use the bright one only for pure shapes. */
+  --ps-gradient-mark-deep:
+    linear-gradient(100deg,
+      color-mix(in srgb, var(--ps-violet-500) 78%, var(--ps-ink)) 0%,
+      var(--ps-teal-900) 100%);
+
+  /* --- The deep-teal gradient (slides) ------------------------------------
+     The dark slide surface is NEVER a flat field. At 1920×1080, thrown on a
+     wall, a single flat colour reads as a dead rectangle and shows every
+     projector banding artefact; the same colour with a slow ramp across it
+     reads as depth. Both ends are teal-900 — one of them simply deepened
+     toward ink — so this introduces no new colour and no violet. Cream on the
+     lighter end is 5.96:1, and the ramp only goes darker from there. */
+  --ps-gradient-deep:
+    linear-gradient(100deg,
+      var(--ps-teal-900) 0%,
+      color-mix(in srgb, var(--ps-teal-900) 74%, var(--ps-ink)) 100%);
+
+  /* --- The green gradient ------------------------------------------------
+     The second — and last — gradient in the system: bright teal through mid
+     teal into the deep teal, with no violet in it at all. It exists because
+     the signature gradient may appear only once per viewport, and a deck or
+     a carousel often needs a second coloured field that still reads as the
+     brand. Same rules apply: shapes and fields, never behind body text.
+     Measured: coal on teal-500 is 8.92:1, but coal on teal-900 is 2.55:1 —
+     which is why the bright version below is NON-TEXT only. */
+  --ps-gradient-green:
+    linear-gradient(100deg,
+      var(--ps-teal-500)  0%,
+      var(--ps-teal-700) 46%,
+      var(--ps-teal-900) 100%);
+
+  /* Text-safe green. Mid teal deepened to 70% until cream clears AA on it
+     (4.99:1), running into teal-900 (5.96:1). Cream type only. */
+  --ps-gradient-green-deep:
+    linear-gradient(100deg,
+      color-mix(in srgb, var(--ps-teal-700) 70%, var(--ps-ink)) 0%,
+      var(--ps-teal-900) 100%);
+
+  /* Vertical green, for tall surfaces (stories, portrait posts). */
+  --ps-gradient-green-v:
+    linear-gradient(168deg,
+      color-mix(in srgb, var(--ps-teal-700) 70%, var(--ps-ink)) 0%,
+      var(--ps-teal-900) 100%);
+
+  /* Vertical variant, for tall surfaces (stories, portrait posts) only. */
+  --ps-gradient-mark-v:
+    linear-gradient(168deg,
+      var(--ps-teal-900)   0%,
+      var(--ps-teal-700)  46%,
+      var(--ps-teal-500) 100%);
+}

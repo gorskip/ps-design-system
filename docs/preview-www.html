@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Paints the right background before the CSS lands; without it dark-mode
+     visitors get a white flash on every navigation. -->
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#156064">
+
+<title>Warsztaty i coaching dla liderów · Przeskalowani</title>
+<meta name="description" content="Układamy zespoły i procesy w firmach, które rosną szybciej, niż nadążają za tym ich struktury. Warsztaty, coaching menedżerów i interim management.">
+<link rel="canonical" href="https://przeskalowani.pl/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Przeskalowani">
+<meta property="og:locale" content="pl_PL">
+<meta property="og:title" content="Warsztaty i coaching dla liderów">
+<meta property="og:description" content="Układamy zespoły i procesy w firmach, które rosną szybciej, niż nadążają za tym ich struktury.">
+<meta property="og:url" content="https://przeskalowani.pl/">
+<meta property="og:image" content="https://przeskalowani.pl/assets/photo/hero-1200.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="Założycielki Przeskalowanych">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Self-hosted: one request, same origin, visible to the preload scanner.
+     The font used to be pulled by an @import nested inside an imported
+     stylesheet — four serial round trips before a glyph could paint. -->
+<link rel="preload" href="../assets/fonts/Montserrat-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
+
+<!-- The LCP image. Preloaded so its fetch starts with the HTML instead of
+     waiting for the CSSOM to prove it is in the viewport. -->
+<link rel="preload" as="image" href="../assets/photo/hero-800.webp"
+      imagesrcset="../assets/photo/hero-480.webp 480w, ../assets/photo/hero-800.webp 800w, ../assets/photo/hero-1200.webp 1200w"
+      imagesizes="(max-width: 60rem) 100vw, 40vw" fetchpriority="high">
+
+<link rel="icon" href="../assets/logo/favicon.svg" type="image/svg+xml">
+
+<!-- One bundled stylesheet. The @import source graph is 21 files and is
+     compiled away by `node build/bundle.mjs`; never link it in production. -->
+<link rel="stylesheet" href="../dist/ps-design-system.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://przeskalowani.pl/#organization",
+      "name": "Przeskalowani",
+      "url": "https://przeskalowani.pl/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://przeskalowani.pl/assets/logo/lockup-light.svg"
+      },
+      "sameAs": [
+        "https://www.instagram.com/przeskalowani/",
+        "TODO: LinkedIn company page URL"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://przeskalowani.pl/#business",
+      "name": "Przeskalowani",
+      "parentOrganization": {
+        "@id": "https://przeskalowani.pl/#organization"
+      },
+      "url": "https://przeskalowani.pl/",
+      "description": "Warsztaty, coaching i interim management dla firm, które rosną szybciej niż ich struktury.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ul. Stawna 10/5",
+        "addressLocality": "Poznań",
+        "postalCode": "TODO",
+        "addressCountry": "PL"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "TODO",
+        "longitude": "TODO"
+      },
+      "telephone": "TODO",
+      "email": "TODO",
+      "areaServed": {
+        "@type": "Country",
+        "name": "Polska"
+      },
+      "priceRange": "TODO: e.g. $$",
+      "knowsAbout": [
+        "Process Communication Model",
+        "Analiza Transakcyjna",
+        "Świadome przywództwo",
+        "Skuteczna komunikacja",
+        "Zarządzanie stresem",
+        "Interim management"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Usługi",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Warsztaty",
+              "description": "Świadome przywództwo i skuteczna komunikacja."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Coaching i mentoring",
+              "description": "Indywidualna praca z liderami."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Diagnoza współpracy menedżerskiej"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Interim management",
+              "description": "Prowadzenie zmiany operacyjnie, a nie doradczo."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "https://przeskalowani.pl/#zuzanna-wozniak",
+      "name": "Zuzanna Woźniak",
+      "jobTitle": "TODO: potwierdzić",
+      "worksFor": {
+        "@id": "https://przeskalowani.pl/#organization"
+      },
+      "knowsAbout": [
+        "Operacje",
+        "Strategia",
+        "HR"
+      ],
+      "sameAs": [
+        "TODO: LinkedIn profile URL"
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://przeskalowani.pl/#joanna-nowak",
+      "name": "Joanna Nowak",
+      "jobTitle": "TODO: potwierdzić",
+      "worksFor": {
+        "@id": "https://przeskalowani.pl/#organization"
+      },
+      "knowsAbout": [
+        "Process Communication Model",
+        "Analiza Transakcyjna",
+        "Coaching"
+      ],
+      "sameAs": [
+        "TODO: LinkedIn profile URL"
+      ]
+    },
+    {
+      "@type": "Course",
+      "@id": "https://przeskalowani.pl/warsztaty-pcm-starter/#course",
+      "name": "PCM Starter",
+      "description": "TODO: 1–2 zdania o warsztacie.",
+      "provider": {
+        "@id": "https://przeskalowani.pl/#organization"
+      },
+      "inLanguage": "pl",
+      "hasCourseInstance": {
+        "@type": "CourseInstance",
+        "courseMode": "onsite",
+        "courseWorkload": "TODO: np. P2D",
+        "location": {
+          "@type": "Place",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Poznań",
+            "addressCountry": "PL"
+          }
+        }
+      },
+      "offers": {
+        "@type": "Offer",
+        "category": "Paid",
+        "priceCurrency": "PLN",
+        "price": "TODO",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Course",
+      "@id": "https://przeskalowani.pl/swiadome-przywodztwo/#course",
+      "name": "Świadome Przywództwo",
+      "description": "TODO",
+      "provider": {
+        "@id": "https://przeskalowani.pl/#organization"
+      },
+      "inLanguage": "pl"
+    },
+    {
+      "@type": "Course",
+      "@id": "https://przeskalowani.pl/skuteczna-komunikacja/#course",
+      "name": "Skuteczna komunikacja",
+      "description": "TODO",
+      "provider": {
+        "@id": "https://przeskalowani.pl/#organization"
+      },
+      "inLanguage": "pl"
+    },
+    {
+      "@type": "Course",
+      "@id": "https://przeskalowani.pl/pcm-stres/#course",
+      "name": "PCM Stres",
+      "description": "TODO",
+      "provider": {
+        "@id": "https://przeskalowani.pl/#organization"
+      },
+      "inLanguage": "pl"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://przeskalowani.pl/#website",
+      "url": "https://przeskalowani.pl/",
+      "name": "Przeskalowani",
+      "inLanguage": "pl-PL",
+      "publisher": {
+        "@id": "https://przeskalowani.pl/#organization"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="ps-skip-link" href="#tresc">Przejdź do treści</a>
+
+<header class="ps-nav">
+  <div class="ps-nav__inner">
+    <a class="ps-logo ps-logo--sm" href="/" aria-label="Przeskalowani, strona główna">
+      <img class="ps-logo__mark ps-logo__mark--light" src="../assets/logo/mark-light.svg" alt="" width="37" height="30">
+      <img class="ps-logo__mark ps-logo__mark--dark" src="../assets/logo/mark-dark.svg" alt="" width="37" height="30">
+      <span class="ps-logo__word">Przeskalowani</span>
+    </a>
+    <button class="ps-nav__toggle" aria-expanded="false" aria-controls="menu" aria-label="Menu">
+      <span class="ps-nav__toggle-bar"></span>
+    </button>
+    <nav class="ps-nav__menu" id="menu" aria-label="Główna nawigacja">
+      <ul class="ps-nav__list">
+        <li><a class="ps-nav__link" href="#wyzwania">Wyzwania</a></li>
+        <li><a class="ps-nav__link" href="#dzialania">Działania</a></li>
+        <li><a class="ps-nav__link" href="#efekty">Efekty</a></li>
+        <li><a class="ps-nav__link" href="#onas">O nas</a></li>
+      </ul>
+      <div class="ps-nav__actions">
+        <a class="ps-btn ps-btn--primary" href="#kontakt">Porozmawiajmy</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="tresc">
+
+  <section class="ps-hero" aria-labelledby="hero-title">
+    <div class="ps-hero__inner">
+      <div class="ps-hero__content">
+        <span class="ps-eyebrow">Przeskalowani</span>
+        <h1 id="hero-title" class="ps-hero__title">Wspieramy skalujące się biznesy</h1>
+        <p class="ps-hero__lead">Pomagamy firmom układać zespoły i procesy. Działamy operacyjnie, a nie doradczo.</p>
+        <div class="ps-hero__actions">
+          <a class="ps-btn ps-btn--primary ps-btn--lg" href="#kontakt">
+            Umów bezpłatną konsultację
+            <svg class="ps-btn__arrow" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="ps-btn ps-btn--ghost ps-btn--lg" href="#onas">Poznaj nas</a>
+        </div>
+      </div>
+      <div class="ps-hero__visual">
+        <picture>
+          <source type="image/webp"
+                  srcset="../assets/photo/hero-480.webp 480w, ../assets/photo/hero-800.webp 800w, ../assets/photo/hero-1200.webp 1200w"
+                  sizes="(max-width: 60rem) 100vw, 40vw">
+          <img src="../assets/photo/hero-800.jpg"
+               srcset="../assets/photo/hero-480.jpg 480w, ../assets/photo/hero-800.jpg 800w, ../assets/photo/hero-1200.jpg 1200w"
+               sizes="(max-width: 60rem) 100vw, 40vw"
+               width="1200" height="1200" fetchpriority="high" decoding="async"
+               alt="Zuzanna Woźniak i Joanna Nowak, założycielki Przeskalowanych">
+        </picture>
+      </div>
+    </div>
+  </section>
+
+  <section class="ps-section ps-section--alt" id="wyzwania" aria-labelledby="h-wyzwania">
+    <div class="ps-container">
+      <div class="ps-section__header">
+        <span class="ps-eyebrow">Wyzwania</span>
+        <h2 id="h-wyzwania">Jeśli mierzysz się z:</h2>
+      </div>
+      <div class="ps-challenges">
+        <div class="ps-challenge"><div>
+          <h3 class="ps-challenge__title">Gaszeniem pożarów</h3>
+          <p class="ps-challenge__body">Dzień zaczyna się od kryzysu, a kończy na kolejnym.</p></div></div>
+        <div class="ps-challenge"><div>
+          <h3 class="ps-challenge__title">Ogarnianiem wszystkiego samemu</h3>
+          <p class="ps-challenge__body">Delegowanie kończy się na tym, że i tak poprawiasz.</p></div></div>
+        <div class="ps-challenge"><div>
+          <h3 class="ps-challenge__title">Brakami w kadrze managerskiej</h3>
+          <p class="ps-challenge__body">Awansowani specjaliści nie mieli jak nauczyć się zarządzać.</p></div></div>
+        <div class="ps-challenge"><div>
+          <h3 class="ps-challenge__title">Spadkiem jakości obsługi</h3>
+          <p class="ps-challenge__body">Rośniecie szybciej, niż nadąża za tym proces.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ps-section" id="dzialania" aria-labelledby="h-dzialania">
+    <div class="ps-container">
+      <div class="ps-section__header">
+        <span class="ps-eyebrow">Działania</span>
+        <h2 id="h-dzialania">Te działania rozwiążą Twój problem</h2>
+      </div>
+      <div class="ps-services">
+        <div class="ps-card ps-card--outlined">
+          <span class="ps-card__index">01</span>
+          <h3 class="ps-card__title">Warsztaty</h3>
+          <p class="ps-card__body">Świadome przywództwo i skuteczna komunikacja, PCM, Analiza Transakcyjna, Management 3.0.</p>
+        </div>
+        <div class="ps-card ps-card--outlined">
+          <span class="ps-card__index">02</span>
+          <h3 class="ps-card__title">Coaching i mentoring</h3>
+          <p class="ps-card__body">Indywidualna praca z liderami, od delegowania po trudne rozmowy.</p>
+        </div>
+        <div class="ps-card ps-card--outlined">
+          <span class="ps-card__index">03</span>
+          <h3 class="ps-card__title">Diagnoza współpracy</h3>
+          <p class="ps-card__body">Sprawdzamy, gdzie naprawdę rozjeżdża się zarząd i kadra menedżerska.</p>
+        </div>
+        <div class="ps-card ps-card--outlined">
+          <span class="ps-card__index">04</span>
+          <h3 class="ps-card__title">Interim management</h3>
+          <p class="ps-card__body">Wchodzimy do środka i prowadzimy zmianę, zamiast opisywać ją w rekomendacji.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ps-section ps-section--alt" id="efekty" aria-labelledby="h-efekty">
+    <div class="ps-container">
+      <div class="ps-section__header">
+        <span class="ps-eyebrow">Efekty</span>
+        <h2 id="h-efekty">Efekty, które obserwujemy u naszych klientów</h2>
+      </div>
+      <div class="ps-outcomes">
+        <div class="ps-card"><h3 class="ps-card__title">Zespół współpracuje, a nie rywalizuje</h3>
+          <p class="ps-card__body">Konflikt przestaje być kosztem, a zaczyna być informacją.</p></div>
+        <div class="ps-card"><h3 class="ps-card__title">Wracasz do roli właściciela</h3>
+          <p class="ps-card__body">I lidera wizji, zamiast dyżurnego od wszystkiego.</p></div>
+        <div class="ps-card"><h3 class="ps-card__title">Większe zaangażowanie</h3>
+          <p class="ps-card__body">Ludzie wiedzą, po co robią to, co robią.</p></div>
+        <div class="ps-card"><h3 class="ps-card__title">Procesy wspierają, a nie obciążają</h3>
+          <p class="ps-card__body">Struktura nadąża za tempem wzrostu.</p></div>
+        <div class="ps-card ps-card--gradient"><h3 class="ps-card__title">Skalowanie bez wypalania</h3>
+          <p class="ps-card__body">Firma rośnie, a zespół, razem z nią, nie kosztem siebie.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ps-section" aria-labelledby="h-opinia">
+    <div class="ps-container ps-container--narrow">
+      <h2 id="h-opinia" class="ps-sr-only">Opinia klienta</h2>
+      <figure class="ps-quote">
+        <blockquote class="ps-quote__text">Zespół zaczął współpracować, zamiast rywalizować. Po raz pierwszy od dwóch lat nie musiałem być na każdym spotkaniu.</blockquote>
+        <figcaption class="ps-quote__attribution"><cite class="ps-quote__name">CEO</cite> · firma SaaS, 80 osób</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="ps-section ps-section--alt" id="onas" aria-labelledby="h-onas">
+    <div class="ps-container">
+      <div class="ps-section__header">
+        <span class="ps-eyebrow">O nas</span>
+        <h2 id="h-onas">Od ponad 10 lat wspieramy Zarządy i Menedżerów</h2>
+      </div>
+      <div class="ps-people">
+        <article class="ps-person">
+          <div class="ps-person__portrait">
+            <picture>
+              <source type="image/webp" srcset="../assets/photo/portrait-b-480.webp 480w, ../assets/photo/portrait-b-800.webp 800w" sizes="(max-width: 60rem) 100vw, 33vw">
+              <img src="../assets/photo/portrait-b-800.jpg"
+                   srcset="../assets/photo/portrait-b-480.jpg 480w, ../assets/photo/portrait-b-800.jpg 800w"
+                   sizes="(max-width: 60rem) 100vw, 33vw"
+                   width="1200" height="1500" loading="lazy" decoding="async"
+                   alt="Zuzanna Woźniak">
+            </picture>
+          </div>
+          <div>
+            <h3 class="ps-person__name">Zuza</h3>
+            <p class="ps-person__role">HR&amp;Operations Interim Manager i Liderka zespołów</p>
+            <p class="ps-person__bio">Ponad 10 lat w tech, dziś dyrektorka operacyjna. Układa procesy, struktury i to, co dzieje się między nimi.</p>
+          </div>
+        </article>
+        <article class="ps-person">
+          <div class="ps-person__portrait">
+            <picture>
+              <source type="image/webp" srcset="../assets/photo/portrait-a-480.webp 480w, ../assets/photo/portrait-a-800.webp 800w" sizes="(max-width: 60rem) 100vw, 33vw">
+              <img src="../assets/photo/portrait-a-800.jpg"
+                   srcset="../assets/photo/portrait-a-480.jpg 480w, ../assets/photo/portrait-a-800.jpg 800w"
+                   sizes="(max-width: 60rem) 100vw, 33vw"
+                   width="1200" height="1500" loading="lazy" decoding="async"
+                   alt="Joanna Nowak">
+            </picture>
+          </div>
+          <div>
+            <h3 class="ps-person__name">Asia</h3>
+            <p class="ps-person__role">Interim Manager, Executive Coach i certyfikowana Trenerka PCM</p>
+            <p class="ps-person__bio">Psycholożka z certyfikacją PCM i Analizy Transakcyjnej. Pracuje z liderami nad tym, jak naprawdę rozmawiają z zespołem.</p>
+          </div>
+        </article>
+      </div>
+      <p class="ps-small ps-muted" style="margin-top:var(--ps-space-8)">
+        Uwaga: przypisanie zdjęć do imion jest tymczasowe, wymaga potwierdzenia przed publikacją.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="ps-footer" id="kontakt">
+  <div class="ps-container">
+    <div class="ps-footer__grid">
+      <div>
+        <h2 style="max-width:12ch">Porozmawiajmy</h2>
+        <p class="ps-lead" style="color:inherit;opacity:.8;margin-top:var(--ps-space-5)">
+          Zapraszamy Cię na 30-minutowe bezpłatne konsultacje.
+        </p>
+        <a class="ps-btn ps-btn--primary ps-btn--lg" href="#kontakt-form" style="margin-top:var(--ps-space-6)">Umów konsultację</a>
+      </div>
+      <div>
+        <h3 class="ps-footer__heading">Warsztaty</h3>
+        <ul class="ps-footer__list ps-small">
+          <li><a href="/warsztaty-pcm-starter/">PCM Starter</a></li>
+          <li><a href="/swiadome-przywodztwo/">Świadome Przywództwo</a></li>
+          <li><a href="/skuteczna-komunikacja/">Skuteczna komunikacja</a></li>
+          <li><a href="/pcm-stres/">PCM Stres</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="ps-footer__heading">Kontakt</h3>
+        <ul class="ps-footer__list ps-small">
+          <li>ul. Stawna 10/5, Poznań</li>
+          <li><a href="https://przeskalowani.pl/">przeskalowani.pl</a></li>
+          <li><a href="https://www.instagram.com/przeskalowani/" rel="me noopener" target="_blank">Przeskalowani na Instagramie</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ps-footer__bottom">
+      <span>© Przeskalowani</span>
+      <span>Podgląd zbudowany wyłącznie z komponentów systemu</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.ps-nav__toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    const menu = document.getElementById(btn.getAttribute('aria-controls'));
+    if (menu) menu.dataset.open = String(!open);
+  });
+});
+</script>
+</body>
+</html>

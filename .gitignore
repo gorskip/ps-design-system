@@ -1,0 +1,16 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated PNGs from bin/export.mjs
+exports/
+
+# Original photo shoot (44 MB); web-sized copies are in assets/photo/
+baseline/photo/
+
+# Local tooling and secrets
+node_modules/
+*.log
+.env
+.env.*
+.claude/settings.local.json

@@ -1,0 +1,77 @@
+/* ==========================================================================
+   .ps-logo — the lockup, as live markup
+   --------------------------------------------------------------------------
+   Preferred over the lockup SVGs on the web: the wordmark stays real text
+   (selectable, translatable, no font-embedding problem) and scales with the
+   type system.
+
+   <a class="ps-logo" href="/">
+     <img class="ps-logo__mark" src="/assets/logo/mark-light.svg" alt="">
+     <span class="ps-logo__word">Przeskalowani</span>
+   </a>
+
+   CLEARSPACE: never less than --ps-logo-clearspace on any side. That value is
+   half the width of the small triangle, per the brand construction.
+   MINIMUM SIZE: mark alone 24px; full lockup 120px wide. Below that, use the
+   mark on its own — the wordmark stops being legible.
+   ========================================================================== */
+
+.ps-logo {
+  --ps-logo-size: 2.25rem;
+  --ps-logo-clearspace: calc(var(--ps-logo-size) * 0.5);
+
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--ps-logo-size) * var(--ps-lockup-gap-ratio));
+  padding: var(--ps-logo-clearspace);
+  margin: calc(var(--ps-logo-clearspace) * -1);
+  text-decoration: none;
+  color: var(--ps-color-text);
+  max-width: 100%;
+}
+
+.ps-logo__mark {
+  width: auto;
+  height: var(--ps-logo-size);
+  flex: none;
+}
+
+.ps-logo__word {
+  font-size: calc(var(--ps-logo-size) * var(--ps-lockup-word-ratio));
+  font-weight: var(--ps-weight-regular);
+  letter-spacing: -0.015em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ps-logo--sm { --ps-logo-size: 2rem; }
+.ps-logo--lg { --ps-logo-size: 4.5rem; }
+
+/* Mark only — below 120px of lockup width, or as an avatar/favicon. */
+.ps-logo--mark-only .ps-logo__word {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Theme swap. Serve the outlined mark on dark surfaces, the bare mark on
+   light ones — the cream outline is a legibility device, not decoration. */
+.ps-logo__mark--dark { display: none; }
+[data-theme='dark'] .ps-logo__mark--light { display: none; }
+[data-theme='dark'] .ps-logo__mark--dark { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) .ps-logo__mark--light { display: none; }
+  :root:not([data-theme='light']) .ps-logo__mark--dark { display: block; }
+}
+
+/* Below 26rem the full lockup cannot fit at --lg. Step it down rather than
+   letting the wordmark push the page sideways. Must come after .ps-logo--lg:
+   a media query adds no specificity, so source order decides. */
+@media (max-width: 26rem) {
+  .ps-logo--lg { --ps-logo-size: 2.5rem; }
+  .ps-logo--sm,
+  .ps-logo { --ps-logo-size: 1.75rem; }
+}

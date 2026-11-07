@@ -1,0 +1,1090 @@
+/* ==========================================================================
+   Przeskalowani — social canvases
+   --------------------------------------------------------------------------
+   Fixed-pixel canvases for export. These are NOT responsive on purpose: a
+   social graphic has one correct size and must render identically every time.
+
+   EXPORT: open the file, screenshot the .ps-canvas element at 2× device pixel
+   ratio with `node bin/export.mjs`, which reads the size off the canvas.
+
+   Everything here reads from the same tokens as the website, so a post and a
+   landing page cannot drift apart.
+   ========================================================================== */
+
+.ps-canvas {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 88px;
+  background: var(--ps-color-page);
+  color: var(--ps-color-text);
+
+  /* Social type ignores the fluid web scale: these are absolute pixel sizes,
+     because the canvas is always exactly 1080px wide. */
+  font-size: 32px;
+  line-height: 1.5;
+}
+
+.ps-canvas--square   { width: 1080px; height: 1080px; }
+.ps-canvas--portrait { width: 1080px; height: 1350px; }
+.ps-canvas--story    { width: 1080px; height: 1920px; padding: 120px 88px 180px; }
+.ps-canvas--linkedin { width: 1200px; height: 1500px; padding: 98px; font-size: 35px; }
+
+/* --- Surfaces ------------------------------------------------------------ */
+/* DEEP — the standard dark surface, on every canvas: slide, post, form header
+   or a panel inside one. Teal-900 as a background is ALWAYS the gradient, never
+   a flat field. Both ends of that ramp are teal-900 (one deepened toward ink),
+   so no new colour enters the system. Not near-black.
+   Black at full-bleed is too heavy for this brand: it reads as weight rather
+   than depth, and against warm photography and cream type it feels inert.
+   Teal-900 keeps the contrast (cream on it is 5.96:1) while staying inside
+   the palette.
+   TEXT RULE: cream, or --ps-teal-on-deep for accents. Never teal-500 as
+   text here (3.49:1) and never teal-700 (2.18:1). */
+.ps-canvas--deep     { background: var(--ps-gradient-deep); color: var(--ps-cream); }
+
+/* INK — true black. Deliberately RARE: reserve it for a single high-impact
+   frame in a set, never as a default. */
+.ps-canvas--ink      { background: var(--ps-coal); color: var(--ps-cream); }
+.ps-canvas--cream    { background: var(--ps-cream); color: var(--ps-coal); }
+.ps-canvas--gradient { background: var(--ps-gradient-mark-deep); color: var(--ps-cream); }
+/* Bright gradient: shapes only, never under the copy. Cream on teal-500 is 1.71:1. */
+.ps-canvas--gradient-bright { background: var(--ps-gradient-mark); color: var(--ps-coal); }
+/* GREEN gradient — the no-violet field. Deep version carries cream type;
+   the bright one is shapes only, exactly like its violet counterpart. */
+.ps-canvas--gradient-green { background: var(--ps-gradient-green-deep); color: var(--ps-cream); }
+.ps-canvas--gradient-green-bright { background: var(--ps-gradient-green); color: var(--ps-coal); }
+.ps-canvas--gradient-green .ps-canvas__eyebrow,
+.ps-canvas--gradient-green .ps-canvas__item b { color: var(--ps-teal-on-deep); }
+
+/* Cream — #EBE8E7, the logo's own outline colour, used as a full field. The
+   warmest of the light surfaces and the one that sits best beside the warm
+   founder photography. Text on it is coal (15.25:1) or teal-900 (5.96:1). */
+.ps-canvas--sand { background: var(--ps-cream); color: var(--ps-coal); }
+.ps-canvas--sand .ps-canvas__eyebrow,
+.ps-canvas--sand .ps-canvas__step { color: var(--ps-teal-900); opacity: .8; }
+
+/* Mint — the house surface for graphic posts, matching the live feed. Text on
+   it is always teal-900 (5.13:1 — measured, not estimated) or coal; never cream. */
+.ps-canvas--mint { background: var(--ps-mint); color: var(--ps-teal-900); }
+.ps-canvas--mint .ps-canvas__body { color: var(--ps-coal); opacity: 1; }
+
+/* The soft arc in the corner of their graphic posts, rebuilt as a clean
+   quarter-ellipse rather than a wobbly blob. */
+.ps-canvas__arc {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  background: var(--ps-mint-deep);
+  pointer-events: none;
+}
+.ps-canvas__arc--tr { width: 760px; height: 620px; right: -230px; top: -240px; }
+.ps-canvas__arc--br { width: 820px; height: 680px; right: -280px; bottom: -300px; }
+.ps-canvas__arc--bl { width: 820px; height: 680px; left: -280px; bottom: -300px; }
+
+/* On a slide the four corners are spoken for: the mark takes the top-right,
+   the number the bottom-right, the copy the left column. A decorative arc
+   therefore sits bottom-left and stays SMALL enough to graze the corner
+   without reaching the last line of copy. */
+.ps-canvas--slide .ps-canvas__arc--bl { width: 520px; height: 430px; left: -230px; bottom: -220px; }
+
+/* A white callout card — they use these for the punchline of a post. */
+.ps-canvas__callout {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  background: var(--ps-paper);
+  color: var(--ps-teal-900);
+  border: 3px solid var(--ps-teal-900);
+  border-radius: var(--ps-radius-md);
+  padding: 20px 32px;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+/* No background of its own, so it INHERITS the canvas colour — the other half
+   of the same rule: don't hard-code a text colour onto a transparent element. */
+/* RULE: teal-500 NEVER fills the call-to-action block on the opening or
+   closing slide. It is a non-text colour (coal on it is 8.92:1 but cream is
+   1.71:1), and a solid bright-teal bar is the loudest thing a deck can end on
+   — it reads as a web button pasted onto a slide. On a dark field the callout
+   is outlined in teal-500 and keeps cream type; on a light field it stays the
+   default paper block with the teal-900 rule around it. */
+.ps-canvas__callout--onDark {
+  background: transparent;
+  border-color: var(--ps-teal-500);
+  color: var(--ps-cream);
+}
+
+.ps-canvas__callout--quiet {
+  border-color: transparent;
+  background: transparent;
+  font-weight: 500;
+  color: inherit;
+}
+
+/* Tick list. The tick is drawn, not an emoji. */
+.ps-canvas__ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; position: relative; z-index: 2; }
+.ps-canvas__ticks li {
+  display: grid; grid-template-columns: 44px 1fr; gap: 22px;
+  align-items: start; font-size: 34px; line-height: 1.32;
+}
+.ps-canvas__ticks svg { width: 34px; height: 34px; margin-top: 6px; color: var(--ps-teal-900); }
+/* Same contrast rule, applied to a shape: teal-900 on a dark surface is
+   2.55:1 and the checkmark all but disappears. On dark fields it takes the
+   lightened teal that is legal there. */
+.ps-canvas--deep .ps-canvas__ticks svg,
+.ps-canvas--ink .ps-canvas__ticks svg,
+.ps-canvas--gradient .ps-canvas__ticks svg,
+.ps-canvas--gradient-green .ps-canvas__ticks svg { color: var(--ps-teal-on-deep); }
+
+/* A WEB COMPONENT BORROWED INTO A CANVAS TAKES THE CANVAS'S COLOUR STORY.
+   `.ps-quote` is built for a themed page, so its attribution reaches for
+   `--ps-color-text-muted` — a dark grey that vanishes on a dark canvas, which
+   has no theme to speak of. Dark surfaces restate it in cream. */
+.ps-canvas--deep .ps-quote__attribution,
+.ps-canvas--ink .ps-quote__attribution,
+.ps-canvas--gradient .ps-quote__attribution,
+.ps-canvas--gradient-green .ps-quote__attribution { color: var(--ps-cream); opacity: .72; }
+
+/* Burned-in Reels subtitle. White, uppercase, with ONE word in bright teal —
+   exactly the device used across their Reels covers. */
+.ps-canvas__subtitle {
+  position: relative; z-index: 2;
+  font-size: 58px;
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: 0.005em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--ps-paper);
+  max-width: 18ch;
+  margin-inline: auto;
+}
+.ps-canvas__subtitle em { font-style: normal; color: var(--ps-teal-500); }
+
+/* Small corner lockup, as used on their graphic posts. Same ratios.
+   IN FLOW, never absolute — see the overlap rule at the foot of this file. */
+.ps-canvas__stamp {
+  --ps-lockup-size: 54px;
+  position: relative; z-index: 3;
+  align-self: flex-start;
+  flex: none;
+  display: flex; align-items: center;
+  gap: calc(var(--ps-lockup-size) * var(--ps-lockup-gap-ratio));
+  font-size: calc(var(--ps-lockup-size) * var(--ps-lockup-word-ratio));
+  font-weight: 500; letter-spacing: -0.015em; line-height: 1;
+}
+.ps-canvas__stamp img { height: var(--ps-lockup-size); width: auto; flex: none; }
+.ps-canvas--gradient-v { background: var(--ps-gradient-mark-v); color: var(--ps-cream); }
+.ps-canvas--gradient-green-v { background: var(--ps-gradient-green-v); color: var(--ps-cream); }
+
+/* --- Type ---------------------------------------------------------------- */
+/* 30px floor: 24px on a 1080 canvas renders at 8.7px on a 390px phone. */
+.ps-canvas__eyebrow {
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.ps-canvas__title {
+  font-size: 84px;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  text-wrap: balance;
+  color: inherit;
+  margin: 0;
+  max-width: 15ch;          /* hard limit — longer headlines must be cut */
+}
+.ps-canvas--portrait .ps-canvas__title { font-size: 92px; }
+.ps-canvas--story    .ps-canvas__title { font-size: 104px; }
+.ps-canvas--linkedin .ps-canvas__title { font-size: 96px; }
+
+.ps-canvas__body {
+  font-size: 34px;
+  line-height: 1.45;
+  max-width: 24ch;
+  opacity: 0.86;
+  margin: 24px 0 0;
+}
+
+.ps-canvas__quote {
+  font-size: 64px;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  font-weight: 300;
+  text-wrap: balance;
+  margin: 0;
+  max-width: 17ch;
+}
+
+/* --- Footer lockup ------------------------------------------------------- */
+.ps-canvas__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  font-size: 32px;
+}
+.ps-canvas__lockup {
+  --ps-lockup-size: 64px;
+  display: flex;
+  align-items: center;
+  gap: calc(var(--ps-lockup-size) * var(--ps-lockup-gap-ratio));
+  font-size: calc(var(--ps-lockup-size) * var(--ps-lockup-word-ratio));
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1;
+}
+.ps-canvas__lockup img { height: var(--ps-lockup-size); width: auto; flex: none; }
+.ps-canvas__handle { opacity: 0.7; }
+
+/* --- The shape motif -----------------------------------------------------
+   An enlarged, cropped fragment of the mark bleeding off one corner. This is
+   the system's one decorative move, and it is always a crop of the real
+   logo geometry — never an abstract blob or a generic swoosh. */
+.ps-canvas__motif {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0.16;
+}
+.ps-canvas__motif--br { right: -260px; bottom: -240px; width: 760px; }
+.ps-canvas__motif--tr { right: -200px; top: -220px; width: 640px; }
+.ps-canvas__motif--bl { left: -240px; bottom: -200px; width: 680px; }
+.ps-canvas__motif--solid { opacity: 1; }
+
+/* --- Carousel numbering --------------------------------------------------- */
+.ps-canvas__step {
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.7;
+}
+
+/* --- Accent rule ---------------------------------------------------------- */
+.ps-canvas__rule {
+  width: 120px; height: 6px;
+  border: 0; border-radius: 999px;
+  background: var(--ps-teal-500);
+  margin: 0 0 40px;
+}
+.ps-canvas--gradient .ps-canvas__rule,
+.ps-canvas--deep .ps-canvas__rule,
+.ps-canvas--ink .ps-canvas__rule { background: var(--ps-teal-500); }
+.ps-canvas--cream .ps-canvas__rule { background: var(--ps-gradient-mark); }
+
+/* --- Preview chrome (NOT exported) ---------------------------------------
+   The only non-token colours in the system live here: a neutral grey backdrop
+   so you can judge a canvas against something that is neither black nor white.
+   None of it appears in an exported graphic. */
+.ps-preview { display: flex; flex-wrap: wrap; gap: 48px; padding: 48px; background: #6b6b6b; }
+.ps-preview__item { display: flex; flex-direction: column; gap: 12px; }
+.ps-preview__label { color: #fff; font: 500 14px/1 var(--ps-font-sans); letter-spacing: 0.1em; text-transform: uppercase; }
+.ps-preview__scale { transform: scale(0.42); transform-origin: top left; }
+
+/* ==========================================================================
+   PHOTOGRAPHY ON CANVASES
+   --------------------------------------------------------------------------
+   The founder photographs are shot against bright neutral walls in warm
+   clothing (beige, red, orange). That warmth sits AWKWARDLY beside the bright
+   teal→violet gradient — two loud colour stories competing. So the rule is:
+
+     photo + deep teal, cream or ink.  NEVER photo + the bright gradient.
+
+   Text over a photograph always sits on a scrim. A scrim is not optional and
+   not decorative: without it, contrast depends on whatever happens to be
+   behind the words, which is unknowable in advance.
+   ========================================================================== */
+
+.ps-canvas--photo { padding: 0; }
+
+.ps-canvas__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 28%;   /* faces sit high; bias the crop upward */
+}
+
+/* Scrim. Opaque enough at the text end to guarantee AA, then clearing so the
+   photograph still reads. Ink-based, so it works under cream text always.
+   Two ends, because a photo canvas has copy at the bottom AND the stamp at the
+   top: these walls are bright, and cream on them is under 2:1. */
+.ps-canvas__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0.5) 0%,
+    rgb(0 0 0 / 0.42) 11%,
+    rgb(0 0 0 / 0.2) 22%,
+    rgb(0 0 0 / 0.06) 32%,
+    transparent 42%),
+  linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.88) 0%,
+    rgb(0 0 0 / 0.72) 26%,
+    rgb(0 0 0 / 0.30) 52%,
+    rgb(0 0 0 / 0.06) 78%,
+    transparent 100%);
+}
+.ps-canvas__scrim--full { background: rgb(0 0 0 / 0.58); }
+.ps-canvas__scrim--top {
+  background: linear-gradient(to bottom,
+    rgb(0 0 0 / 0.85) 0%, rgb(0 0 0 / 0.55) 34%, transparent 72%);
+}
+/* Teal-tinted scrim: ties a warm photograph back to the brand. */
+/* The opaque zone has to reach as high as the copy does. Measured against a
+   bright neutral wall, the previous stops left the hook at 2.34:1 and the
+   eyebrow at 2.18:1 — both failing even the 3:1 large-text bar. */
+.ps-canvas__scrim--brand {
+  background: linear-gradient(to bottom,
+    color-mix(in srgb, var(--ps-teal-900) 72%, transparent) 0%,
+    color-mix(in srgb, var(--ps-teal-900) 66%, transparent) 12%,
+    color-mix(in srgb, var(--ps-teal-900) 22%, transparent) 16%,
+    transparent 22%),
+  linear-gradient(to top,
+    color-mix(in srgb, var(--ps-teal-900) 97%, var(--ps-ink)) 0%,
+    color-mix(in srgb, var(--ps-teal-900) 92%, transparent) 38%,
+    color-mix(in srgb, var(--ps-teal-900) 46%, transparent) 58%,
+    transparent 78%);
+}
+
+/* Full-photo slide. Faces stay in the upper part of the crop; the safe areas for
+   type are the bottom band and the top-left corner, and only those are scrimmed,
+   so the faces stay clean. Mirrors the brand scrim on the story canvas. */
+.ps-canvas__scrim--slide {
+  background:
+    radial-gradient(ellipse 980px 430px at 0 0,
+      color-mix(in srgb, var(--ps-teal-900) 78%, transparent) 0%,
+      color-mix(in srgb, var(--ps-teal-900) 70%, transparent) 36%,
+      color-mix(in srgb, var(--ps-teal-900) 38%, transparent) 60%,
+      color-mix(in srgb, var(--ps-teal-900) 12%, transparent) 80%,
+      transparent 100%),
+    linear-gradient(to top,
+      color-mix(in srgb, var(--ps-teal-900) 97%, var(--ps-ink)) 0%,
+      color-mix(in srgb, var(--ps-teal-900) 92%, transparent) 28%,
+      color-mix(in srgb, var(--ps-teal-900) 40%, transparent) 37%,
+      transparent 44%);
+}
+.ps-canvas--slide.ps-canvas--photo { padding: 0; }
+.ps-canvas--slide .ps-canvas__layer { padding: 110px 130px 64px; }
+.ps-canvas--slide.ps-canvas--photo .ps-canvas__eyebrow::before { background: var(--ps-teal-500); }
+
+/* Content sits above photo and scrim. */
+.ps-canvas__layer {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 88px;
+  color: var(--ps-cream);
+}
+.ps-canvas--story .ps-canvas__layer { padding: 120px 88px 180px; }
+
+/* --- Split canvas: photograph on top, flat colour below ------------------
+   The most reliable photo layout: copy sits on solid colour, so contrast is
+   fixed rather than dependent on the image. */
+.ps-canvas--split {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;   /* implicit columns size to content, leaving a gap */
+  grid-template-rows: 52% 48%;
+}
+.ps-canvas--split .ps-canvas__media { position: relative; overflow: hidden; }
+.ps-canvas--split .ps-canvas__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 22%; }
+.ps-canvas--split .ps-canvas__panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 56px 88px 88px;
+}
+/* On a split canvas the mark lives in the panel. Putting it directly on the
+   canvas makes it a third grid item, which pushes the panel out of the
+   two-row grid and drops the copy off the frame entirely. */
+.ps-canvas--split > .ps-canvas__stamp,
+.ps-canvas--wide > .ps-canvas__stamp { display: none; }
+
+/* --- Framed canvas: photo inset on a cream field ------------------------- */
+.ps-canvas__frame {
+  position: relative;
+  color: var(--ps-color-text);   /* self-background: states its own text colour */
+  border-radius: var(--ps-radius-xl);
+  overflow: hidden;
+  background: var(--ps-cream-deep);
+}
+.ps-canvas__frame img { width: 100%; height: 100%; object-fit: cover; }
+
+/* --- Instagram safe zones -------------------------------------------------
+   Stories and Reels put UI over the canvas: roughly 250px at the top and
+   420px at the bottom of a 1920px-tall frame. Nothing that must be read goes
+   there. Toggle .ps-canvas--guides to see the boundaries while composing. */
+.ps-canvas--guides::before,
+.ps-canvas--guides::after {
+  content: 'SAFE ZONE';
+  position: absolute;
+  inset-inline: 0;
+  z-index: 9;
+  font-size: 22px;
+  letter-spacing: 0.2em;
+  color: rgb(255 0 0 / 0.85);
+  background: rgb(255 0 0 / 0.14);
+  border-block: 2px dashed rgb(255 0 0 / 0.65);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+.ps-canvas--guides::before { top: 0; height: 250px; }
+.ps-canvas--guides::after  { bottom: 0; height: 420px; }
+
+/* --- Carousel swipe affordance ------------------------------------------- */
+.ps-canvas__swipe {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 32px;
+  font-weight: 500;
+  opacity: 0.85;
+}
+.ps-canvas__swipe svg { width: 28px; height: 28px; }
+
+/* --- Hook: the oversized opening line that stops the scroll --------------- */
+.ps-canvas__hook {
+  font-size: 96px;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  text-wrap: balance;
+  color: inherit;
+  margin: 0;
+  max-width: 13ch;
+}
+/* --- LinkedIn, 1200×1500 ------------------------------------------------
+   Same 4:5 ratio as the Instagram portrait, 11% larger. The layout vocabulary
+   carries straight over; only the scale changes. LinkedIn is read in a narrow
+   column at speed, so the copy stays shorter than on Instagram. */
+.ps-canvas--linkedin .ps-canvas__hook { font-size: 92px; max-width: 14ch; }
+.ps-canvas--linkedin .ps-canvas__body { font-size: 37px; max-width: 26ch; margin-top: 26px; }
+.ps-canvas--linkedin .ps-canvas__eyebrow { font-size: 36px; }
+.ps-canvas--linkedin .ps-canvas__quote { font-size: 70px; max-width: 18ch; }
+.ps-canvas--linkedin .ps-canvas__foot { font-size: 29px; }
+.ps-canvas--linkedin .ps-canvas__lockup { --ps-lockup-size: 70px; }
+.ps-canvas--linkedin .ps-canvas__stamp { --ps-lockup-size: 60px; }
+.ps-canvas--linkedin .ps-canvas__callout { font-size: 37px; padding: 22px 36px; }
+.ps-canvas--linkedin .ps-canvas__rule { width: 134px; height: 7px; margin-bottom: 44px; }
+.ps-canvas--linkedin .ps-canvas__item { font-size: 40px; grid-template-columns: 72px 1fr; gap: 30px; padding-block: 29px; }
+.ps-canvas--linkedin .ps-canvas__item b { font-size: 33px; }
+.ps-canvas--linkedin .ps-canvas__ticks li { font-size: 38px; }
+
+/* Two-column shell, used by split slides. Not by LinkedIn, which is portrait,
+   and not by form headers, which need their top-right corner for the mark. */
+.ps-canvas--wide {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+.ps-canvas--wide .ps-canvas__panel {
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 56px 56px 48px 64px;
+  min-width: 0;
+}
+.ps-canvas--wide .ps-canvas__media { position: relative; overflow: hidden; min-width: 0; }
+.ps-canvas--wide .ps-canvas__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 24%; }
+.ps-canvas--wide-60 { grid-template-columns: 1.5fr 1fr; }
+
+/* --- Numbered list item, for "5 sygnałów"-style posts --------------------- */
+.ps-canvas__item {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 28px;
+  align-items: baseline;
+  padding-block: 26px;
+  border-block-end: 2px solid color-mix(in srgb, currentColor 22%, transparent);
+  font-size: 36px;
+  line-height: 1.3;
+}
+.ps-canvas__item:last-child { border-block-end: 0; }
+.ps-canvas__item b {
+  /* 40px, not 30px: at 1080 wide viewed on a 390px phone, 30px renders at
+     10.8px — below the legible floor, and smaller than the 36px text it
+     labels, which inverts the hierarchy. */
+  font-size: 40px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  /* teal-900 by default. teal-500 on mint measures 1.48:1 — the numerals,
+     which ARE the structure of a list post, were effectively invisible. */
+  color: var(--ps-teal-900);
+}
+/* teal-500 is opt-in, and only where it is legal: on a dark field. */
+.ps-canvas--deep .ps-canvas__item b,
+.ps-canvas--ink .ps-canvas__item b,
+.ps-canvas--gradient .ps-canvas__item b { color: var(--ps-teal-on-deep); }
+
+/* On a slide the row index is the only ornament the list gets: the signature
+   gradient through the numerals, not a flat teal. It is a shape — the number
+   repeats nothing the row does not already say. */
+.ps-canvas--slide .ps-canvas__item b {
+  background: var(--ps-gradient-mark);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.ps-canvas--slide.ps-canvas--deep .ps-canvas__item b,
+.ps-canvas--slide.ps-canvas--gradient .ps-canvas__item b,
+.ps-canvas--slide.ps-canvas--gradient-green .ps-canvas__item b {
+  background: linear-gradient(100deg, var(--ps-teal-500) 0%, var(--ps-cream) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+
+/* ==========================================================================
+   ONE MARK PER CANVAS — the rule
+   --------------------------------------------------------------------------
+   A graphic carries the brand mark EXACTLY ONCE. Never a corner stamp and a
+   footer lockup on the same canvas: two marks read as a template someone
+   forgot to finish, they compete for the same job, and at thumbnail size they
+   turn into two unrelated smudges.
+
+   Where the one mark goes:
+     social (Instagram, LinkedIn)  .ps-canvas__stamp, top-left
+     social, split canvas          .ps-canvas__stamp, top-left of the copy panel
+     slides                        .ps-canvas__lockup, top-right (see below)
+     form headers                  .ps-canvas__stamp--tr, top-right
+
+   .ps-canvas__motif does NOT count as a mark. It is a heavily cropped,
+   low-opacity fragment of the logo used as texture — it is never legible as
+   a logo, which is the whole point. Do not raise its opacity until it is.
+
+   Carousel body slides still carry their one mark: individual slides get
+   screenshotted and reshared far more often than whole carousels do.
+
+   Check it: every canvas must match exactly one of
+   `class="ps-canvas__stamp"` or `class="ps-canvas__lockup"`.
+   ========================================================================== */
+
+/* ==========================================================================
+   IDENTIFICATION — the rule
+   --------------------------------------------------------------------------
+   A graphic carries the LOCKUP and nothing else. No @handle, no URL.
+
+   The handle belongs in the profile that is already showing it. The URL
+   belongs in the caption, where it is clickable. Burned into the image, both
+   compete with the one mark that should be doing the identifying, and both
+   date the graphic the moment anything changes. .ps-canvas__handle survives
+   only for non-identifying labels such as a swipe prompt.
+   ========================================================================== */
+
+/* ==========================================================================
+   SLIDES — 1920×1080
+   Presentation frames. Type is larger than on social because a slide is read
+   from across a room, not from a phone 30cm away.
+   ========================================================================== */
+
+.ps-canvas--slide {
+  width: 1920px;
+  height: 1080px;
+  padding: 110px 130px;
+  font-size: 34px;
+
+  /* The slide canvas itself is SQUARE. It is the page, not a card: a projector
+     fills the frame edge to edge and a rounded export leaves four cut corners
+     on whatever sits behind it. Rounding belongs to the blocks INSIDE a slide
+     — see the two-column rule below. */
+  border-radius: 0;
+}
+
+/* RULE: no slide is a bare rectangle. Any slide that carries no motif and no
+   arc of its own gets a quiet corner crop of the mark, so the empty half of
+   the canvas still has geometry in it. It is decoration: no text ever sits on
+   it, and at 0.07 it cannot compete with the copy. */
+.ps-canvas--slide:not(.ps-canvas--wide):not(.ps-canvas--split):not(.ps-canvas--photo):not(:has(.ps-canvas__motif, .ps-canvas__arc))::after {
+  content: '';
+  position: absolute;
+  right: -210px; bottom: -230px;
+  width: 860px; height: 860px;
+  background: var(--ps-gradient-mark) border-box;
+  -webkit-mask: url('../assets/logo/mark-texture-dark.svg') center / contain no-repeat;
+          mask: url('../assets/logo/mark-texture-dark.svg') center / contain no-repeat;
+  opacity: .1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ps-canvas--slide .ps-canvas__eyebrow { font-size: 28px; }
+
+/* Every content slide opens with the same small gradient tick before the
+   eyebrow — the `__rule` bar at inline scale. It ties the slide to the mark
+   without spending the one full-size gradient the viewport is allowed, and it
+   gives a text-only slide a point of colour at the top of the copy.
+   Suppressed where a full `__rule` already sits above the eyebrow, so the two
+   never double up. */
+.ps-canvas--slide .ps-canvas__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 56px; height: 6px;
+  border-radius: 6px;
+  margin-inline-end: 22px;
+  vertical-align: 0.18em;
+  background: var(--ps-gradient-mark);
+}
+.ps-canvas--slide .ps-canvas__rule + .ps-canvas__eyebrow::before { display: none; }
+.ps-canvas--slide.ps-canvas--deep .ps-canvas__eyebrow::before,
+.ps-canvas--slide.ps-canvas--gradient .ps-canvas__eyebrow::before,
+.ps-canvas--slide.ps-canvas--gradient-green .ps-canvas__eyebrow::before {
+  background: var(--ps-teal-500);
+}
+.ps-canvas--slide .ps-canvas__hook {
+  font-size: 118px;
+  line-height: 1.0;
+  max-width: 20ch;
+}
+/* A slide is 1920px wide; a heading capped at 18ch ladders into three short
+   lines and leaves the right half empty. 26ch uses the room the canvas has. */
+.ps-canvas--slide .ps-canvas__title { font-size: 82px; max-width: 26ch; line-height: 1.06; }
+.ps-canvas--slide .ps-canvas__body { font-size: 40px; max-width: 34ch; }
+/* The main text of a quote or recommendation takes 3/4 of the slide's width, or
+   its column when the slide also holds a photo. A narrow block breaks a sentence
+   into a tower that reads slowly from across a room. */
+.ps-canvas--slide .ps-canvas__quote { font-size: 86px; width: min(1440px, 100%); max-width: none; text-wrap: pretty; }
+/* Slide marks run ~30% smaller than the social stamp: on a 1920px canvas
+   seen from across a room the mark only has to be recognisable, not read. */
+.ps-canvas--slide .ps-canvas__lockup { --ps-lockup-size: 42px; }
+.ps-canvas--slide .ps-canvas__foot { font-size: 28px; }
+.ps-canvas--slide .ps-canvas__rule { width: 160px; height: 7px; margin-bottom: 44px; }
+.ps-canvas--slide .ps-canvas__stamp { --ps-lockup-size: 48px; }
+
+/* Section numeral. The one place a slide may be loud: the numeral is a SHAPE,
+   so it takes the signature gradient through the glyphs rather than a flat
+   grey. It carries no information the heading does not repeat, which is
+   exactly why it can afford to be decorative. */
+.ps-canvas__step-no {
+  font-size: 230px;
+  line-height: .86;
+  font-weight: 300;
+  letter-spacing: -.05em;
+  margin: 0;
+  width: fit-content;       /* the gradient spans the glyphs, not the column */
+  background: var(--ps-gradient-mark);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.ps-canvas--deep .ps-canvas__step-no,
+.ps-canvas--gradient .ps-canvas__step-no,
+.ps-canvas--gradient-green .ps-canvas__step-no {
+  background: linear-gradient(100deg, var(--ps-teal-500) 0%, var(--ps-cream) 100%);
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+.ps-canvas--slide .ps-canvas__callout { font-size: 36px; padding: 20px 34px; }
+
+/* --- Slide lockup: TOP-RIGHT, and mark-only in between -------------------
+   THE RULE, in three parts:
+
+   1. WHICH MARK. The FIRST and LAST slide of a deck — the welcome and the
+      thank-you — carry the full lockup (mark + wordmark): those are the two
+      slides where the brand introduces and signs off. Every slide between
+      them carries the MARK ALONE (`.ps-canvas__lockup--mark`). Repeating the
+      wordmark twenty times is a watermark, not identification, and the mark
+      on its own is what survives at the back of a room.
+
+   2. WHERE. The TOP-RIGHT corner, except on a slide with a photo, where it is
+      the TOP-LEFT of the block, above the copy — see `.ps-canvas__head` below.
+      A predictable position is the whole point: a mark that
+      moves around the deck reads as a mistake, and a reader stops being able
+      to find it. It never goes to the bottom either — projectors crop and the
+      front rows lose the bottom band. The bottom band carries the slide
+      number alone. (`.ps-canvas__head--left` stays available for a one-off
+      where the top-right genuinely cannot be used, but nothing in this system
+      uses it.)
+
+   3. HOW CLOSE. The mark sits tighter to the edge than the copy does: the
+      head is pulled out of the canvas padding by `--ps-slide-mark-pull`, so
+      it reads as a corner mark rather than as the first line of content. */
+.ps-canvas__head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 32px;
+  margin-bottom: 56px;
+}
+.ps-canvas__head--left { justify-content: flex-start; }
+/* A slide with a photo carries the mark TOP-LEFT: the head is a direct child of
+   the canvas, placed in the copy cell, at the same distance from the block's
+   corner as other slides' marks are from the canvas corner. It sits on flat
+   colour, so nothing depends on what the photograph shows. */
+.ps-canvas--wide > .ps-canvas__panel  { grid-area: 1 / 1 / 2 / 2; }
+.ps-canvas--wide > .ps-canvas__media  { grid-area: 1 / -2 / 2 / -1; }
+/* A two-column slide is a square canvas holding ONE inset block: copy column
+   plus photo. The rounding goes on that block — 28px on its outer corners, the
+   seam between the two halves left square — and the mark sits in the BLOCK's
+   top-left corner, not floating in the canvas padding. */
+.ps-canvas--slide.ps-canvas--wide .ps-canvas__panel { border-radius: 28px 0 0 28px; }
+.ps-canvas--slide.ps-canvas--wide .ps-canvas__media { border-radius: 0 28px 28px 0; }
+.ps-canvas--slide.ps-canvas--wide > .ps-canvas__head,
+.ps-canvas--slide.ps-canvas--split > .ps-canvas__head {
+  grid-area: 1 / 1 / 2 / 2;     /* same cell as the copy, above it */
+  align-self: start;
+  justify-self: start;
+  z-index: 3;
+  margin: 62px 0 0 82px;        /* the corner inset every other slide's mark uses, measured from the block */
+}
+
+/* Mark without the wordmark. Still `.ps-canvas__lockup`, so the one-mark-per
+   -canvas check keeps counting it. */
+.ps-canvas__lockup--mark { gap: 0; }
+
+/* Slide-only geometry: pull the head up and out toward its corner. */
+.ps-canvas--slide {
+  --ps-slide-mark-pull: 48px;
+}
+.ps-canvas--slide .ps-canvas__head {
+  margin-block: calc(var(--ps-slide-mark-pull) * -1) 44px;
+  margin-inline: calc(var(--ps-slide-mark-pull) * -1);
+}
+.ps-canvas--slide .ps-canvas__lockup--mark { --ps-lockup-size: 53px; }
+
+/* The foot carries the slide number alone, and it is PINNED to the
+   bottom-right corner — mirroring the mark in the top-right, pulled out by the
+   same `--ps-slide-mark-pull`. Without the auto top margin the number simply
+   follows the last line of copy, so it lands at a different height on every
+   slide; a number that moves is one a presenter cannot call out ("go back to
+   seven") and a reader stops looking for. */
+.ps-canvas--slide .ps-canvas__foot {
+  justify-content: flex-end;
+  margin-block: auto calc(var(--ps-slide-mark-pull) * -1);
+  margin-inline-end: calc(var(--ps-slide-mark-pull) * -1);
+}
+
+/* Slide number, bottom-right of the slide — or of the copy column on a
+   two-column slide, because type never crosses a photo without a scrim.
+   Decks get navigated out loud: "go back to 7". */
+.ps-canvas__slideno {
+  font-size: 28px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  opacity: .72;
+}
+
+/* Agenda / numbered points at slide scale. */
+.ps-canvas--slide .ps-canvas__item { font-size: 44px; grid-template-columns: 90px 1fr; gap: 32px; padding-block: 26px; }
+.ps-canvas--slide .ps-canvas__item b { font-size: 38px; }
+.ps-canvas--slide .ps-canvas__ticks li { font-size: 46px; grid-template-columns: 56px 1fr; gap: 30px; }
+.ps-canvas--slide .ps-canvas__ticks svg { width: 46px; height: 46px; }
+
+/* --- Metric row (slides) --------------------------------------------------
+   Three or four figures across the slide. The number carries the slide; the
+   label under it is the sentence. Never more than four — beyond that it is a
+   table, and a table belongs in the handout. */
+.ps-canvas__stats {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 70px;
+  align-items: end;
+}
+.ps-canvas__stat { display: flex; flex-direction: column; gap: 18px; }
+.ps-canvas__stat b {
+  font-size: 150px; line-height: .88; font-weight: 300;
+  letter-spacing: -0.045em; font-variant-numeric: tabular-nums;
+}
+.ps-canvas__stat span { font-size: 34px; line-height: 1.3; opacity: .82; max-width: 16ch; }
+.ps-canvas__stat small { font-size: 0.42em; font-weight: 400; letter-spacing: -0.01em; }
+
+/* --- Step path (slides) ---------------------------------------------------
+   The horizontal counterpart of the schedule: four stops read left to right,
+   tied by one hairline. Geometry only — no arrows, no icons, no emoji. */
+.ps-canvas__path {
+  position: relative; z-index: 2;
+  display: grid; grid-auto-flow: column; grid-auto-columns: 1fr;
+  gap: 48px;
+}
+.ps-canvas__node { display: flex; flex-direction: column; gap: 22px; padding-top: 34px; position: relative; }
+.ps-canvas__node::before {
+  content: ''; position: absolute; inset-inline: 0; top: 0;
+  height: 7px; border-radius: 7px; background: currentColor; opacity: .28;
+}
+.ps-canvas__node--on::before { opacity: 1; background: var(--ps-teal-500); }
+.ps-canvas__node b { font-size: 30px; font-weight: 500; letter-spacing: var(--ps-tracking-eyebrow); text-transform: uppercase; opacity: .7; }
+.ps-canvas__node span { font-size: 40px; line-height: 1.22; }
+.ps-canvas__node small { font-size: 34px; line-height: 1.3; opacity: .8; display: block; margin-top: 14px; }
+
+/* Two-column slide: copy left, image right. */
+.ps-canvas--slide.ps-canvas--wide .ps-canvas__panel { padding: 110px 110px 90px 130px; }
+
+/* ==========================================================================
+   FORM HEADERS — 1600×400
+   Google Forms crops its header to roughly 4:1 and overlays the form title
+   in the lower-left, so copy starts at the top of the LEFT HALF, the mark takes
+   the top-right, and the bottom 128px stays empty of anything readable. A
+   single top row does that structurally: both are grid items in row one, so
+   neither depends on how long the copy is. The right half is for accent shapes.
+   ========================================================================== */
+
+.ps-canvas--form {
+  width: 1600px;
+  height: 400px;
+  padding: 52px 60px;
+  font-size: 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto;
+  align-content: start;
+  align-items: start;
+  justify-content: stretch;
+  gap: 40px;
+}
+.ps-canvas--form > .ps-canvas__stamp { grid-area: 1 / 2; align-self: start; }
+.ps-canvas--form > div:not(.ps-canvas__arc) { grid-area: 1 / 1; }
+
+.ps-canvas--form .ps-canvas__eyebrow { font-size: 24px; }
+.ps-canvas--form .ps-canvas__hook { font-size: 58px; line-height: 1.04; max-width: 22ch; }
+.ps-canvas--form .ps-canvas__body { font-size: 26px; max-width: 32ch; margin-top: 14px; }
+.ps-canvas--form .ps-canvas__lockup { --ps-lockup-size: 46px; }
+.ps-canvas--form .ps-canvas__rule { width: 90px; height: 5px; margin-bottom: 22px; }
+.ps-canvas--form .ps-canvas__stamp { --ps-lockup-size: 36px; }
+.ps-canvas--form .ps-canvas__callout { font-size: 24px; padding: 13px 22px; }
+
+
+/* Where Google overlays the form's own title. Add .ps-canvas--guides to see
+   it; keep nothing that must be read inside it. */
+.ps-canvas--form.ps-canvas--guides::before { display: none; }
+.ps-canvas--form.ps-canvas--guides::after {
+  content: 'TYTUŁ FORMULARZA';
+  inset-inline: 0; bottom: 0; height: 128px;
+}
+
+/* ==========================================================================
+   OVERLAP — the rule
+   --------------------------------------------------------------------------
+   Nothing that carries meaning may be absolutely positioned over content.
+   The lockup, the stamp, the eyebrow, the headline, the footer: all of them
+   are flex children, laid out in order. A canvas therefore cannot produce a
+   collision no matter how the copy changes.
+
+   `position: absolute` survives for exactly two things, both of which are
+   decoration behind everything else and neither of which carries text:
+     .ps-canvas__motif  — a cropped fragment of the mark
+     .ps-canvas__arc    — the soft corner shape
+     .ps-canvas__photo / __scrim — full-bleed background layers
+   All four sit at z-index 0 or below the .ps-canvas__layer that holds copy.
+   ========================================================================== */
+
+/* Right-aligned stamp. Alignment only — no coordinates, so it cannot escape
+   the layout and land on something. */
+.ps-canvas__stamp--tr { align-self: flex-end; }
+
+/* --- Pricing columns ------------------------------------------------------
+   Three options maximum. With four, people stop comparing and start
+   deferring. The recommended one is marked structurally, not by making it
+   bigger — size implies "expensive", a label implies "this one". */
+.ps-canvas__plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  position: relative;
+  z-index: 2;
+}
+/* CONTRAST RULE — binding for every canvas component:
+   AN ELEMENT THAT PAINTS ITS OWN BACKGROUND MUST DECLARE ITS OWN TEXT COLOUR.
+   Inheriting `color` from the canvas is what put cream type on a white plan
+   card on a `--deep` slide — invisible, and invisible only on some surfaces,
+   which is the worst kind of bug to catch by eye. The same goes for opacity:
+   a self-coloured panel states its muted colour instead of fading the inherited
+   one, because .78 of cream on white is still cream on white. */
+.ps-canvas__plan {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 44px 40px;
+  border-radius: var(--ps-radius-lg);
+  background: var(--ps-color-surface);
+  color: var(--ps-color-text);
+  border: 3px solid transparent;
+}
+.ps-canvas__plan--pick { border-color: var(--ps-teal-900); }
+.ps-canvas__plan h3 { font-size: 40px; font-weight: 500; margin: 0; color: var(--ps-color-text); }
+.ps-canvas__plan p {
+  font-size: 34px; line-height: 1.3; margin: 0;
+  opacity: 1;
+  color: var(--ps-color-text-muted);
+}
+.ps-canvas__price {
+  font-size: 68px; font-weight: 700; letter-spacing: -0.03em;
+  color: var(--ps-teal-900); line-height: 1;
+}
+.ps-canvas__price small { font-size: 28px; font-weight: 500; opacity: .78; letter-spacing: 0; }
+.ps-canvas__plan-tag {
+  align-self: flex-start;
+  font-size: 28px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  padding: 8px 16px; border-radius: var(--ps-radius-sm);
+  background: var(--ps-gradient-deep); color: var(--ps-cream);
+}
+
+/* --- QR codes ------------------------------------------------------------
+   Closing slides hand the room a next step: scan and connect. The SVGs in
+   assets/qr/ carry their own paper field and quiet zone, so they scan on any
+   surface. Never smaller than 150px on a slide: past that a phone at the back
+   of the room stops reading them. */
+.ps-canvas__qrs { position: relative; z-index: 2; display: grid; grid-template-columns: repeat(2, 770px); gap: 56px; }
+.ps-canvas__qr { display: flex; align-items: center; gap: 32px; margin: 0; }
+.ps-canvas__qr img { width: 210px; height: 210px; flex: none; border-radius: var(--ps-radius-md); }
+.ps-canvas__qr figcaption { font-size: 40px; font-weight: 700; line-height: 1.2; }
+.ps-canvas__qr small { display: block; margin-top: 10px; font-size: 28px; font-weight: 400; line-height: 1.3; opacity: .82; }
+
+/* --- People: founders in circles ----------------------------------------- */
+.ps-canvas__people { position: relative; z-index: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.ps-canvas__person { display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: center; }
+/* --fx and --fy say where the face is in the photo, as fractions of its width
+   and height; --zoom is the photo's width against the circle's. The photo is
+   placed so that point lands on the circle's centre. Portraits are 4:5. */
+.ps-canvas__avatar { position: relative; width: 260px; height: 260px; border-radius: var(--ps-radius-pill); overflow: hidden; }
+.ps-canvas__avatar img {
+  position: absolute; display: block; max-width: none;
+  width: calc(var(--zoom) * 100%); height: auto;
+  left: calc(50% - var(--fx) * var(--zoom) * 100%);
+  top: calc(50% - var(--fy) * var(--zoom) * 125%);
+}
+.ps-canvas__person h3 { font-size: 46px; font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; margin: 0; color: inherit; }
+.ps-canvas__person p { font-size: 28px; line-height: 1.3; margin: 12px 0 24px; }
+.ps-canvas__person .ps-canvas__qr img { width: 150px; height: 150px; }
+
+/* --- Table (slides) ------------------------------------------------------ */
+.ps-canvas__table { position: relative; z-index: 2; width: 100%; border-collapse: collapse; font-size: 38px; line-height: 1.25; }
+.ps-canvas__table th {
+  text-align: start; font-size: 28px; font-weight: 500;
+  letter-spacing: var(--ps-tracking-eyebrow); text-transform: uppercase;
+  color: var(--ps-teal-900); padding: 0 40px 22px 0;
+  border-block-end: 3px solid var(--ps-teal-900);
+}
+.ps-canvas__table td {
+  padding: 26px 40px 26px 0;
+  border-block-end: 2px solid color-mix(in srgb, currentColor 18%, transparent);
+}
+.ps-canvas__table tr:last-child td { border-block-end: 0; }
+.ps-canvas__table td:first-child { font-weight: 700; }
+
+/* --- Image placeholder --------------------------------------------------- */
+.ps-canvas__imgslot {
+  position: relative; z-index: 2;
+  display: grid; place-items: center;
+  min-height: 520px;
+  border-radius: var(--ps-radius-lg);
+  background: var(--ps-cream);
+  color: var(--ps-coal);
+  border: 3px dashed color-mix(in srgb, var(--ps-coal) 35%, transparent);
+  font-size: 28px; font-weight: 500;
+}
+
+/* --- Schedule / timeline --------------------------------------------------
+   A running order. The time column is tabular so the numerals line up. */
+.ps-canvas__schedule { position: relative; z-index: 2; display: grid; }
+.ps-canvas__slot {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: baseline;
+  padding-block: 28px;
+  border-block-end: 2px solid color-mix(in srgb, currentColor 18%, transparent);
+  font-size: 40px;
+}
+.ps-canvas__slot:last-child { border-block-end: 0; }
+/* At slide scale the labels are words, not clock times — "Tydzień 1–2" must
+   not wrap onto a second line and shove the row out of rhythm. */
+.ps-canvas--slide .ps-canvas__slot { grid-template-columns: 330px 1fr; padding-block: 18px; }
+.ps-canvas__slot time {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--ps-teal-900);
+  font-size: 36px;
+}
+.ps-canvas__slot small { display: block; font-size: 34px; opacity: .82; margin-top: 6px; }
+.ps-canvas--deep .ps-canvas__slot time,
+.ps-canvas--ink .ps-canvas__slot time,
+.ps-canvas--gradient .ps-canvas__slot time { color: var(--ps-teal-on-deep); }
+
+/* ==========================================================================
+   DECK — a real presentation, not a gallery of slides
+   --------------------------------------------------------------------------
+   A deck is one HTML file holding N .ps-canvas--slide sections. Authoring a
+   12-slide presentation as 12 files makes reordering a rename operation and
+   guarantees the files drift apart; here the whole talk is one document.
+
+   The viewer scroll-snaps slide to slide and takes arrow keys, so opening it
+   feels like a presentation rather than a contact sheet. Export to PDF with
+   the browser's own print dialogue: @page below sets 1920×1080 landscape, so
+   "Save as PDF" with background graphics on produces a deliverable deck.
+   ========================================================================== */
+
+.ps-deck {
+  margin: 0;
+  background: var(--ps-cream-deep);
+  scroll-snap-type: y mandatory;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+.ps-deck__slide {
+  scroll-snap-align: center;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  padding: 32px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* The canvas keeps its true 1920×1080 geometry and is scaled to fit the
+   viewport, so what you see is exactly what exports. */
+.ps-deck__fit {
+  width: 1920px;
+  height: 1080px;
+  flex: none;
+  transform-origin: center center;
+  box-shadow: 0 18px 60px rgb(0 0 0 / .28);
+}
+
+.ps-deck__hud {
+  position: fixed;
+  z-index: 40;
+  right: 20px; bottom: 20px;
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 16px;
+  border-radius: var(--ps-radius-md);
+  background: color-mix(in srgb, var(--ps-coal) 88%, transparent);
+  color: var(--ps-cream);
+  font: 500 14px/1 var(--ps-font-sans);
+  font-variant-numeric: tabular-nums;
+}
+.ps-deck__hud button {
+  appearance: none; border: 0; cursor: pointer;
+  width: 30px; height: 30px;
+  border-radius: var(--ps-radius-sm);
+  background: color-mix(in srgb, var(--ps-cream) 16%, transparent);
+  color: inherit; font-size: 15px; line-height: 1;
+}
+.ps-deck__hud button:hover { background: var(--ps-teal-500); color: var(--ps-coal); }
+
+@media print {
+  .ps-deck { height: auto; overflow: visible; background: none; }
+  .ps-deck__hud { display: none; }
+  .ps-deck__slide { min-height: 0; padding: 0; page-break-after: always; break-after: page; }
+  .ps-deck__fit { transform: none !important; box-shadow: none; }
+  @page { size: 1920px 1080px; margin: 0; }
+}

@@ -1,0 +1,110 @@
+/* ==========================================================================
+   .ps-btn — FOUR variants, TWO sizes. That is the complete list.
+   primary | secondary | ghost | link        ·        default | lg
+
+   Pill-shaped, borrowed from the circles in the mark. Do not add a fifth
+   variant; if a new need appears, it is a design decision, not a one-off.
+   ========================================================================== */
+
+.ps-btn {
+  --ps-btn-bg: transparent;
+  --ps-btn-fg: var(--ps-color-text);
+  --ps-btn-border: transparent;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ps-space-2);
+
+  padding: var(--ps-space-3) var(--ps-space-6);
+  min-height: 2.875rem;          /* 46px — comfortably above the 44px target */
+
+  font-size: var(--ps-text-body);
+  font-weight: var(--ps-weight-medium);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+  text-align: center;
+  text-decoration: none;
+  /* NOT nowrap: Polish CTA labels are long and would push the page wider than
+     the viewport. Wrapping to two lines is the correct failure mode. */
+  text-wrap: balance;
+  max-width: 100%;
+
+  background: var(--ps-btn-bg);
+  color: var(--ps-btn-fg);
+  border: var(--ps-outline-medium) solid var(--ps-btn-border);
+  border-radius: var(--ps-radius-md);
+
+  cursor: pointer;
+  transition: var(--ps-transition-colors), var(--ps-transition-transform);
+}
+
+.ps-btn:hover { text-decoration: none; }
+.ps-btn:active { transform: translateY(1px); }
+
+.ps-btn:disabled,
+.ps-btn[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* --- Variants ----------------------------------------------------------- */
+
+.ps-btn--primary {
+  --ps-btn-bg: var(--ps-color-accent);
+  --ps-btn-fg: var(--ps-color-text-on-accent);
+  --ps-btn-border: var(--ps-color-accent);
+}
+.ps-btn--primary:hover:not(:disabled) {
+  --ps-btn-bg: var(--ps-color-accent-hover);
+  --ps-btn-border: var(--ps-color-accent-hover);
+}
+
+.ps-btn--secondary {
+  --ps-btn-bg: transparent;
+  --ps-btn-fg: var(--ps-color-accent);
+  --ps-btn-border: var(--ps-color-accent);
+}
+.ps-btn--secondary:hover:not(:disabled) {
+  --ps-btn-bg: var(--ps-color-accent-quiet);
+}
+
+.ps-btn--ghost {
+  --ps-btn-fg: var(--ps-color-text);
+}
+.ps-btn--ghost:hover:not(:disabled) {
+  --ps-btn-bg: var(--ps-color-accent-quiet);
+  --ps-btn-fg: var(--ps-color-accent);
+}
+
+/* Reads as a link, behaves as a button. For tertiary actions in dense UI. */
+.ps-btn--link {
+  padding-inline: 0;
+  min-height: 0;
+  --ps-btn-fg: var(--ps-color-accent);
+  border-radius: var(--ps-radius-sm);
+  border-color: transparent;
+  text-decoration: none;
+}
+.ps-btn--link:hover:not(:disabled) { --ps-btn-fg: var(--ps-color-accent-hover); }
+
+/* --- Size --------------------------------------------------------------- */
+
+.ps-btn--lg {
+  padding: var(--ps-space-4) var(--ps-space-8);
+  min-height: 3.5rem;
+  font-size: var(--ps-text-lead);
+}
+
+/* --- Arrow affordance ---------------------------------------------------
+   The one piece of motion on a button. Geometric chevron, never an emoji. */
+.ps-btn__arrow {
+  width: 0.85em; height: 0.85em;
+  flex: none;
+  transition: var(--ps-transition-transform);
+}
+.ps-btn:hover .ps-btn__arrow { transform: translateX(0.2em); }
+
+/* Full-width on small screens for primary CTAs that sit alone. */
+.ps-btn--block { width: 100%; }

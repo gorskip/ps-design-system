@@ -1,0 +1,89 @@
+/* ==========================================================================
+   .ps-hero — the page opening
+   --------------------------------------------------------------------------
+   ASYMMETRIC BY DEFAULT. A 7/5 split, left-aligned text, with the mark's
+   geometry echoed as a large offset shape on the right. Explicitly NOT a
+   centred headline over a centred subhead over a centred button — that
+   arrangement is the single most recognisable "generated page" layout.
+   ========================================================================== */
+
+.ps-hero {
+  position: relative;
+  padding-block: var(--ps-space-section);
+  overflow: hidden;
+  background: var(--ps-color-page);
+}
+
+.ps-hero__inner {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  align-items: center;
+  gap: var(--ps-space-16);
+  max-width: var(--ps-container);
+  margin-inline: auto;
+  padding-inline: var(--ps-gutter);
+}
+
+.ps-hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--ps-space-6);
+}
+
+.ps-hero__title {
+  font-size: var(--ps-text-display);
+  line-height: var(--ps-leading-tight);
+  letter-spacing: var(--ps-tracking-display);
+  font-weight: var(--ps-weight-bold);
+  max-width: 14ch;              /* forces a strong 2–3 line shape */
+}
+
+.ps-hero__lead {
+  font-size: var(--ps-text-lead);
+  line-height: var(--ps-leading-normal);
+  color: var(--ps-color-text-muted);
+  max-width: var(--ps-measure-narrow);
+}
+
+.ps-hero__actions { display: flex; flex-wrap: wrap; gap: var(--ps-space-4); margin-block-start: var(--ps-space-2); }
+
+/* The visual half. Holds the mark enlarged and cropped, or a photograph in a
+   mark-shaped frame. The bleed is intentional: the shape runs off the edge,
+   the way the triangles in the logo run past each other. */
+.ps-hero__visual {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--ps-radius-xl);
+  overflow: hidden;
+  background: var(--ps-color-surface-alt);
+}
+/* Descendant, not child: the image is wrapped in <picture> so it can serve
+   WebP with a JPEG fallback, and a `>` combinator silently stops matching —
+   which drops object-fit and lets the image overflow its frame. */
+.ps-hero__visual img,
+.ps-hero__visual svg {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ps-hero__visual picture { display: contents; }
+
+.ps-hero__visual--bleed {
+  margin-inline-end: calc(var(--ps-gutter) * -2);
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+}
+
+/* Gradient fill for the visual half — the ONE gradient per viewport. */
+.ps-hero__visual--gradient { background: var(--ps-gradient-mark); }
+
+@media (max-width: 60rem) {
+  .ps-hero__inner { grid-template-columns: 1fr; gap: var(--ps-space-10); }
+  .ps-hero__title { max-width: 18ch; }
+  .ps-hero__visual { aspect-ratio: 16 / 10; }
+  .ps-hero__visual--bleed { margin-inline-end: 0; border-radius: var(--ps-radius-xl); }
+}
+
+@media (max-width: 36rem) {
+  .ps-hero__actions .ps-btn { width: 100%; }
+}

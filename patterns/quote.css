@@ -1,0 +1,39 @@
+/* ==========================================================================
+   .ps-quote — testimonial / pull quote
+   Large, light-weight type. No giant decorative quotation mark glyph.
+   ========================================================================== */
+
+.ps-quote {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ps-space-6);
+  max-width: var(--ps-measure);
+  margin: 0;
+}
+
+.ps-quote__text {
+  font-size: var(--ps-text-h2);
+  /* Not --ps-weight-light: this clamps to 1.5rem on mobile, and 300 at 24px
+     is too thin on the warm paper surface. */
+  font-weight: var(--ps-weight-regular);
+  line-height: var(--ps-leading-snug);
+  letter-spacing: var(--ps-tracking-heading);
+  text-wrap: balance;
+}
+
+.ps-quote__attribution {
+  display: flex;
+  align-items: center;
+  gap: var(--ps-space-4);
+  font-size: var(--ps-text-small);
+  color: var(--ps-color-text-muted);
+  font-style: normal;
+}
+.ps-quote__attribution::before {
+  content: '';
+  width: var(--ps-space-8);
+  height: 2px;
+  background: var(--ps-color-accent-bright);
+  flex: none;
+}
+.ps-quote__name { color: var(--ps-color-text); font-weight: var(--ps-weight-medium); }
