@@ -1,5 +1,7 @@
 # Przeskalowani Design System
 
+**Version:** v1.1
+
 The source of truth for how Przeskalowani looks on the website, Instagram,
 LinkedIn, slides, A4 documents and Google Forms headers.
 
@@ -42,6 +44,15 @@ a placeholder.
 
 ```html
 <link rel="stylesheet" href="/dist/ps-design-system.css">
+```
+
+## Version
+
+The version is in `VERSION` and on the top of this file. Every commit bumps it by
+0.1 (v1.1, v1.2, … v1.9, v2.0). A pre-commit hook does it; turn it on once per clone:
+
+```sh
+git config core.hooksPath .githooks
 ```
 
 ## Commands
