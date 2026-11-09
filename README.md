@@ -24,13 +24,15 @@ the founders.
 
 | You're making | Skill | Where | Example prompt |
 |---|---|---|---|
-| Instagram or LinkedIn graphic: post, carousel, story, Reels cover, quote card | `ps-social-post` | Claude Design | `Użyj skilla ps-social-post i przygotuj grafikę: instagram-liczby-a.` |
-| Presentation or single slide | `ps-slides` | Claude Design | `Użyj skilla ps-slides i zbuduj prezentację ze slajdów: powitanie-c, agenda-a, podziekowanie-a.` |
-| A4 document: offer, programme, workbook, exercise sheet | `ps-docs` | Claude Design | `Użyj skilla ps-docs i przygotuj dokument ze stron: powitanie-a, ogolny-a, cennik-b, podziekowanie-b.` |
-| Google Forms header (1600×400) | `ps-forms` | Claude Design | `Użyj skilla ps-forms i przygotuj nagłówek formularza na bazie forms/01-zapisy.` |
+| Instagram or LinkedIn graphic: post, carousel, story, Reels cover, quote card | `ps-social-post` | Claude Design | `Przygotuj grafikę w design systemie Przeskalowani: instagram-liczby-a.` |
+| Presentation or single slide | `ps-slides` | Claude Design | `Zbuduj prezentację w design systemie Przeskalowani ze slajdów: powitanie-c, agenda-a, podziekowanie-a.` |
+| A4 document: offer, programme, workbook, exercise sheet | `ps-docs` | Claude Design | `Przygotuj projekt A4 w design systemie Przeskalowani ze stron: powitanie-a, ogolny-a, cennik-b, podziekowanie-b.` |
+| Google Forms header (1600×400) | `ps-forms` | Claude Design | `Przygotuj nagłówek formularza w design systemie Przeskalowani na bazie form-01-zapisy.` |
 | Website page, section, component, email, HTML/CSS, WordPress theme, SEO | `ps-www` | Claude Code | `Użyj skilla ps-www i zbuduj sekcję oferty na stronę.` |
 
-Ask for templates by name (`instagram-liczby-a`, `cytat-b`, `podziekowanie-a`).
+Ask for templates by name (`instagram-liczby-a`, `cytat-b`, `podziekowanie-a`). In Claude Design, name the
+design system instead of a skill: the skills live in this repo, and the design system
+carries their rules. In Claude Code, name the skill.
 New designs start as a copy of an existing template and keep its layout. A new
 layout is built only when you ask for one, and only in that copy; the templates and
 the rest of the system stay unchanged. The skills never invent colours, radii, spacing or data. Where a fact is missing, they leave
