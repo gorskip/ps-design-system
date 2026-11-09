@@ -1,0 +1,23 @@
+#!/bin/sh
+# Bump VERSION by 0.1 on every commit and show it at the top of README.md.
+# v1.0 -> v1.1 ... v1.9 -> v2.0. Turn on with: git config core.hooksPath .githooks
+set -e
+root=$(git rev-parse --show-toplevel)
+cd "$root"
+[ -f VERSION ] || exit 0
+cur=$(tr -d ' \n\r' < VERSION)
+case "$cur" in
+  v[0-9]*.[0-9]) ;;
+  *) echo "pre-commit: VERSION must look like v1.0, got '$cur'" >&2; exit 1 ;;
+esac
+major=${cur#v}; major=${major%.*}
+minor=${cur##*.}
+if [ "$minor" -ge 9 ]; then major=$((major + 1)); minor=0; else minor=$((minor + 1)); fi
+new="v$major.$minor"
+printf '%s\n' "$new" > VERSION
+if [ -f README.md ]; then
+  sed -i.bak "s/^\*\*Version:\*\* v[0-9][0-9]*\.[0-9]$/**Version:** $new/" README.md && rm -f README.md.bak
+  git add README.md
+fi
+git add VERSION
+echo "pre-commit: version $cur -> $new"
