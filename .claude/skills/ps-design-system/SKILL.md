@@ -19,9 +19,15 @@ docs/index.html        ← the live spec; open it to check anything
 
 ## The system is the reference
 
-Everything here is an example to copy, and every new design is a copy that follows
-these rules. When asked to make something new:
+Everything here is an example to start from, and every new design is a copy that
+follows these rules. When asked to make something new:
 
+- **The copy may change its layout and form.** Templates are starting points, not
+  limits. When the design calls for it, a copy may add, remove, move or resize
+  blocks, combine pieces of several templates, or arrange the content in a new way.
+  What does not change: every value still comes from `tokens/` and the sizes this
+  system already uses, the canvas formats stay as they are, and every rule in this
+  skill and the surface skill still applies.
 - **Never edit, overwrite or save into this repo's files.** That includes `slides/`,
   `social/`, `forms/`, `assets/`, `tokens/` and `components/`.
 - **In Claude Design,** new work stays in the Claude project.
@@ -247,9 +253,11 @@ error.
 
 These apply to every fixed-pixel canvas: social graphics, slides and form headers.
 
-**Start from a copy.** Designing a new layout instead of copying a template is the
-most common mistake. Copy the closest file and change only the copy and, where the
-canvas has one, the photo.
+**Start from a copy.** Copy the closest file rather than starting from a blank page,
+so the tokens, sizes, mark and surface come with it. Then change what the design
+needs: the copy, the photo, and the layout too. A new arrangement is fine as long as
+it is built from the system's values and keeps the canvas rules below. The change
+lives in the copy, never in the template.
 
 **The canvas is fixed pixels. Overlong copy overflows; it does not reflow.** If the
 copy doesn't fit, **cut the copy** — do not shrink the font, widen the `max-width`,

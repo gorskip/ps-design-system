@@ -19,8 +19,9 @@ slide vocabulary from `social/social.css`, resized for reading distance by
 1. Take one file from `documents/typy/` per page. If the request names files, use
    those; otherwise choose by content, opening with `powitanie` and closing with
    `podziekowanie`.
-2. Copy each `.ps-canvas` and change only the copy and the photo. No new layouts,
-   colours or sizes.
+2. Copy each `.ps-canvas` and change the copy and the photo. The layout may change
+   too when the content needs it; colours, type sizes and spacing still come only
+   from the system, and the document rules below still apply.
 3. Save one file outside this repo, as `ps-design-system` describes, with the
    pages one after another inside `<div class="ps-doc">` and the three stylesheets
    pointing back here. Number the pages between the first and the last.
