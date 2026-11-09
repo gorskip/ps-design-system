@@ -7,7 +7,7 @@ description: The general rules for everything Przeskalowani makes, on every surf
 
 These apply everywhere. Surface rules live in their own skills:
 `ps-www` (website), `ps-social-post` (Instagram and LinkedIn), `ps-slides`
-(presentations) and `ps-forms` (Google Forms headers).
+(presentations), `ps-docs` (A4 documents) and `ps-forms` (Google Forms headers).
 
 The system lives in this repo. **Read the token files before writing CSS** —
 do not work from memory of this document.

@@ -1,0 +1,192 @@
+/* ==========================================================================
+   DOCUMENTS — A4, 794×1123
+   --------------------------------------------------------------------------
+   Printed and PDF pages: offers, programmes, workbooks, handouts. The page is
+   A4 at the browser's 96 px per inch (210 × 297 mm), so "Print → Save as PDF"
+   gives an exact A4 page with no scaling, and bin/export.mjs renders a PNG at
+   3× (about 290 dpi).
+
+   Same vocabulary as the slides, at reading distance instead of across a
+   room: eyebrow with the gradient tick, title, content, mark top-right and
+   the page number pinned bottom-right. Load this file AFTER social/social.css;
+   it only resizes the canvas classes, it adds no colour.
+   ========================================================================== */
+
+@page { size: A4; margin: 0; }
+
+.ps-canvas--doc {
+  width: 794px;
+  height: 1123px;
+  padding: 64px 64px 44px;
+  font-size: 14px;
+  line-height: 1.55;
+  border-radius: 0;           /* the page is the sheet, never a card */
+  -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+  break-after: page;
+
+  --ps-doc-title-gap: 32px;   /* title → content */
+  --ps-doc-lead-gap: 16px;    /* title → lead line */
+  --ps-doc-mark-pull: 24px;   /* how far the mark and page number sit outside the copy */
+}
+
+/* Several pages in one file: stacked on screen, one sheet each in print. */
+.ps-doc { display: grid; gap: 32px; justify-content: start; }
+@media print {
+  html, body { background: none !important; }
+  .ps-doc { display: block; }
+}
+
+/* RULE: no page is a bare rectangle. A page with no motif or arc of its own
+   gets the same quiet corner crop of the mark the slides use. Decoration only,
+   behind everything. */
+.ps-canvas--doc:not(:has(.ps-canvas__motif, .ps-canvas__arc, .ps-doc__photo))::after {
+  content: '';
+  position: absolute;
+  right: -110px; bottom: -120px;
+  width: 400px; height: 400px;
+  background: var(--ps-gradient-mark) border-box;
+  -webkit-mask: url('../assets/logo/mark-texture-dark.svg') center / contain no-repeat;
+          mask: url('../assets/logo/mark-texture-dark.svg') center / contain no-repeat;
+  opacity: .08;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* --- Mark: top-right, level with the first line of copy ----------------- */
+.ps-canvas--doc > .ps-canvas__head {
+  height: 0;
+  align-items: flex-start;
+  margin: calc(var(--ps-doc-mark-pull) * -1) calc(var(--ps-doc-mark-pull) * -1) var(--ps-doc-mark-pull);
+}
+.ps-canvas--doc .ps-canvas__lockup { --ps-lockup-size: 26px; }
+.ps-canvas--doc .ps-canvas__lockup--mark { --ps-lockup-size: 28px; }
+
+/* --- Page number: pinned bottom-right ------------------------------------ */
+.ps-canvas--doc > .ps-canvas__foot {
+  position: relative;
+  z-index: 2;
+  justify-content: flex-end;
+  margin-block: auto calc(var(--ps-doc-mark-pull) * -1 + 8px);
+  margin-inline-end: calc(var(--ps-doc-mark-pull) * -1);
+  font-size: 11px;
+}
+.ps-canvas--doc .ps-canvas__slideno { font-size: 11px; }
+
+/* --- Type ---------------------------------------------------------------- */
+.ps-canvas--doc .ps-canvas__eyebrow { font-size: 11px; margin: 0; }
+.ps-canvas--doc .ps-canvas__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 28px; height: 3px;
+  border-radius: 3px;
+  margin-inline-end: 12px;
+  vertical-align: 0.25em;
+  background: var(--ps-gradient-mark);
+}
+.ps-canvas--doc .ps-canvas__rule + .ps-canvas__eyebrow::before { display: none; }
+.ps-canvas--doc.ps-canvas--gradient-green .ps-canvas__eyebrow::before,
+.ps-canvas--doc.ps-canvas--deep .ps-canvas__eyebrow::before { background: var(--ps-teal-500); }
+
+.ps-canvas--doc .ps-canvas__hook  { font-size: 56px; line-height: 1.02; max-width: 14ch; }
+.ps-canvas--doc .ps-canvas__title { font-size: 34px; line-height: 1.1; max-width: 24ch; margin: 8px 0 var(--ps-doc-title-gap); }
+.ps-canvas--doc .ps-canvas__title:has(+ .ps-canvas__body) { margin-bottom: 0; }
+.ps-canvas--doc .ps-canvas__body  { font-size: 17px; line-height: 1.5; max-width: 40ch; margin: var(--ps-doc-lead-gap) 0 var(--ps-doc-title-gap); }
+.ps-canvas--doc .ps-canvas__rule  { width: 64px; height: 4px; margin-bottom: 24px; }
+
+/* Running copy: the one thing a document has that a slide does not. */
+.ps-doc__text { position: relative; z-index: 2; }
+.ps-doc__text p { margin: 0 0 12px; max-width: 64ch; }
+.ps-doc__text h3 { font-size: 17px; font-weight: 700; line-height: 1.3; margin: 24px 0 8px; color: inherit; }
+.ps-doc__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+
+/* Content flows from the top, under the title: a page is read, not projected. */
+.ps-canvas--doc > .ps-canvas__content { position: relative; z-index: 2; }
+
+/* --- Components at page scale -------------------------------------------- */
+.ps-canvas--doc .ps-canvas__item { font-size: 15px; grid-template-columns: 36px 1fr; gap: 12px; padding-block: 12px; border-block-end-width: 1px; }
+.ps-canvas--doc .ps-canvas__item b {
+  font-size: 15px;
+  background: var(--ps-gradient-mark);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.ps-canvas--doc .ps-canvas__ticks { gap: 10px; }
+.ps-canvas--doc .ps-canvas__ticks li { font-size: 14px; grid-template-columns: 20px 1fr; gap: 10px; }
+.ps-canvas--doc .ps-canvas__ticks svg { width: 16px; height: 16px; margin-top: 3px; }
+
+.ps-canvas--doc .ps-canvas__callout { font-size: 14px; padding: 12px 18px; border-width: 2px; }
+
+.ps-canvas--doc .ps-canvas__table { font-size: 14px; }
+.ps-canvas--doc .ps-canvas__table th { font-size: 11px; padding: 0 16px 10px 0; border-block-end-width: 2px; }
+.ps-canvas--doc .ps-canvas__table td { padding: 12px 16px 12px 0; border-block-end-width: 1px; }
+
+.ps-canvas--doc .ps-canvas__plans { gap: 14px; }
+.ps-canvas--doc .ps-canvas__plan { padding: 22px 18px; gap: 10px; border-width: 2px; }
+.ps-canvas--doc .ps-canvas__plan h3 { font-size: 17px; }
+.ps-canvas--doc .ps-canvas__plan p { font-size: 13px; }
+.ps-canvas--doc .ps-canvas__price { font-size: 30px; }
+.ps-canvas--doc .ps-canvas__price small { font-size: 12px; display: block; margin-top: 6px; }   /* the unit never splits off mid-line in a narrow column */
+.ps-canvas--doc .ps-canvas__plan-tag { font-size: 11px; padding: 4px 8px; }
+/* One plan per row: name and copy on the left, price on the right. */
+.ps-canvas--doc .ps-doc__plans-rows { grid-template-columns: 1fr; }
+.ps-doc__plans-rows .ps-canvas__plan { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 24px; }
+.ps-doc__plans-rows .ps-canvas__plan > div { display: grid; gap: 6px; justify-items: start; }
+
+.ps-canvas--doc .ps-canvas__slot { font-size: 15px; grid-template-columns: 130px 1fr; gap: 20px; padding-block: 14px; border-block-end-width: 1px; }
+.ps-canvas--doc .ps-canvas__slot time { font-size: 14px; }
+.ps-canvas--doc .ps-canvas__slot small { font-size: 13px; margin-top: 2px; }
+
+.ps-canvas--doc .ps-canvas__people { grid-template-columns: 1fr; gap: 28px; }
+.ps-canvas--doc .ps-canvas__person { grid-template-columns: 120px 1fr; gap: 24px; }
+.ps-canvas--doc .ps-canvas__avatar { width: 120px; height: 120px; }
+.ps-canvas--doc .ps-canvas__person h3 { font-size: 20px; }
+.ps-canvas--doc .ps-canvas__person p { font-size: 13px; margin: 4px 0 12px; }
+/* 84px is 22 mm on paper: a phone reads it from arm's length. Never smaller. */
+.ps-canvas--doc .ps-canvas__person .ps-canvas__qr img { width: 84px; height: 84px; border-radius: var(--ps-radius-sm); }
+
+.ps-canvas--doc .ps-canvas__motif--br { right: -150px; bottom: -150px; width: 520px; }
+.ps-canvas--doc .ps-canvas__arc--bl { width: 300px; height: 250px; left: -140px; bottom: -130px; }
+
+/* --- Cover photo ---------------------------------------------------------
+   A photo on a page sits in its own rounded block on flat colour, never under
+   copy, so contrast never depends on the picture. */
+.ps-doc__photo {
+  position: relative;
+  z-index: 2;
+  height: 460px;
+  margin: 0 0 40px;
+  border-radius: var(--ps-radius-lg);
+  overflow: hidden;
+}
+.ps-doc__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+
+/* --- Exercises: room to write -------------------------------------------
+   The writing area is a paper block with its own text colour, so it works on
+   any page surface. Ruled at 28px: comfortable handwriting on A4. */
+.ps-doc__task { position: relative; z-index: 2; display: grid; grid-template-columns: 36px 1fr; gap: 12px; margin-bottom: 22px; }
+.ps-doc__task > b {
+  font-size: 15px; font-weight: 700; font-variant-numeric: tabular-nums;
+  background: var(--ps-gradient-mark);
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+}
+.ps-doc__task p { margin: 0 0 4px; font-size: 15px; font-weight: 500; line-height: 1.4; }
+.ps-doc__task small { display: block; font-size: 13px; opacity: .8; margin-bottom: 10px; }
+.ps-doc__lines {
+  height: calc(28px * var(--lines, 3));
+  background:
+    repeating-linear-gradient(to bottom, transparent 0 27px, color-mix(in srgb, var(--ps-coal) 22%, transparent) 27px 28px);
+  color: var(--ps-coal);
+}
+.ps-doc__box {
+  min-height: 150px;
+  padding: 14px 16px;
+  border-radius: var(--ps-radius-md);
+  background: var(--ps-paper);
+  color: var(--ps-color-text-muted);
+  font-size: 11px; font-weight: 500; letter-spacing: var(--ps-tracking-eyebrow); text-transform: uppercase;
+}
+.ps-doc__boxes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }

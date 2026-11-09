@@ -12,7 +12,7 @@ import { resolve, dirname, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const DIRS = ['social', 'social/instagram', 'social/linkedin', 'slides', 'slides/typy', 'forms'];
+const DIRS = ['social', 'social/instagram', 'social/linkedin', 'slides', 'slides/typy', 'forms', 'documents/typy'];
 
 const files = DIRS.flatMap(d => {
   let entries = [];
@@ -43,7 +43,7 @@ for (const f of files) {
   // Mint is for the slides in between. The opening and closing slide of a deck,
   // and the welcome and thank-you types, sit on cream, a dark field or a photo.
   const isSet = /^slides\/(deck|zestaw)-/.test(rel);
-  const isBookendType = /^slides\/typy\/(powitanie|podziekowanie)-/.test(rel);
+  const isBookendType = /^(slides|documents)\/typy\/(powitanie|podziekowanie)-/.test(rel);
   canvases.forEach((c, i) => {
     const bookend = isBookendType || (isSet && (i === 0 || i === canvases.length - 1));
     if (bookend && /^[^>]*\bps-canvas--mint\b/.test(c))
