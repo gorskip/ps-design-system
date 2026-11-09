@@ -31,9 +31,9 @@ the founders.
 | Website page, section, component, email, HTML/CSS, WordPress theme, SEO | `ps-www` | Claude Code | `Użyj skilla ps-www i zbuduj sekcję oferty na stronę.` |
 
 Ask for templates by name (`instagram-liczby-a`, `cytat-b`, `podziekowanie-a`).
-New designs start as a copy of an existing template. The copy may change its
-layout and form for the design at hand; the templates and the rest of the system
-stay unchanged. The skills never invent colours, radii, spacing or data. Where a fact is missing, they leave
+New designs start as a copy of an existing template and keep its layout. A new
+layout is built only when you ask for one, and only in that copy; the templates and
+the rest of the system stay unchanged. The skills never invent colours, radii, spacing or data. Where a fact is missing, they leave
 a placeholder.
 
 ## Use it on a website

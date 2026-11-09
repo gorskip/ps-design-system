@@ -13,8 +13,7 @@ Graphics live in `social/instagram/` and `social/linkedin/`, named by type and
 variant. They read the same tokens as the website, so a post and a
 landing page cannot drift apart. **Don't start a post from a blank page.** Open
 `docs/index.html`, switch to the *Social* tab, pick the closest
-example, and work on a copy of it. The copy's layout may change when the design
-needs it.
+example, and work on a copy of it, keeping its layout.
 
 ## Building a post
 
@@ -35,8 +34,8 @@ choose the type by content and the platform by where it will be posted.
 | `szablony` | Blank starting points | `a` portrait, `b` square, `c` quote, `d` carousel | none |
 
 Copy the file, save the copy outside this repo as `ps-design-system` describes, and
-change the copy and the photo. The layout may change too; values and the rules
-below stay. If a type has no file for the platform, say
+change only the copy and the photo. Change the layout only when the user explicitly
+asks for a new one, in the copy; values and the rules below stay. If a type has no file for the platform, say
 so and offer the closest type there; do not resize one from the other platform.
 
 ## What the live feed actually looks like
