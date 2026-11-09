@@ -17,8 +17,10 @@ larger than on social, because a slide is read from across a room.
 1. Take one file from `slides/typy/` per slide. If the request names files, use
    those; otherwise choose by content, opening with `powitanie` and closing with
    `podziekowanie`.
-2. Copy each `.ps-canvas` and change only the copy and the photo. No new layouts,
-   colours or sizes.
+2. Copy each `.ps-canvas` and change only the copy and the photo, keeping its
+   layout. Build a new layout only when the user explicitly asks for one, and then
+   only in the copy: colours, type sizes and spacing still come from the system, and
+   the slide rules below still apply.
 3. Save one file outside this repo, as `ps-design-system` describes, using the deck
    shell from `slides/deck-warsztat.html` with its paths pointing back here. Number the slides between the first and the last.
 4. Run `node bin/check-canvases.mjs`, then check each slide by eye.

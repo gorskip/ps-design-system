@@ -7,7 +7,7 @@ description: The general rules for everything Przeskalowani makes, on every surf
 
 These apply everywhere. Surface rules live in their own skills:
 `ps-www` (website), `ps-social-post` (Instagram and LinkedIn), `ps-slides`
-(presentations) and `ps-forms` (Google Forms headers).
+(presentations), `ps-docs` (A4 documents) and `ps-forms` (Google Forms headers).
 
 The system lives in this repo. **Read the token files before writing CSS** —
 do not work from memory of this document.
@@ -19,9 +19,17 @@ docs/index.html        ← the live spec; open it to check anything
 
 ## The system is the reference
 
-Everything here is an example to copy, and every new design is a copy that follows
-these rules. When asked to make something new:
+Everything here is an example to start from, and every new design is a copy that
+follows these rules. When asked to make something new:
 
+- **By default, use only the system's layouts.** Pick the closest template and keep
+  its layout; change the copy and the photo. Never invent a layout on your own
+  initiative, even when you think one would look better: suggest it instead.
+- **A new layout only when the user asks for one.** If the request explicitly asks
+  for a new or changed layout or form, build it, but only in the copy, for that
+  design alone. Every value still comes from `tokens/` and the sizes this system
+  already uses, the canvas formats stay as they are, and every rule in this skill and
+  the surface skill still applies. The new layout does not become part of the system.
 - **Never edit, overwrite or save into this repo's files.** That includes `slides/`,
   `social/`, `forms/`, `assets/`, `tokens/` and `components/`.
 - **In Claude Design,** new work stays in the Claude project.
@@ -247,9 +255,10 @@ error.
 
 These apply to every fixed-pixel canvas: social graphics, slides and form headers.
 
-**Start from a copy.** Designing a new layout instead of copying a template is the
-most common mistake. Copy the closest file and change only the copy and, where the
-canvas has one, the photo.
+**Start from a copy.** Copy the closest file and change only the copy and, where the
+canvas has one, the photo. Keep its layout. Change the layout only when the user
+explicitly asks for a new one; then build it in the copy, from the system's values
+and keeping the canvas rules below. The template itself never changes.
 
 **The canvas is fixed pixels. Overlong copy overflows; it does not reflow.** If the
 copy doesn't fit, **cut the copy** — do not shrink the font, widen the `max-width`,

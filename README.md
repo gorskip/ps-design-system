@@ -1,7 +1,7 @@
 # Przeskalowani Design System
 
 The source of truth for how Przeskalowani looks on the website, Instagram,
-LinkedIn, slides and Google Forms headers.
+LinkedIn, slides, A4 documents and Google Forms headers.
 
 Open **`docs/index.html`** in a browser. That page is the full spec. If something
 isn't in it, it isn't in the system.
@@ -26,12 +26,14 @@ the founders.
 |---|---|---|---|
 | Instagram or LinkedIn graphic: post, carousel, story, Reels cover, quote card | `ps-social-post` | Claude Design | `Użyj skilla ps-social-post i przygotuj grafikę: instagram-liczby-a.` |
 | Presentation or single slide | `ps-slides` | Claude Design | `Użyj skilla ps-slides i zbuduj prezentację ze slajdów: powitanie-c, agenda-a, podziekowanie-a.` |
+| A4 document: offer, programme, workbook, exercise sheet | `ps-docs` | Claude Design | `Użyj skilla ps-docs i przygotuj dokument ze stron: powitanie-a, ogolny-a, cennik-b, podziekowanie-b.` |
 | Google Forms header (1600×400) | `ps-forms` | Claude Design | `Użyj skilla ps-forms i przygotuj nagłówek formularza na bazie forms/01-zapisy.` |
 | Website page, section, component, email, HTML/CSS, WordPress theme, SEO | `ps-www` | Claude Code | `Użyj skilla ps-www i zbuduj sekcję oferty na stronę.` |
 
 Ask for templates by name (`instagram-liczby-a`, `cytat-b`, `podziekowanie-a`).
-New designs start as a copy of an existing template, not from scratch. The skills
-never invent colours, radii, spacing or data. Where a fact is missing, they leave
+New designs start as a copy of an existing template and keep its layout. A new
+layout is built only when you ask for one, and only in that copy; the templates and
+the rest of the system stay unchanged. The skills never invent colours, radii, spacing or data. Where a fact is missing, they leave
 a placeholder.
 
 ## Use it on a website
@@ -58,6 +60,7 @@ tokens/ base/          Design tokens, reset, light and dark layers
 components/ patterns/  The closed component set and page-level compositions
 tailwind/theme.css     Optional Tailwind v4 bridge
 social/ slides/ forms/ Fixed-size templates for graphics, slides and form headers
+documents/             A4 page templates and documents.css
 assets/                Logo, QR codes, fonts, founder photos
 seo/                   The <head> partial and structured data
 docs/                  The live spec and a sample landing page

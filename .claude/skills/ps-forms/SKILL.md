@@ -10,7 +10,8 @@ every surface: colours, white, gradients, typography, logo, tone, data, photogra
 and canvases.
 
 Headers live in `forms/`, at 1600 × 400. Copy the closest file, save the copy outside this
-repo as `ps-design-system` describes, and change only the text.
+repo as `ps-design-system` describes, and change only the text. Change the layout only
+when the user explicitly asks for it, in the copy, keeping the rules below.
 
 Google crops to roughly 4:1 **and paints the form's own title across the
 lower-left**, so copy stays in the upper-left, the lockup goes top-right

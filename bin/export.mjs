@@ -36,6 +36,7 @@ const SIZES = {
   'ps-canvas--linkedin': [1200, 1500],
   'ps-canvas--slide':    [1920, 1080],
   'ps-canvas--form':     [1600, 400],
+  'ps-canvas--doc':      [794, 1123],    // A4 at 96 px per inch
 };
 
 /* 2× for everything that lands in a feed: the canvas is authored at the
@@ -43,7 +44,7 @@ const SIZES = {
    3× phone screen. Handing the platform 2× and letting it downsample is the
    cleaner of the two resamples. Form headers are the exception — Google
    downsamples them hard, so 2× is wasted bytes. */
-const SCALE = p => (p.includes('forms/') ? 1 : 2);
+const SCALE = p => (p.includes('forms/') ? 1 : p.includes('documents/') ? 3 : 2);   // A4 at 3× is ~290 dpi, print quality
 
 function walk(p) {
   const abs = resolve(ROOT, p);
@@ -132,7 +133,7 @@ try {
 }
 
 const requested = (process.argv.slice(2).length ? process.argv.slice(2)
-  : ['social/instagram', 'social/linkedin', 'slides/typy', 'forms'])
+  : ['social/instagram', 'social/linkedin', 'slides/typy', 'forms', 'documents/typy'])
   .flatMap(walk);
 const isSkipped = f => /deck-|index\.html$/.test(basename(f));
 const targets = requested.filter(f => !isSkipped(f));
