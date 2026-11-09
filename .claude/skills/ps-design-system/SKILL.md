@@ -130,7 +130,8 @@ And pick the right one:
 **No glassmorphism and soft shadows.** No `backdrop-filter`. No blurred
 shadow under every card. Depth in this system is the cream outline and
 flat colour, exactly as in the logo. Two shadows exist, both for genuinely
-floating UI (menus, toasts).
+floating UI (menus, toasts). The one exception on canvases is a cut-out person
+(`.ps-canvas__cutout`), which casts `--ps-shadow-cutout`. Nothing else does.
 
 **No emoji as iconography.** 🚀 ✨ 💡 are not part of this system. Icons are
 geometric line shapes from the triangle/circle vocabulary, drawn as inline
@@ -242,6 +243,27 @@ never stock. Examples keep theirs.
    `.ps-canvas__avatar`.
 4. **Look at the export.** The tools catch a missing file but can't see a face under
    a scrim or a mark. Faces must stay clear of the copy and of the scrim's dense part.
+
+### Cut-out people
+
+`assets/photo/cutout-*.png` are people with the background removed: `cutout-a` is
+Asia, `cutout-b` is Zuza, `cutout-duo` is both.
+They are used only in the `postac` social templates, layered back to front: the
+canvas field, `.ps-canvas__wave`, the person (`.ps-canvas__cutout`, with
+`--ps-shadow-cutout`), the copy, the stamp.
+
+- Copy keeps to its own lane beside the person and never runs over the figure.
+- A face stays clear of every label, bubble and line of copy.
+- Make every cut-out with `node bin/clean-cutout.mjs <photo> assets/photo/cutout-<name>.png`.
+  Start from a transparent PNG or WebP at full size whenever one exists: its edges
+  are kept as they are, and the script only makes the bottom edge solid (so the
+  figure meets the canvas edge with no gap) and crops to the person. From a plain
+  photo it can lift the person itself (macOS) and un-mix the old background out of
+  the edge, but that edge is never as clean as a proper cut-out. Look at the export
+  at full size after, on the dark green, where a light fringe shows first.
+- The figure's bottom sits on the canvas's bottom edge (`bottom: 0`), never above it.
+- Aim for at least 1600px tall for a full-height figure. Never bake a shadow into the
+  file: the shadow comes from the token.
 
 Minimum widths: 2400px for a full-photo slide, 1200px for a photo column, a split
 canvas, a frame or a circle. If the person isn't in the founders' map above, don't

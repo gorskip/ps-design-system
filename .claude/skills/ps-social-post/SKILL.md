@@ -30,6 +30,7 @@ choose the type by content and the platform by where it will be posted.
 | `cytat` | Client words | `a` | `a` |
 | `liczby` | One or more figures | `a` stat, `b` stat on green | `a` stat, `b` metrics |
 | `o-nas` | Asia and Zuza | `a` | `a` |
+| `postac` | A cut-out person in front of the field | `a` speech bubble, `b` wave, person right, `c` wave, person left, `d` both founders | `a`–`d`, same layouts |
 | `oferta` | Workshop or free test | `a` test, `b` workshop | `a` workshop |
 | `szablony` | Blank starting points | `a` portrait, `b` square, `c` quote, `d` carousel | none |
 

@@ -1,6 +1,6 @@
 # Przeskalowani Design System
 
-**Version:** v1.0.2
+**Version:** v1.0.3
 
 The source of truth for how Przeskalowani looks on the website, Instagram,
 LinkedIn, slides, A4 documents and Google Forms headers.
@@ -66,6 +66,7 @@ These need Node. Exporting also needs Google Chrome.
 node build/bundle.mjs            # rebuild dist/ after changing any CSS
 node bin/check-canvases.mjs      # check canvases against the structural rules
 node bin/export.mjs social/instagram/teza-a.html   # export a file or folder to exports/
+node bin/clean-cutout.mjs photo.jpg assets/photo/cutout-x.png   # cut a person out for the postac templates (macOS)
 ```
 
 ## What's here

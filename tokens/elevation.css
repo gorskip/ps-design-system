@@ -20,6 +20,17 @@
     0 2px 4px color-mix(in srgb, var(--ps-ink) 8%, transparent),
     0 20px 48px -16px color-mix(in srgb, var(--ps-teal-900) 36%, transparent);
 
+  /* Cut-out person on a social canvas — the ONE drop shadow in the system.
+     A filter value, not a box-shadow: it follows the figure's outline, so the
+     person reads as standing in front of the field and the wave. Light comes
+     from the top-left, so the shadow falls right and down. Two layers: a close
+     one that stays visible right behind the figure even on the deep green, and
+     a wide soft one that lifts it off the field. Never on cards, type, logos
+     or any other shape. */
+  --ps-shadow-cutout:
+    drop-shadow(8px 10px 10px color-mix(in srgb, var(--ps-ink) 38%, transparent))
+    drop-shadow(26px 30px 34px color-mix(in srgb, var(--ps-ink) 30%, transparent));
+
   /* Focus ring. Always visible, always teal, never removed. */
   --ps-focus-ring: 0 0 0 3px var(--ps-color-surface),
                    0 0 0 6px var(--ps-color-focus);
