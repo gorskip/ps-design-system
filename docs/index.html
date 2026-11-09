@@ -320,7 +320,7 @@
       <span class="ps-logo__word">Przeskalowani</span>
     </a>
     <div class="ps-nav__actions">
-      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.3</span></span></span>
+      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.4</span></span></span>
       <button class="ps-btn ps-btn--secondary" id="themeToggle" aria-pressed="false">Tryb ciemny</button>
     </div>
   </div>
@@ -357,6 +357,7 @@
       <div class="doc-rail__group" id="rail-start" data-rail="start">
         <a href="#st-potrzebujesz">Czego potrzebujesz</a>
         <a href="#st-design">Claude Design</a>
+        <a href="#st-aktualizacja">Jak zaktualizować wersję?</a>
         <a href="#st-code">Claude Code</a>
         <a href="#st-skille">Skille</a>
       </div>
@@ -462,7 +463,7 @@
       <li>Wybierz <strong>Sync from GitHub</strong> i wskaż repozytorium <code>gorskip/ps-design-system</code>. Jeśli Claude poprosi o połączenie z GitHubem, użyj konta z dostępem do repozytorium.</li>
       <li>Gdy Claude zapyta, co przenieść, wklej prompt podany niżej.</li>
       <li>Otwórz <strong>Settings &gt; Design systems</strong> i przy nowym systemie wybierz <strong>Set as default</strong>.</li>
-      <li>Gdy repozytorium się zmieni, uruchom <strong>Sync from GitHub</strong> ponownie. Gotowe projekty aktualizuje się osobno, prosząc o to Claude.</li>
+      <li>Gdy repozytorium się zmieni, zaktualizuj system tak, jak opisuje <a href="#st-aktualizacja">Jak zaktualizować wersję?</a>. Gotowe projekty aktualizuje się osobno, prosząc o to Claude.</li>
     </ol>
     <div class="doc-demo" style="margin-top:var(--ps-space-6)">
       <span class="doc-label">Prompt dla Claude</span>
@@ -471,6 +472,40 @@ Przeczytaj foldery: tokens, base, components, patterns, social, slides/typy, doc
 Zasady z plików SKILL.md w folderach .claude/skills/ps-design-system, ps-social-post, ps-slides, ps-docs i ps-forms przenieś do opisu systemu.
 Grafiki z social, slides/typy, documents/typy i forms zachowaj jako wzory, pod nazwami ich plików.
 Niczego nie zmieniaj w repozytorium.</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
+    </div>
+    </div>
+    <div class="doc-block" id="st-aktualizacja">
+      <h3 class="doc-block__title">Jak zaktualizować wersję?</h3>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0">Za każdym razem, gdy repozytorium się zmieni. Działa na każdym koncie, które ma ten system. Przycisk <strong>Sync from GitHub</strong> jest tylko przy tworzeniu nowego systemu, więc aktualizację zleca się Claude w czacie systemu.</p>
+    <ol style="display:grid;gap:var(--ps-space-6);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:decimal">
+      <li>W Claude Desktop kliknij swoje imię w lewym dolnym rogu i wybierz <strong>Settings</strong> (albo <kbd>⌘,</kbd>).
+        <img src="img/aktualizacja-1-menu.png" alt="Menu konta z zaznaczoną opcją Settings" width="286" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
+      <li>Otwórz <strong>Capabilities</strong>, przewiń do <strong>Design systems</strong> i kliknij <strong>Manage</strong>.
+        <img src="img/aktualizacja-2-capabilities.png" alt="Ustawienia, zakładka Capabilities, przycisk Manage przy Design systems" width="555" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
+      <li>Kliknij nazwę systemu, <strong>Przeskalowani Design System</strong>.
+        <img src="img/aktualizacja-3-design-systems.png" alt="Lista design systemów z zaznaczonym Przeskalowani Design System" width="440" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
+      <li>W prawym górnym rogu systemu kliknij <strong>Chat</strong>.
+        <img src="img/aktualizacja-4-chat.png" alt="Przycisk Chat w prawym górnym rogu design systemu" width="263" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
+      <li>Wklej prompt podany niżej i wyślij. Claude pracuje sam, bez pytań, a na koniec podaje krótką listę zmian i nową wersję.</li>
+      <li>Sprawdź, czy wersja na górze README systemu zgadza się z wersją w pasku na górze tej strony.</li>
+    </ol>
+    <div class="doc-demo" style="margin-top:var(--ps-space-6)">
+      <span class="doc-label">Prompt dla Claude</span>
+      <div class="doc-prompt" data-prompt-box><pre data-prompt>Zaktualizuj ten design system do najnowszej wersji z repozytorium GitHub gorskip/ps-design-system (gałąź main, repozytorium jest publiczne). Pracuj samodzielnie do końca, nie zadawaj mi pytań: przy każdej wątpliwości wybierz rozwiązanie zgodne z repozytorium i zapisz je w podsumowaniu.
+
+1. Przeczytaj README tego design systemu i jego ostatnią zmianę (lastChange): zapisz, z którego commita i z jakiej wersji pochodzi.
+2. W repozytorium przeczytaj plik VERSION i historię commitów na main od tamtego commita. Jeśli design system nie ma zapisanego commita, porównaj wszystko.
+3. Przenieś wszystkie zmiany, scalając je z tym, co już jest, a nie budując od nowa:
+   - tokeny z folderu tokens/ do tokens.json,
+   - CSS z ps-design-system.css, social/social.css i documents/documents.css do components/bundle.css, ze ścieżkami do plików zamienionymi na zasoby tego design systemu,
+   - szablony z social/instagram, social/linkedin, slides/typy, documents/typy i forms jako podglądy komponentów, pod nazwami ich plików,
+   - nowe lub zmienione zdjęcia, logo i kody QR z assets/ jako zasoby,
+   - zasady z plików .claude/skills/*/SKILL.md do README i sekcji Social, Slides, Documents, Forms i Website.
+4. Usuń tylko to, czego repozytorium już nie ma. Niczego innego nie usuwaj.
+5. Na górze README ustaw linię „Version: [wersja z pliku VERSION] · from gorskip/ps-design-system at [skrót commita]”.
+6. Zapisz wszystko w tym design systemie: zaktualizuj go w miejscu, nie twórz nowego.
+
+Na koniec podaj krótką listę zmian, najwyżej 8 punktów: nowa wersja i commit, co dodano, co zmieniono, co usunięto i czego nie udało się przenieść.</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
     </div>
     </div>
     <div class="doc-block" id="st-code">
@@ -2091,7 +2126,7 @@ Pracuj na kopii wzoru. Zmieniaj tylko treść, układ zostaw ze wzoru. Dolne 128
       </div>
     </div>
     <div class="ps-footer__bottom">
-      <span>System Projektowy Przeskalowani · <span data-version>v1.0.3</span></span>
+      <span>System Projektowy Przeskalowani · <span data-version>v1.0.4</span></span>
       <span>Montserrat · 8 kolorów · 7 komponentów</span>
     </div>
   </div>
