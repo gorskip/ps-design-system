@@ -1,6 +1,6 @@
 # Przeskalowani Design System
 
-**Version:** v1.1
+**Version:** v1.0.2
 
 The source of truth for how Przeskalowani looks on the website, Instagram,
 LinkedIn, slides, A4 documents and Google Forms headers.
@@ -48,8 +48,11 @@ a placeholder.
 
 ## Version
 
-The version is in `VERSION` and on the top of this file. Every commit bumps it by
-0.1 (v1.1, v1.2, … v1.9, v2.0). A pre-commit hook does it; turn it on once per clone:
+The version is in `VERSION`, at the top of this file and in the badge and footer of
+`docs/index.html`. It is `vMAJOR.MINOR.PATCH`, and every commit adds 1 to the patch
+(v1.0.1, v1.0.2, … v1.0.10). Bump the major or minor by hand in `VERSION` when you mean
+it; the next commit then adds the patch. A pre-commit hook does the bump and updates
+all three places; turn it on once per clone:
 
 ```sh
 git config core.hooksPath .githooks
