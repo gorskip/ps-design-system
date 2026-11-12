@@ -320,7 +320,7 @@
       <span class="ps-logo__word">Przeskalowani</span>
     </a>
     <div class="ps-nav__actions">
-      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.7</span></span></span>
+      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.8</span></span></span>
       <button class="ps-btn ps-btn--secondary" id="themeToggle" aria-pressed="false">Tryb ciemny</button>
     </div>
   </div>
@@ -494,10 +494,25 @@ Niczego nie zmieniaj w repozytorium.</pre><button type="button" class="doc-copy"
 claude plugin install przeskalowani@przeskalowani-design-system</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
     </div>
     <p class="ps-small ps-muted" style="margin:var(--ps-space-4) 0 0;max-width:62ch"><strong>Sprawdź:</strong> w nowym czacie wpisz <kbd>/</kbd>. Na liście są skille <code>ps-*</code>, czasem z przedrostkiem <code>przeskalowani:</code>. Potem wklej przykład z tabeli <a href="#st-skille">Skille</a>.</p>
+    <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Włącz automatyczne aktualizacje.</strong> Claude Desktop nie ma na to przycisku, więc wklej poniższy kod do aplikacji Terminal na Macu i naciśnij Enter. Robisz to raz. Kod dopisuje jedną opcję do ustawień Claude i niczego innego nie zmienia, więc możesz go uruchomić ponownie bez szkody.</p>
+    <div class="doc-demo" style="margin-top:var(--ps-space-3)">
+      <span class="doc-label">Terminal</span>
+      <div class="doc-prompt" data-prompt-box><pre data-prompt>osascript -l JavaScript &lt;&lt;'EOF'
+ObjC.import('Foundation');
+const p = $('~/.claude/settings.json').stringByExpandingTildeInPath.js;
+const d = JSON.parse($.NSString.stringWithContentsOfFileEncodingError(p, $.NSUTF8StringEncoding, null).js || '{}');
+const m = (d.extraKnownMarketplaces ||= {});
+m['przeskalowani-design-system'] = { source: { source: 'git', url: 'https://github.com/gorskip/ps-design-system.git' }, ...m['przeskalowani-design-system'], autoUpdate: true };
+$(JSON.stringify(d, null, 2) + '\n').writeToFileAtomicallyEncodingError(p, true, $.NSUTF8StringEncoding, null);
+'Auto-update włączony.'
+EOF</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
+    </div>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-3) 0 0;max-width:62ch">Terminal odpowie „Auto-update włączony.”. Od tej pory Claude sprawdza nową wersję pluginu w ciągu kilku minut od pierwszej wiadomości w sesji i pobiera ją sam.</p>
     </div>
     <div class="doc-block" id="st-aktualizacja">
       <h3 class="doc-block__title">Aktualizacja</h3>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0;max-width:62ch">Plugin pobiera nowe wersje z GitHuba sam. Jeśli nie pobrał, zaktualizuj go w <strong>Customize &gt; Plugins</strong> albo wpisz w terminalu <code>claude plugin update przeskalowani</code>. Design system aktualizujesz tak:</p>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0;max-width:62ch"><strong>Plugin</strong> z włączonymi <a href="#st-plugin">automatycznymi aktualizacjami</a> pobiera nowe wersje sam. Bez nich otwórz <strong>Customize &gt; Plugins &gt; Add &gt; Manage marketplaces</strong>, przy <code>przeskalowani-design-system</code> kliknij <strong>⋯</strong> i wybierz <strong>Check for updates</strong>. Wersja pluginu jest ta sama co w pasku na górze tej strony.</p>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-3) 0 0;max-width:62ch"><strong>Design system</strong> aktualizujesz tak:</p>
     <ol style="display:grid;gap:var(--ps-space-6);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:decimal">
       <li>Otwórz <strong>Settings &gt; Capabilities &gt; Design systems &gt; Manage</strong> i kliknij <strong>Przeskalowani Design System</strong>.
         <img src="img/aktualizacja-3-design-systems.png" alt="Lista design systemów z zaznaczonym Przeskalowani Design System" width="440" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
@@ -2143,7 +2158,7 @@ Pracuj na kopii wzoru. Zmieniaj tylko treść, układ zostaw ze wzoru. Dolne 128
       </div>
     </div>
     <div class="ps-footer__bottom">
-      <span>System Projektowy Przeskalowani · <span data-version>v1.0.7</span></span>
+      <span>System Projektowy Przeskalowani · <span data-version>v1.0.8</span></span>
       <span>Montserrat · 8 kolorów · 7 komponentów</span>
     </div>
   </div>
