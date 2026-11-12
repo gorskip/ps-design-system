@@ -26,4 +26,9 @@ if [ -f "$plugin" ]; then
   sed -E -i.bak "s/\"version\": \"[0-9.]+\"/\"version\": \"${new#v}\"/" "$plugin" && rm -f "$plugin.bak"
   git add "$plugin"
 fi
+update=plugin/skills/ps-update/SKILL.md
+if [ -f "$update" ]; then
+  sed -E -i.bak "s/^Plugin version: v[0-9.]+$/Plugin version: $new/" "$update" && rm -f "$update.bak"
+  git add "$update"
+fi
 echo "pre-commit: version $cur -> $new"
