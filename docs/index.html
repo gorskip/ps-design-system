@@ -320,7 +320,7 @@
       <span class="ps-logo__word">Przeskalowani</span>
     </a>
     <div class="ps-nav__actions">
-      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.6</span></span></span>
+      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.7</span></span></span>
       <button class="ps-btn ps-btn--secondary" id="themeToggle" aria-pressed="false">Tryb ciemny</button>
     </div>
   </div>
@@ -355,10 +355,10 @@
     </nav>
     <div class="doc-rail__detail">
       <div class="doc-rail__group" id="rail-start" data-rail="start">
-        <a href="#st-potrzebujesz">Czego potrzebujesz</a>
-        <a href="#st-design">Design system</a>
-        <a href="#st-aktualizacja">Jak zaktualizować wersję?</a>
-        <a href="#st-plugin">Plugin ze skillami</a>
+        <a href="#st-potrzebujesz">Dwie części</a>
+        <a href="#st-design">1. Design system</a>
+        <a href="#st-plugin">2. Plugin</a>
+        <a href="#st-aktualizacja">Aktualizacja</a>
         <a href="#st-code">Claude Code</a>
         <a href="#st-skille">Skille</a>
       </div>
@@ -447,98 +447,83 @@
   <section class="doc-sec" id="jak-zaczac">
     <p class="ps-eyebrow">Start</p>
     <h1 class="ps-display doc-view-title">Jak używać systemu.</h1>
-    <p class="ps-lead">Social media, slajdy, dokumenty A4 i formularze tworzysz w zwykłym czacie Claude z design systemem i pluginem Przeskalowani, a stronę WWW w Claude Code. Repozytorium służy tu tylko do odczytu: nowe projekty powstają w Claude i niczego w nim nie zmieniają.</p>
+    <p class="ps-lead">Ustawiasz raz dwie części: design system i plugin. Potem social media, slajdy, dokumenty A4 i formularze robisz w zwykłym czacie Claude, a stronę WWW w Claude Code. Repozytorium służy tylko do odczytu.</p>
     <div class="doc-blocks">
     <div class="doc-block" id="st-potrzebujesz">
-      <h3 class="doc-block__title">Czego potrzebujesz</h3>
+      <h3 class="doc-block__title">Dwie części</h3>
     <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
-      <li>Konto GitHub z dostępem do repozytorium <code>gorskip/ps-design-system</code>. Wystarczy odczyt.</li>
-      <li>Płatny plan Claude. Systemy projektowe nie są dostępne w planie Free.</li>
+      <li><strong>Design system, czyli style.</strong> Kolory, typografia, CSS, szablony, logo i zdjęcia. Z niego Claude wie, jak projekt ma wyglądać.</li>
+      <li><strong>Plugin, czyli skille design systemu.</strong> Zasady: który szablon wybrać, czego nie zmieniać, jak pisać. Z niego Claude wie, jak ma pracować.</li>
     </ul>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-4) 0 0;max-width:62ch">Potrzebujesz płatnego planu Claude. Repozytorium <code>gorskip/ps-design-system</code> jest publiczne, a jego kopia na komputerze nie jest potrzebna.</p>
     </div>
     <div class="doc-block" id="st-design">
-      <h3 class="doc-block__title">Social media, slajdy, dokumenty i formularze: design system</h3>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0">Ustawiasz to raz. Osobnej aplikacji Claude Design już nie ma: design system dodajesz w ustawieniach, a projekty robisz w zwykłym czacie. Razem z nim zainstaluj <a href="#st-plugin">plugin ze skillami</a>.</p>
+      <h3 class="doc-block__title">1. Design system: style</h3>
     <ol style="display:grid;gap:var(--ps-space-6);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:decimal">
       <li>W Claude Desktop kliknij swoje imię w lewym dolnym rogu i wybierz <strong>Settings</strong> (albo <kbd>⌘,</kbd>).
         <img src="img/aktualizacja-1-menu.png" alt="Menu konta z zaznaczoną opcją Settings" width="286" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
       <li>Otwórz <strong>Capabilities</strong>, przewiń do <strong>Design systems</strong> i kliknij <strong>Manage</strong>.
         <img src="img/aktualizacja-2-capabilities.png" alt="Ustawienia, zakładka Capabilities, przycisk Manage przy Design systems" width="555" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
-      <li>Kliknij <strong>New design system</strong> w prawym górnym rogu i wybierz <strong>Sync from GitHub</strong>.</li>
-      <li>Wskaż repozytorium <code>gorskip/ps-design-system</code>. Jeśli Claude poprosi o połączenie z GitHubem, zgódź się. Repozytorium jest publiczne, więc wystarczy dowolne konto.</li>
-      <li>Gdy Claude zapyta, co przenieść, wklej prompt podany niżej i poczekaj, aż skończy.</li>
-      <li>Wróć do listy w <strong>Design systems</strong>. Jeśli przy nowym systemie nie ma etykiety <strong>Your default</strong>, kliknij <strong>⋯</strong> w jego wierszu i ustaw go jako domyślny.</li>
-      <li>W nowym czacie poproś o projekt, na przykład jednym z promptów z tabeli <a href="#st-skille">Skille</a>.</li>
-      <li>Gdy repozytorium się zmieni, zaktualizuj system tak, jak opisuje <a href="#st-aktualizacja">Jak zaktualizować wersję?</a>. Gotowe projekty aktualizuje się osobno, prosząc o to Claude.</li>
+      <li>Kliknij <strong>New design system</strong>, wybierz <strong>Sync from GitHub</strong> i wskaż <code>gorskip/ps-design-system</code>.</li>
+      <li>Wklej prompt podany niżej i poczekaj, aż Claude skończy.</li>
+      <li>Jeśli przy nowym systemie nie ma etykiety <strong>Your default</strong>, kliknij <strong>⋯</strong> w jego wierszu i ustaw go jako domyślny.</li>
     </ol>
     <div class="doc-demo" style="margin-top:var(--ps-space-6)">
       <span class="doc-label">Prompt dla Claude</span>
-      <div class="doc-prompt" data-prompt-box><pre data-prompt>Zbuduj system projektowy Przeskalowani z tego repozytorium.
-Przeczytaj foldery: tokens, base, components, patterns, social, slides/typy, documents, forms, assets.
-Zasady z plików SKILL.md w folderach plugin/skills/ps-design-system, ps-social-post, ps-slides, ps-docs i ps-forms przenieś do opisu systemu.
-Grafiki z social, slides/typy, documents/typy i forms zachowaj jako wzory, pod nazwami ich plików.
+      <div class="doc-prompt" data-prompt-box><pre data-prompt>Zbuduj design system Przeskalowani z tego repozytorium. Przenieś tylko style:
+- tokeny z folderu tokens/,
+- CSS z ps-design-system.css, base/, components/, patterns/, social/social.css i documents/documents.css,
+- logo, zdjęcia, fonty i kody QR z assets/,
+- szablony z social/instagram, social/linkedin, slides/typy, documents/typy i forms jako wzory, pod nazwami ich plików.
+Nie przenoś skilli ani plików SKILL.md: zasady dostarcza osobny plugin Przeskalowani.
+Na górze README ustaw linię „Version: [wersja z pliku VERSION] · from gorskip/ps-design-system at [skrót commita]”.
 Niczego nie zmieniaj w repozytorium.</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
     </div>
     </div>
+    <div class="doc-block" id="st-plugin">
+      <h3 class="doc-block__title">2. Plugin: skille</h3>
+    <ol style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:decimal">
+      <li>Otwórz <strong>Customize</strong> i zakładkę <strong>Plugins</strong>.</li>
+      <li>Kliknij <strong>Add &gt; Add marketplace &gt; Add from a repository</strong> i wpisz <code>gorskip/ps-design-system</code>.</li>
+      <li>Wyczyść wyszukiwanie, przejdź do <strong>Discover</strong> i zainstaluj <strong>Przeskalowani Design System</strong>.</li>
+    </ol>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-4) 0 0;max-width:62ch"><strong>Nie ma go na liście?</strong> Usuń marketplace w <strong>Add &gt; Manage marketplaces</strong> i dodaj go jeszcze raz. Jeśli to nie pomoże, wklej do terminala dwie linie podane niżej. Tak zainstalowany plugin działa tylko w Claude Code na tym komputerze.</p>
+    <div class="doc-demo" style="margin-top:var(--ps-space-4)">
+      <span class="doc-label">Terminal</span>
+      <div class="doc-prompt" data-prompt-box><pre data-prompt>claude plugin marketplace add gorskip/ps-design-system
+claude plugin install przeskalowani@przeskalowani-design-system</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
+    </div>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-4) 0 0;max-width:62ch"><strong>Sprawdź:</strong> w nowym czacie wpisz <kbd>/</kbd>. Na liście są skille <code>ps-*</code>, czasem z przedrostkiem <code>przeskalowani:</code>. Potem wklej przykład z tabeli <a href="#st-skille">Skille</a>.</p>
+    </div>
     <div class="doc-block" id="st-aktualizacja">
-      <h3 class="doc-block__title">Jak zaktualizować wersję?</h3>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0">Za każdym razem, gdy repozytorium się zmieni. Działa na każdym koncie, które ma ten system. Przycisk <strong>Sync from GitHub</strong> jest tylko przy tworzeniu nowego systemu, więc aktualizację zleca się Claude w czacie systemu.</p>
+      <h3 class="doc-block__title">Aktualizacja</h3>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0;max-width:62ch">Plugin pobiera nowe wersje z GitHuba sam. Jeśli nie pobrał, zaktualizuj go w <strong>Customize &gt; Plugins</strong> albo wpisz w terminalu <code>claude plugin update przeskalowani</code>. Design system aktualizujesz tak:</p>
     <ol style="display:grid;gap:var(--ps-space-6);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:decimal">
-      <li>W Claude Desktop kliknij swoje imię w lewym dolnym rogu i wybierz <strong>Settings</strong> (albo <kbd>⌘,</kbd>).
-        <img src="img/aktualizacja-1-menu.png" alt="Menu konta z zaznaczoną opcją Settings" width="286" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
-      <li>Otwórz <strong>Capabilities</strong>, przewiń do <strong>Design systems</strong> i kliknij <strong>Manage</strong>.
-        <img src="img/aktualizacja-2-capabilities.png" alt="Ustawienia, zakładka Capabilities, przycisk Manage przy Design systems" width="555" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
-      <li>Kliknij nazwę systemu, <strong>Przeskalowani Design System</strong>.
+      <li>Otwórz <strong>Settings &gt; Capabilities &gt; Design systems &gt; Manage</strong> i kliknij <strong>Przeskalowani Design System</strong>.
         <img src="img/aktualizacja-3-design-systems.png" alt="Lista design systemów z zaznaczonym Przeskalowani Design System" width="440" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
-      <li>W prawym górnym rogu systemu kliknij <strong>Chat</strong>.
+      <li>W prawym górnym rogu kliknij <strong>Chat</strong>.
         <img src="img/aktualizacja-4-chat.png" alt="Przycisk Chat w prawym górnym rogu design systemu" width="263" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
-      <li>Wklej prompt podany niżej i wyślij. Claude pracuje sam, bez pytań, a na koniec podaje krótką listę zmian i nową wersję.</li>
+      <li>Wklej prompt podany niżej. Claude pracuje sam, a na koniec podaje listę zmian i nową wersję.</li>
       <li>Sprawdź, czy wersja na górze README systemu zgadza się z wersją w pasku na górze tej strony.</li>
     </ol>
     <div class="doc-demo" style="margin-top:var(--ps-space-6)">
       <span class="doc-label">Prompt dla Claude</span>
       <div class="doc-prompt" data-prompt-box><pre data-prompt>Zaktualizuj ten design system do najnowszej wersji z repozytorium GitHub gorskip/ps-design-system (gałąź main, repozytorium jest publiczne). Pracuj samodzielnie do końca, nie zadawaj mi pytań: przy każdej wątpliwości wybierz rozwiązanie zgodne z repozytorium i zapisz je w podsumowaniu.
 
-1. Przeczytaj README tego design systemu i jego ostatnią zmianę (lastChange): zapisz, z którego commita i z jakiej wersji pochodzi.
+1. Przeczytaj README tego design systemu: zapisz, z którego commita i z jakiej wersji pochodzi.
 2. W repozytorium przeczytaj plik VERSION i historię commitów na main od tamtego commita. Jeśli design system nie ma zapisanego commita, porównaj wszystko.
-3. Przenieś wszystkie zmiany, scalając je z tym, co już jest, a nie budując od nowa:
-   - tokeny z folderu tokens/ do tokens.json,
-   - CSS z ps-design-system.css, social/social.css i documents/documents.css do components/bundle.css, ze ścieżkami do plików zamienionymi na zasoby tego design systemu,
-   - szablony z social/instagram, social/linkedin, slides/typy, documents/typy i forms jako podglądy komponentów, pod nazwami ich plików,
-   - nowe lub zmienione zdjęcia, logo i kody QR z assets/ jako zasoby,
-   - zasady z plików plugin/skills/*/SKILL.md do README i sekcji Social, Slides, Documents, Forms i Website.
-4. Usuń tylko to, czego repozytorium już nie ma. Niczego innego nie usuwaj.
-5. Na górze README ustaw linię „Version: [wersja z pliku VERSION] · from gorskip/ps-design-system at [skrót commita]”.
-6. Zapisz wszystko w tym design systemie: zaktualizuj go w miejscu, nie twórz nowego.
+3. Przenieś zmiany w stylach, scalając je z tym, co już jest, a nie budując od nowa:
+   - tokeny z folderu tokens/,
+   - CSS z ps-design-system.css, base/, components/, patterns/, social/social.css i documents/documents.css, ze ścieżkami do plików zamienionymi na zasoby tego design systemu,
+   - szablony z social/instagram, social/linkedin, slides/typy, documents/typy i forms, pod nazwami ich plików,
+   - nowe lub zmienione zdjęcia, logo, fonty i kody QR z assets/.
+4. Nie przenoś skilli ani plików SKILL.md: zasady dostarcza osobny plugin Przeskalowani. Jeśli ten design system ma zasady przeniesione z plików SKILL.md we wcześniejszej wersji, usuń je z README i sekcji Social, Slides, Documents, Forms i Website, a opis stylów zostaw.
+5. Poza tym usuń tylko te style, których repozytorium już nie ma. Niczego innego nie usuwaj.
+6. Na górze README ustaw linię „Version: [wersja z pliku VERSION] · from gorskip/ps-design-system at [skrót commita]”.
+7. Zapisz wszystko w tym design systemie: zaktualizuj go w miejscu, nie twórz nowego.
 
 Na koniec podaj krótką listę zmian, najwyżej 8 punktów: nowa wersja i commit, co dodano, co zmieniono, co usunięto i czego nie udało się przenieść.</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
     </div>
-    </div>
-    <div class="doc-block" id="st-plugin">
-      <h3 class="doc-block__title">Skille w Claude: plugin Przeskalowani</h3>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0">Ustawiasz to raz. Design system daje Claude tokeny, szablony i zdjęcia, a plugin daje mu zasady ze skilli. Używaj obu razem. Nie potrzebujesz kopii repozytorium: plugin pobiera się z GitHuba.</p>
-    <p style="margin:var(--ps-space-6) 0 0"><strong>Sposób 1: w aplikacji.</strong> Zacznij od niego.</p>
-    <ol style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-3) 0 0;padding-inline-start:1.25em;list-style:decimal">
-      <li>W Claude Desktop albo na claude.ai otwórz <strong>Customize</strong> i przejdź do zakładki <strong>Plugins</strong>.</li>
-      <li>Kliknij <strong>Add</strong>, potem <strong>Add marketplace</strong> i wybierz <strong>Add from a repository</strong>.</li>
-      <li>Wpisz <code>gorskip/ps-design-system</code> i potwierdź.</li>
-      <li>Wyczyść pole wyszukiwania, przejdź do <strong>Discover</strong>, znajdź <strong>Przeskalowani Design System</strong> i kliknij <strong>Install</strong>. Wyszukiwarka w <strong>Yours</strong> pokazuje tylko zainstalowane pluginy, więc przed instalacją go tam nie znajdziesz.</li>
-      <li>Jeśli pluginu nie ma na liście, usuń marketplace i dodaj go jeszcze raz: <strong>Add &gt; Manage marketplaces</strong>, przy <code>przeskalowani-design-system</code> kliknij <strong>⋯</strong> i usuń go, potem powtórz kroki 2–4. Jeśli dalej go nie ma, użyj sposobu 2.</li>
-    </ol>
-    <p style="margin:var(--ps-space-6) 0 0"><strong>Sposób 2: w terminalu.</strong> Gdy sposób 1 nie zadziała. Potrzebujesz zainstalowanego Claude Code. Wklej obie linie do terminala.</p>
-    <div class="doc-demo" style="margin-top:var(--ps-space-3)">
-      <span class="doc-label">Terminal</span>
-      <div class="doc-prompt" data-prompt-box><pre data-prompt>claude plugin marketplace add gorskip/ps-design-system
-claude plugin install przeskalowani@przeskalowani-design-system</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
-    </div>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-3) 0 0;max-width:62ch">Plugin zainstalowany tak działa w Claude Code na tym komputerze, czyli w terminalu i w zakładce Code w Claude Desktop.</p>
-    <p style="margin:var(--ps-space-6) 0 0"><strong>Sprawdź, czy działa.</strong></p>
-    <ol style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-3) 0 0;padding-inline-start:1.25em;list-style:decimal">
-      <li>Otwórz nowy czat albo nową sesję i wpisz <kbd>/</kbd>. Na liście powinny być skille <code>ps-social-post</code>, <code>ps-slides</code>, <code>ps-docs</code>, <code>ps-forms</code>, <code>ps-www</code> i <code>ps-design-system</code>, czasem z przedrostkiem <code>przeskalowani:</code>.</li>
-      <li>Wklej jeden z przykładów z tabeli <a href="#st-skille">Skille</a>.</li>
-    </ol>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-6) 0 0;max-width:62ch">Plugin dodany sposobem 1 działa w czacie, w Cowork i w Claude Code, gdy zalogujesz się tym samym kontem. Repozytorium jest publiczne, więc plugin może dodać każdy, kto zna jego nazwę. Nie ma go w katalogu Anthropic.</p>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0;max-width:62ch">Gdy repozytorium się zmieni, plugin dostaje nową wersję, tę samą co w pasku na górze tej strony. Jeśli Claude jej nie pobrał, otwórz plugin w <strong>Customize &gt; Plugins</strong> i zaktualizuj go. Po sposobie 2 wpisz w terminalu <code>claude plugin update przeskalowani</code>.</p>
     </div>
     <div class="doc-block" id="st-code">
       <h3 class="doc-block__title">Strona WWW: Claude Code</h3>
@@ -2158,7 +2143,7 @@ Pracuj na kopii wzoru. Zmieniaj tylko treść, układ zostaw ze wzoru. Dolne 128
       </div>
     </div>
     <div class="ps-footer__bottom">
-      <span>System Projektowy Przeskalowani · <span data-version>v1.0.6</span></span>
+      <span>System Projektowy Przeskalowani · <span data-version>v1.0.7</span></span>
       <span>Montserrat · 8 kolorów · 7 komponentów</span>
     </div>
   </div>
