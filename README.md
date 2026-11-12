@@ -1,6 +1,6 @@
 # Przeskalowani Design System
 
-**Version:** v1.0.5
+**Version:** v1.0.6
 
 The source of truth for how Przeskalowani looks on the website, Instagram,
 LinkedIn, slides, A4 documents and Google Forms headers.
@@ -10,16 +10,20 @@ isn't in it, it isn't in the system.
 
 ## Use it with Claude
 
-- **Claude Design** (social graphics, slides, form headers): create a design
-  system with **Sync from GitHub** and select `gorskip/ps-design-system`. Sync
-  again whenever the repo changes.
-- **Claude Desktop, claude.ai and Cowork**: install the skills as the **Przeskalowani
-  Design System** plugin. Go to Customize > Plugins > Add > Add marketplace > Add from
-  a repository, enter `gorskip/ps-design-system`, then install the plugin. Use it
-  together with the design system: the design system brings the files, the plugin
-  brings the rules. No clone needed. In Claude Code without a claude.ai account:
+Social graphics, slides, A4 documents and form headers are made in a regular Claude
+chat, with both of these set up once. The design system brings the files, the plugin
+brings the rules. No clone needed. Steps with screenshots are on the spec page, under
+*Jak używać?*.
+
+- **Design system**: Settings > Capabilities > Design systems > Manage > New design
+  system > Sync from GitHub, then select `gorskip/ps-design-system`. Update it whenever
+  the repo changes.
+- **Plugin with the skills**: Customize > Plugins > Add > Add marketplace > Add from a
+  repository, enter `gorskip/ps-design-system`, then install **Przeskalowani Design
+  System** from Discover. If that doesn't work, run
   `claude plugin marketplace add gorskip/ps-design-system`, then
-  `claude plugin install przeskalowani@przeskalowani-design-system`.
+  `claude plugin install przeskalowani@przeskalowani-design-system` (Claude Code on
+  that computer only).
 - **Claude Code** (website): clone this repo and run Claude Code in it. The skills
   load automatically.
 
@@ -32,15 +36,14 @@ the founders.
 
 | You're making | Skill | Where | Example prompt |
 |---|---|---|---|
-| Instagram or LinkedIn graphic: post, carousel, story, Reels cover, quote card | `ps-social-post` | Claude Design | `Przygotuj grafikę w design systemie Przeskalowani: instagram-liczby-a.` |
-| Presentation or single slide | `ps-slides` | Claude Design | `Zbuduj prezentację w design systemie Przeskalowani ze slajdów: powitanie-c, agenda-a, podziekowanie-a.` |
-| A4 document: offer, programme, workbook, exercise sheet | `ps-docs` | Claude Design | `Przygotuj projekt A4 w design systemie Przeskalowani ze stron: powitanie-a, ogolny-a, cennik-b, podziekowanie-b.` |
-| Google Forms header (1600×400) | `ps-forms` | Claude Design | `Przygotuj nagłówek formularza w design systemie Przeskalowani na bazie form-01-zapisy.` |
+| Instagram or LinkedIn graphic: post, carousel, story, Reels cover, quote card | `ps-social-post` | Claude chat | `Przygotuj grafikę w design systemie Przeskalowani: instagram-liczby-a.` |
+| Presentation or single slide | `ps-slides` | Claude chat | `Zbuduj prezentację w design systemie Przeskalowani ze slajdów: powitanie-c, agenda-a, podziekowanie-a.` |
+| A4 document: offer, programme, workbook, exercise sheet | `ps-docs` | Claude chat | `Przygotuj projekt A4 w design systemie Przeskalowani ze stron: powitanie-a, ogolny-a, cennik-b, podziekowanie-b.` |
+| Google Forms header (1600×400) | `ps-forms` | Claude chat | `Przygotuj nagłówek formularza w design systemie Przeskalowani na bazie form-01-zapisy.` |
 | Website page, section, component, email, HTML/CSS, WordPress theme, SEO | `ps-www` | Claude Code | `Użyj skilla ps-www i zbuduj sekcję oferty na stronę.` |
 
-Ask for templates by name (`instagram-liczby-a`, `cytat-b`, `podziekowanie-a`). In Claude Design, name the
-design system instead of a skill: the skills live in this repo, and the design system
-carries their rules. In Claude Code, name the skill.
+Ask for templates by name (`instagram-liczby-a`, `cytat-b`, `podziekowanie-a`). In a chat, name the
+design system; the plugin picks the right skill. In Claude Code, name the skill.
 New designs start as a copy of an existing template and keep its layout. A new
 layout is built only when you ask for one, and only in that copy; the templates and
 the rest of the system stay unchanged. The skills never invent colours, radii, spacing or data. Where a fact is missing, they leave
