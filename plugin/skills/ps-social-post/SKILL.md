@@ -9,6 +9,10 @@ description: Create Przeskalowani graphics for Instagram or LinkedIn, such as fe
 every surface: colours, white, gradients, typography, logo, tone, data, photography
 and canvases.
 
+A `postac` template with someone other than the founders' cut-outs needs a new
+cut-out: make it with the `ps-cutout` skill (`przeskalowani:ps-cutout`) without
+asking, then follow *Cut-out people* in `ps-design-system`.
+
 Graphics live in `social/instagram/` and `social/linkedin/`, named by type and
 variant. They read the same tokens as the website, so a post and a
 landing page cannot drift apart. **Don't start a post from a blank page.** Open

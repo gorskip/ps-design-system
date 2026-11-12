@@ -320,7 +320,7 @@
       <span class="ps-logo__word">Przeskalowani</span>
     </a>
     <div class="ps-nav__actions">
-      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.12</span></span></span>
+      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.13</span></span></span>
       <button class="ps-btn ps-btn--secondary" id="themeToggle" aria-pressed="false">Tryb ciemny</button>
     </div>
   </div>
@@ -351,6 +351,9 @@
       </button>
       <button type="button" class="doc-rail__icon" data-panel-btn="docs" aria-expanded="false" aria-controls="rail-docs">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 3h8l4 4v14H6z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M14 3v4h4M9 12h6M9 16h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Docs</span>
+      </button>
+      <button type="button" class="doc-rail__icon" data-panel-btn="changes" aria-expanded="false" aria-controls="rail-changes">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Zmiany</span>
       </button>
     </nav>
     <div class="doc-rail__detail">
@@ -432,6 +435,31 @@
           <a href="#dc-t-cwiczenia">Ćwiczenia</a>
           <a href="#dc-t-podziekowanie">Podziękowanie</a>
         </div>
+      </div>
+      <div class="doc-rail__group" id="rail-changes" data-rail="changes" hidden>
+<!-- changelog:rail:start -->
+        <a href="#zm-ds" class="doc-rail__parent">Design system<span class="doc-rail__count">10</span></a>
+        <div class="doc-rail__sub">
+          <a href="#zm-ds-2026-11-12-changelog-tab-and-person-cut-outs">12.11.2026 · Zakładka Zmiany i wycinanie postaci</a>
+          <a href="#zm-ds-2026-11-12-design-system-in-claude-settings">12.11.2026 · Design system w ustawieniach Claude</a>
+          <a href="#zm-ds-2026-11-09-update-guide">09.11.2026 · Instrukcja aktualizacji</a>
+          <a href="#zm-ds-2026-11-09-cut-out-person-templates">09.11.2026 · Szablony z wyciętą postacią</a>
+          <a href="#zm-ds-2026-11-09-version-number">09.11.2026 · Numer wersji</a>
+          <a href="#zm-ds-2026-11-09-prompts-for-claude-design">09.11.2026 · Prompty dla Claude Design</a>
+          <a href="#zm-ds-2026-11-09-a4-documents">09.11.2026 · Dokumenty A4</a>
+          <a href="#zm-ds-2026-11-09-published-spec-page">09.11.2026 · Publikacja strony</a>
+          <a href="#zm-ds-2026-11-08-slide-fixes">08.11.2026 · Poprawki slajdów</a>
+          <a href="#zm-ds-2026-11-07-first-version-of-the-design-system">07.11.2026 · Pierwsza wersja design systemu</a>
+        </div>
+        <a href="#zm-pl" class="doc-rail__parent">Plugin<span class="doc-rail__count">5</span></a>
+        <div class="doc-rail__sub">
+          <a href="#zm-pl-2026-11-12-background-removal">12.11.2026 · Usuwanie tła ze zdjęć</a>
+          <a href="#zm-pl-2026-11-12-design-system-updates-from-the-code-tab">12.11.2026 · Aktualizacja design systemu z zakładki Code</a>
+          <a href="#zm-pl-2026-11-12-plugin-version-check">12.11.2026 · Sprawdzanie wersji pluginu</a>
+          <a href="#zm-pl-2026-11-12-ps-update-skill-and-icon">12.11.2026 · Skill ps-update i ikona</a>
+          <a href="#zm-pl-2026-11-12-first-version-of-the-plugin">12.11.2026 · Pierwsza wersja pluginu</a>
+        </div>
+<!-- changelog:rail:end -->
       </div>
       <div class="doc-rail__foot">
         <span>Montserrat · 8 kolorów · 2 gradienty</span>
@@ -526,6 +554,7 @@ claude plugin install przeskalowani@przeskalowani-design-system</pre><button typ
         <tr><td><code style="white-space:nowrap">ps-slides</code></td><td>Prezentacje i slajdy.</td><td>Czat Claude</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>Zbuduj prezentację w design systemie Przeskalowani ze slajdów: powitanie-c, agenda-a, podziekowanie-a.</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#sl-jak">Slajdy</a></td></tr>
         <tr><td><code style="white-space:nowrap">ps-docs</code></td><td>Dokumenty A4: oferty, programy, karty pracy.</td><td>Czat Claude</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>Przygotuj projekt A4 w design systemie Przeskalowani ze stron: powitanie-a, ogolny-a, cennik-b, podziekowanie-b.</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#dc-jak">Dokumenty</a></td></tr>
         <tr><td><code style="white-space:nowrap">ps-forms</code></td><td>Nagłówki formularzy Google.</td><td>Czat Claude</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>Przygotuj nagłówek formularza w design systemie Przeskalowani na bazie form-01-zapisy.</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#fm-jak">Formularze</a></td></tr>
+        <tr><td><code style="white-space:nowrap">ps-cutout</code></td><td>Usuwanie tła ze zdjęć: przezroczysty PNG osoby lub przedmiotu. Uruchamia się też sam, gdy projekt potrzebuje wycięcia.</td><td>Czat Claude</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>Usuń tło z tego zdjęcia w design systemie Przeskalowani.</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#zasady-ogolne">Zasady ogólne</a></td></tr>
         <tr><td><code style="white-space:nowrap">ps-www</code></td><td>Strony, sekcje i komponenty WWW, SEO i szybkość strony.</td><td>Claude Code</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>Użyj skilla ps-www i zbuduj sekcję oferty na stronę.</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#komponenty">Komponenty</a><br><a href="#uklady">Układy</a><br><a href="#podglad">Przykładowa strona</a></td></tr>
         <tr><td><code style="white-space:nowrap">ps-update</code></td><td>Aktualizacja pluginu i design systemu do najnowszej wersji.</td><td>Zakładka Code</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>/ps-update</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#st-aktualizacja">Aktualizacja</a></td></tr>
       </tbody>
@@ -2097,6 +2126,131 @@ Pracuj na kopii wzoru. Zmieniaj tylko treść, układ zostaw ze wzoru. Dolne 128
     </div>
   </section>
 </div>
+<div data-panel="changes" id="panel-changes" hidden>
+<!-- changelog:panel:start -->
+  <section class="doc-sec" id="zmiany">
+    <p class="ps-eyebrow">Zmiany</p>
+    <h1 class="ps-display doc-view-title">Co nowego.</h1>
+    <p class="ps-lead">Osobno design system i plugin. Każda zmiana ma nazwę z datą, najnowsza na górze.</p>
+  </section>
+  <section class="doc-sec" id="zm-ds">
+    <h2>Design system</h2>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0;max-width:62ch">Tokeny, CSS, szablony, zdjęcia i ta strona.</p>
+    <div class="doc-blocks">
+    <div class="doc-block" id="zm-ds-2026-11-12-changelog-tab-and-person-cut-outs">
+      <h3 class="doc-block__title"><time datetime="2026-11-12">12.11.2026</time> · Zakładka Zmiany i wycinanie postaci</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Na stronie nowa zakładka <strong>Zmiany</strong> z historią design systemu i pluginu.</li>
+      <li><code>bin/clean-cutout.mjs</code> wycina postać tym samym skryptem Apple Vision co skill <code>ps-cutout</code>.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-ds-2026-11-12-design-system-in-claude-settings">
+      <h3 class="doc-block__title"><time datetime="2026-11-12">12.11.2026</time> · Design system w ustawieniach Claude</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Design system podłącza się w Settings &gt; Capabilities &gt; Design systems, z synchronizacją z GitHuba.</li>
+      <li>Przewodnik na stronie podzielony na dwie części: design system i plugin.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-ds-2026-11-09-update-guide">
+      <h3 class="doc-block__title"><time datetime="2026-11-09">09.11.2026</time> · Instrukcja aktualizacji</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Na stronie sekcja o aktualizacji design systemu, ze zrzutami ekranu.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-ds-2026-11-09-cut-out-person-templates">
+      <h3 class="doc-block__title"><time datetime="2026-11-09">09.11.2026</time> · Szablony z wyciętą postacią</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Nowe szablony <code>postac</code> na Instagram i LinkedIn: wycięta osoba na tle marki.</li>
+      <li>Wycięcia założycielek w <code>assets/photo/cutout-*.png</code> i skrypt <code>bin/clean-cutout.mjs</code>.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-ds-2026-11-09-version-number">
+      <h3 class="doc-block__title"><time datetime="2026-11-09">09.11.2026</time> · Numer wersji</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Wersja w formacie vX.X.X w pliku <code>VERSION</code>, w README i na stronie.</li>
+      <li>Każdy commit podnosi ją o 1.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-ds-2026-11-09-prompts-for-claude-design">
+      <h3 class="doc-block__title"><time datetime="2026-11-09">09.11.2026</time> · Prompty dla Claude Design</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Przykładowe prompty na stronie wskazują design system Przeskalowani.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-ds-2026-11-09-a4-documents">
+      <h3 class="doc-block__title"><time datetime="2026-11-09">09.11.2026</time> · Dokumenty A4</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Szablony stron A4: powitanie, ogólny, cennik, harmonogram, ćwiczenia, podziękowanie.</li>
+      <li>Zakładka <strong>Docs</strong> na stronie.</li>
+      <li>Kopie projektów zachowują układ szablonu. Nowy układ powstaje tylko na prośbę i tylko w kopii.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-ds-2026-11-09-published-spec-page">
+      <h3 class="doc-block__title"><time datetime="2026-11-09">09.11.2026</time> · Publikacja strony</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Strona systemu publikowana na Netlify, adres główny prowadzi do <code>docs/</code>.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-ds-2026-11-08-slide-fixes">
+      <h3 class="doc-block__title"><time datetime="2026-11-08">08.11.2026</time> · Poprawki slajdów</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Tytuły na slajdach pełnej szerokości w pasie znaku, treść wyśrodkowana pod tytułem.</li>
+      <li>Szerszy odstęp tytułu, przeniesiony do wspólnego CSS.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-ds-2026-11-07-first-version-of-the-design-system">
+      <h3 class="doc-block__title"><time datetime="2026-11-07">07.11.2026</time> · Pierwsza wersja design systemu</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Tokeny, komponenty i układy WWW, szablony social, slajdy, nagłówki formularzy, logo i zdjęcia.</li>
+      <li>Strona <code>docs/index.html</code> jako pełna specyfikacja.</li>
+      <li>Podziękowania na zielonym gradiencie, prezentacje na całą szerokość.</li>
+    </ul>
+    </div>
+    </div>
+  </section>
+  <section class="doc-sec" id="zm-pl">
+    <h2>Plugin</h2>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0;max-width:62ch">Skille, z których Claude wie, jak pracować. Aktualizujesz je skillem <code>ps-update</code>.</p>
+    <div class="doc-blocks">
+    <div class="doc-block" id="zm-pl-2026-11-12-background-removal">
+      <h3 class="doc-block__title"><time datetime="2026-11-12">12.11.2026</time> · Usuwanie tła ze zdjęć</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Nowy skill <code>ps-cutout</code>: usuwa tło ze zdjęcia i zapisuje przezroczysty PNG osoby lub przedmiotu.</li>
+      <li>Uruchamia się sam, gdy projekt potrzebuje wycięcia, np. w szablonach <code>postac</code>.</li>
+      <li>Działa w czacie Claude i w Claude Code (rembg, model BiRefNet-portrait). Na Macu bez internetu korzysta z Apple Vision.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-pl-2026-11-12-design-system-updates-from-the-code-tab">
+      <h3 class="doc-block__title"><time datetime="2026-11-12">12.11.2026</time> · Aktualizacja design systemu z zakładki Code</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li><code>ps-update</code> aktualizuje też design system, a nie tylko plugin.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-pl-2026-11-12-plugin-version-check">
+      <h3 class="doc-block__title"><time datetime="2026-11-12">12.11.2026</time> · Sprawdzanie wersji pluginu</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li><code>ps-update</code> sprawdza zainstalowaną wersję pluginu i potwierdza ją po aktualizacji.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-pl-2026-11-12-ps-update-skill-and-icon">
+      <h3 class="doc-block__title"><time datetime="2026-11-12">12.11.2026</time> · Skill ps-update i ikona</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Nowy skill <code>ps-update</code>: aktualizacja pluginu i design systemu do najnowszej wersji.</li>
+      <li>Plugin ma własną ikonę.</li>
+      <li>Przewodnik na stronie podzielony na dwie części: design system i plugin.</li>
+    </ul>
+    </div>
+    <div class="doc-block" id="zm-pl-2026-11-12-first-version-of-the-plugin">
+      <h3 class="doc-block__title"><time datetime="2026-11-12">12.11.2026</time> · Pierwsza wersja pluginu</h3>
+    <ul style="display:grid;gap:var(--ps-space-3);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:disc">
+      <li>Skille spakowane jako plugin Claude: <code>ps-design-system</code>, <code>ps-social-post</code>, <code>ps-slides</code>, <code>ps-docs</code>, <code>ps-forms</code> i <code>ps-www</code>.</li>
+      <li>Instrukcja instalacji na stronie.</li>
+    </ul>
+    </div>
+    </div>
+  </section>
+<!-- changelog:panel:end -->
+</div>
 </main>
 </div>
 </div>
@@ -2127,7 +2281,7 @@ Pracuj na kopii wzoru. Zmieniaj tylko treść, układ zostaw ze wzoru. Dolne 128
       </div>
     </div>
     <div class="ps-footer__bottom">
-      <span>System Projektowy Przeskalowani · <span data-version>v1.0.12</span></span>
+      <span>System Projektowy Przeskalowani · <span data-version>v1.0.13</span></span>
       <span>Montserrat · 8 kolorów · 7 komponentów</span>
     </div>
   </div>
@@ -2254,7 +2408,7 @@ function syncHeadHeight() {
 addEventListener('resize', syncHeadHeight);
 syncHeadHeight();
 
-/* --- Rail: seven top-level sections, one open at a time ------------------
+/* --- Rail: eight top-level sections, one open at a time ------------------
    The icon strip picks the area; the column beside it lists that area's
    items and the main panel switches with it. */
 const railTops = [...document.querySelectorAll('.doc-rail__icon')];
@@ -2292,6 +2446,7 @@ if (location.hash.startsWith('#ig-')) startSection = 'social';
 if (location.hash.startsWith('#sl-')) startSection = 'slides';
 if (location.hash.startsWith('#fm-')) startSection = 'form';
 if (location.hash.startsWith('#dc-')) startSection = 'docs';
+if (location.hash === '#zmiany' || location.hash.startsWith('#zm-')) startSection = 'changes';
 openSection(startSection, false);
 
 /* Arrow keys: up/down walks the whole rail — section buttons and the links

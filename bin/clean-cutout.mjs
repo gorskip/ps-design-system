@@ -6,7 +6,7 @@
    Best input: a transparent PNG or WebP cut-out at full size. Its edges are
    kept exactly as they are; only steps 3 and 4 run.
 
-   A plain photo is lifted first with macOS Vision (bin/lift-subject.js), and
+   A plain photo is lifted first with macOS Vision (plugin/skills/ps-cutout/scripts/lift-subject.js), and
    then all four steps run, because a lifted edge still carries the old
    background:
 
@@ -59,7 +59,7 @@ if (!hasAlpha(input)) {
     px.push([0, 1, 2].map(k => s.data[(y * s.width + x) * 4 + k]));
   photoBg = [0, 1, 2].map(k => px.map(p => p[k]).sort((m, n) => m - n)[2]);   // brightest-but-one corner
   const tmp = join(mkdtempSync(join(tmpdir(), 'cutout-')), 'lifted.png');
-  const r = execFileSync('osascript', ['-l', 'JavaScript', join(HERE, 'lift-subject.js'), input, tmp]).toString().trim();
+  const r = execFileSync('osascript', ['-l', 'JavaScript', join(HERE, '..', 'plugin', 'skills', 'ps-cutout', 'scripts', 'lift-subject.js'), input, tmp]).toString().trim();
   if (!r.startsWith('ok')) { console.error('lift failed: ' + r); process.exit(1); }
   input = tmp;
 }

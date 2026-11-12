@@ -1,6 +1,6 @@
 # Przeskalowani Design System
 
-**Version:** v1.0.12
+**Version:** v1.0.13
 
 The source of truth for how Przeskalowani looks on the website, Instagram,
 LinkedIn, slides, A4 documents and Google Forms headers.
@@ -40,6 +40,7 @@ the founders.
 | Presentation or single slide | `ps-slides` | Claude chat | `Zbuduj prezentację w design systemie Przeskalowani ze slajdów: powitanie-c, agenda-a, podziekowanie-a.` |
 | A4 document: offer, programme, workbook, exercise sheet | `ps-docs` | Claude chat | `Przygotuj projekt A4 w design systemie Przeskalowani ze stron: powitanie-a, ogolny-a, cennik-b, podziekowanie-b.` |
 | Google Forms header (1600×400) | `ps-forms` | Claude chat | `Przygotuj nagłówek formularza w design systemie Przeskalowani na bazie form-01-zapisy.` |
+| Background removed from a photo (transparent PNG); also runs on its own when a design needs a cut-out | `ps-cutout` | Claude chat | `Usuń tło z tego zdjęcia w design systemie Przeskalowani.` |
 | Website page, section, component, email, HTML/CSS, WordPress theme, SEO | `ps-www` | Claude Code | `Użyj skilla ps-www i zbuduj sekcję oferty na stronę.` |
 | Update the plugin and the design system to the newest version | `ps-update` | Code tab in Claude Desktop | `/ps-update` |
 
@@ -68,6 +69,16 @@ all three places; turn it on once per clone:
 git config core.hooksPath .githooks
 ```
 
+## Changelog
+
+Two logs in English, each change named with its date (`## DD.MM.YYYY · Name`),
+newest first: [`CHANGELOG.md`](CHANGELOG.md) for the design system and
+[`plugin/CHANGELOG.md`](plugin/CHANGELOG.md) for the plugin. The spec page shows them
+in Polish under **Zmiany**, from `docs/changelog/design-system.pl.md` and
+`docs/changelog/plugin.pl.md`. Add every change to the English log and its Polish
+copy. `node bin/changelog.mjs` builds the tab and stops if the two lists differ; the
+pre-commit hook runs it.
+
 ## Commands
 
 These need Node. Exporting also needs Google Chrome.
@@ -76,6 +87,7 @@ These need Node. Exporting also needs Google Chrome.
 node build/bundle.mjs            # rebuild dist/ after changing any CSS
 node bin/check-canvases.mjs      # check canvases against the structural rules
 node bin/export.mjs social/instagram/teza-a.html   # export a file or folder to exports/
+node bin/changelog.mjs           # put both changelogs on the spec page (Zmiany tab)
 node bin/clean-cutout.mjs photo.jpg assets/photo/cutout-x.png   # cut a person out for the postac templates (macOS)
 ```
 
@@ -92,7 +104,8 @@ assets/                Logo, QR codes, fonts, founder photos
 seo/                   The <head> partial and structured data
 docs/                  The live spec and a sample landing page
 baseline/              Original logo PNGs; don't edit
-plugin/                The plugin: its manifest and the skills listed above
+plugin/                The plugin: its manifest, the skills listed above and its CHANGELOG.md
+CHANGELOG.md           The design system's changelog
 .claude-plugin/        The marketplace file that lists the plugin
 .claude/skills/        A link to plugin/skills/, so Claude Code loads the skills in this repo
 ```

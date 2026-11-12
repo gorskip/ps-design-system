@@ -1,7 +1,7 @@
 // Lift the person out of a photo with macOS Vision (the same model as
 // "Copy Subject" in Photos), cropped tight, as a transparent PNG.
-// macOS 14+ only. Run through bin/clean-cutout.mjs, which also cleans the edges:
-//   osascript -l JavaScript bin/lift-subject.js <photo> <out.png>
+// macOS 14+ only. Called by remove_bg.py and bin/clean-cutout.mjs:
+//   osascript -l JavaScript lift-subject.js <photo> <out.png>
 ObjC.import('Foundation'); ObjC.import('Vision'); ObjC.import('CoreImage'); ObjC.import('AppKit');
 function run(argv){
   const inp=$.NSURL.fileURLWithPath(argv[0]), out=argv[1];

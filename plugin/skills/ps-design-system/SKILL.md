@@ -1,6 +1,6 @@
 ---
 name: ps-design-system
-description: The general rules for everything Przeskalowani makes, on every surface. Read this first for any Przeskalowani work, together with ps-www, ps-social-post, ps-slides or ps-forms, and on its own for questions about the brand's colours, white, gradients, typography, logo, QR codes, photography, tone of voice or founders. Forbids inventing colours, radii, spacing values or data.
+description: The general rules for everything Przeskalowani makes, on every surface. Read this first for any Przeskalowani work, together with ps-www, ps-social-post, ps-slides, ps-docs, ps-forms or ps-cutout (background removal), and on its own for questions about the brand's colours, white, gradients, typography, logo, QR codes, photography, tone of voice or founders. Forbids inventing colours, radii, spacing values or data.
 ---
 
 # Przeskalowani Design System: general rules
@@ -8,6 +8,7 @@ description: The general rules for everything Przeskalowani makes, on every surf
 These apply everywhere. Surface rules live in their own skills:
 `ps-www` (website), `ps-social-post` (Instagram and LinkedIn), `ps-slides`
 (presentations), `ps-docs` (A4 documents) and `ps-forms` (Google Forms headers).
+Removing a background from any photo or image is `ps-cutout`.
 
 ## Where the system's files are
 
@@ -280,13 +281,16 @@ canvas field, `.ps-canvas__wave`, the person (`.ps-canvas__cutout`, with
 
 - Copy keeps to its own lane beside the person and never runs over the figure.
 - A face stays clear of every label, bubble and line of copy.
-- Make every cut-out with `node bin/clean-cutout.mjs <photo> assets/photo/cutout-<name>.png`.
-  Start from a transparent PNG or WebP at full size whenever one exists: its edges
-  are kept as they are, and the script only makes the bottom edge solid (so the
-  figure meets the canvas edge with no gap) and crops to the person. From a plain
-  photo it can lift the person itself (macOS) and un-mix the old background out of
-  the edge, but that edge is never as clean as a proper cut-out. Look at the export
-  at full size after, on the dark green, where a light fringe shows first.
+- **Remove a background with the `ps-cutout` skill** (`przeskalowani:ps-cutout`),
+  whether the user asks for it or a design needs a person or object without its
+  background. Use it on your own; don't ask first. Never fake a cut-out with a
+  shape, a CSS mask or a box behind the photo.
+- Finish every cut-out for a canvas with `node bin/clean-cutout.mjs <transparent.png> <out.png>`.
+  Start from a transparent PNG or WebP at full size whenever one exists (the user's
+  own, or one from `ps-cutout`): its edges are kept as they are, and the script only
+  makes the bottom edge solid (so the figure meets the canvas edge with no gap) and
+  crops to the person. Look at the export at full size after, on the dark green,
+  where a light fringe shows first.
 - The figure's bottom sits on the canvas's bottom edge (`bottom: 0`), never above it.
 - Aim for at least 1600px tall for a full-height figure. Never bake a shadow into the
   file: the shadow comes from the token.

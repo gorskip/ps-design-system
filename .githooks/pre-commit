@@ -31,4 +31,8 @@ if [ -f "$update" ]; then
   sed -E -i.bak "s/^Plugin version: v[0-9.]+$/Plugin version: $new/" "$update" && rm -f "$update.bak"
   git add "$update"
 fi
+if [ -f bin/changelog.mjs ] && command -v node >/dev/null 2>&1; then
+  node bin/changelog.mjs || exit 1
+  git add docs/index.html
+fi
 echo "pre-commit: version $cur -> $new"
