@@ -5,7 +5,7 @@ description: Create Przeskalowani A4 documents from the page library, such as of
 
 # Przeskalowani: A4 documents
 
-**Read `.claude/skills/ps-design-system/SKILL.md` first.** It holds the rules for
+**Read the `ps-design-system` skill first** (`przeskalowani:ps-design-system` when installed as a plugin). It holds the rules for
 every surface: colours, white, gradients, typography, logo, tone, data, photography
 and canvases.
 
@@ -23,9 +23,9 @@ slide vocabulary from `social/social.css`, resized for reading distance by
    layout. Build a new layout only when the user explicitly asks for one, and then
    only in the copy: colours, type sizes and spacing still come from the system, and
    the document rules below still apply.
-3. Save one file outside this repo, as `ps-design-system` describes, with the
+3. Save one file outside the repository, as `ps-design-system` describes, with the
    pages one after another inside `<div class="ps-doc">` and the three stylesheets
-   pointing back here. Number the pages between the first and the last.
+   pointing back to the system's files. Number the pages between the first and the last.
 4. Run `node bin/check-canvases.mjs` on the library, then check each page by eye.
 5. For a PDF: open the file in Chrome, Print, Save as PDF, margins none, background
    graphics on. Each `.ps-canvas--doc` is one sheet.

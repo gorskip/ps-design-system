@@ -1,0 +1,12 @@
+{
+  "name": "przeskalowani-design-system",
+  "description": "Plugin z skillami design systemu Przeskalowani.",
+  "owner": { "name": "Przeskalowani" },
+  "plugins": [
+    {
+      "name": "przeskalowani",
+      "source": "./plugin",
+      "description": "Skille Przeskalowani: zasady marki oraz grafiki na Instagram i LinkedIn, slajdy, dokumenty A4, nagłówki formularzy i strona WWW."
+    }
+  ]
+}

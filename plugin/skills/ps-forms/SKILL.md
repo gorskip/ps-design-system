@@ -5,12 +5,12 @@ description: Create Przeskalowani Google Forms headers. Use whenever asked for a
 
 # Przeskalowani: form headers
 
-**Read `.claude/skills/ps-design-system/SKILL.md` first.** It holds the rules for
+**Read the `ps-design-system` skill first** (`przeskalowani:ps-design-system` when installed as a plugin). It holds the rules for
 every surface: colours, white, gradients, typography, logo, tone, data, photography
 and canvases.
 
-Headers live in `forms/`, at 1600 × 400. Copy the closest file, save the copy outside this
-repo as `ps-design-system` describes, and change only the text. Change the layout only
+Headers live in `forms/`, at 1600 × 400. Copy the closest file, save the copy outside the
+repository as `ps-design-system` describes, and change only the text. Change the layout only
 when the user explicitly asks for it, in the copy, keeping the rules below.
 
 Google crops to roughly 4:1 **and paints the form's own title across the

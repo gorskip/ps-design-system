@@ -9,13 +9,34 @@ These apply everywhere. Surface rules live in their own skills:
 `ps-www` (website), `ps-social-post` (Instagram and LinkedIn), `ps-slides`
 (presentations), `ps-docs` (A4 documents) and `ps-forms` (Google Forms headers).
 
-The system lives in this repo. **Read the token files before writing CSS** —
+## Where the system's files are
+
+The system lives in the repository `gorskip/ps-design-system`. Every path in these
+skills, such as `tokens/`, `social/instagram/teza-a.html` or `assets/photo/`, is
+relative to that repository's root. These skills may be installed as a plugin, away
+from the repository, so find the files in this order and use the first that works:
+
+1. **A local clone.** The current folder, or a folder above it, holds `VERSION`,
+   `tokens/` and `social/`. Read and copy the files from there.
+2. **The Przeskalowani design system attached to this conversation.** It carries the
+   tokens, CSS, templates and assets under the same file names.
+3. **GitHub.** Read a file at
+   `https://raw.githubusercontent.com/gorskip/ps-design-system/main/<path>`, or browse
+   `https://github.com/gorskip/ps-design-system`. The repository is public.
+
+If none of these works, say so and ask for the repository. Never rebuild a template,
+token or asset from memory of these skills.
+
+**Read the token files before writing CSS** —
 do not work from memory of this document.
 
 ```
 tokens/                ← color, type, space, radius, motion, elevation
 docs/index.html        ← the live spec; open it to check anything
 ```
+
+The commands under `bin/` need Node and a local clone. Where there is none, check
+the same rules by eye and say that the automatic check didn't run.
 
 ## The system is the reference
 
@@ -30,12 +51,13 @@ follows these rules. When asked to make something new:
   design alone. Every value still comes from `tokens/` and the sizes this system
   already uses, the canvas formats stay as they are, and every rule in this skill and
   the surface skill still applies. The new layout does not become part of the system.
-- **Never edit, overwrite or save into this repo's files.** That includes `slides/`,
-  `social/`, `forms/`, `assets/`, `tokens/` and `components/`.
-- **In Claude Design,** new work stays in the Claude project.
-- **In Claude Code,** save it in a folder outside this repo, such as
-  `../przeskalowani-projekty/<name>/`, with its CSS and asset paths pointing back here.
-  If it's unclear where the work should go, ask.
+- **Never edit, overwrite or save into the system's files.** That includes `slides/`,
+  `social/`, `forms/`, `assets/`, `tokens/` and `components/`, in the repository and
+  in the design system.
+- **In a Claude chat or design,** new work stays in that conversation or project.
+- **In Claude Code,** save it in a folder outside the repository, such as
+  `../przeskalowani-projekty/<name>/`, with its CSS and asset paths pointing back to
+  the system's files. If it's unclear where the work should go, ask.
 
 Change the system's own files only when the request is explicitly to change the
 design system.
@@ -236,7 +258,7 @@ Founder portraits live in `assets/photo/`, resized from the 16MB originals in
 A copy can use any photo, as long as it follows the rules above and is a real photo,
 never stock. Examples keep theirs.
 
-1. Keep the new photo with the new design, not in this repo's `assets/photo/`.
+1. Keep the new photo with the new design, not in the system's `assets/photo/`.
 2. In the copy, change the `src` and the `alt`.
 3. Reframe it with the existing controls: `object-position` on `.ps-canvas__media`,
    `.ps-canvas__photo` and `.ps-canvas__frame`, or `--fx`, `--fy` and `--zoom` on

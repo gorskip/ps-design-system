@@ -1,6 +1,6 @@
 # Przeskalowani Design System
 
-**Version:** v1.0.4
+**Version:** v1.0.5
 
 The source of truth for how Przeskalowani looks on the website, Instagram,
 LinkedIn, slides, A4 documents and Google Forms headers.
@@ -13,7 +13,13 @@ isn't in it, it isn't in the system.
 - **Claude Design** (social graphics, slides, form headers): create a design
   system with **Sync from GitHub** and select `gorskip/ps-design-system`. Sync
   again whenever the repo changes.
-- **Claude Desktop**: add the skills from `.claude/skills/` as capabilities.
+- **Claude Desktop, claude.ai and Cowork**: install the skills as the **Przeskalowani
+  Design System** plugin. Go to Customize > Plugins > Add > Add marketplace > Add from
+  a repository, enter `gorskip/ps-design-system`, then install the plugin. Use it
+  together with the design system: the design system brings the files, the plugin
+  brings the rules. No clone needed. In Claude Code without a claude.ai account:
+  `claude plugin marketplace add gorskip/ps-design-system`, then
+  `claude plugin install przeskalowani@przeskalowani-design-system`.
 - **Claude Code** (website): clone this repo and run Claude Code in it. The skills
   load automatically.
 
@@ -82,7 +88,9 @@ assets/                Logo, QR codes, fonts, founder photos
 seo/                   The <head> partial and structured data
 docs/                  The live spec and a sample landing page
 baseline/              Original logo PNGs; don't edit
-.claude/skills/        The skills listed above
+plugin/                The plugin: its manifest and the skills listed above
+.claude-plugin/        The marketplace file that lists the plugin
+.claude/skills/        A link to plugin/skills/, so Claude Code loads the skills in this repo
 ```
 
 Not in git: `exports/` (generated) and `baseline/photo/` (full-size originals).

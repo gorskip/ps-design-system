@@ -1,6 +1,6 @@
 #!/bin/sh
 # Add 1 to the patch of VERSION (vMAJOR.MINOR.PATCH) on every commit and copy it
-# to README.md and docs/index.html. v1.0.1 -> v1.0.2 ... v1.0.9 -> v1.0.10.
+# to README.md, docs/index.html and the plugin manifest (without the v). v1.0.1 -> v1.0.2 ... v1.0.9 -> v1.0.10.
 # Turn on once per clone with: git config core.hooksPath .githooks
 set -e
 cd "$(git rev-parse --show-toplevel)"
@@ -20,5 +20,10 @@ fi
 if [ -f docs/index.html ]; then
   sed -E -i.bak "s#<span data-version>v[0-9.]+</span>#<span data-version>$new</span>#g" docs/index.html && rm -f docs/index.html.bak
   git add docs/index.html
+fi
+plugin=plugin/.claude-plugin/plugin.json
+if [ -f "$plugin" ]; then
+  sed -E -i.bak "s/\"version\": \"[0-9.]+\"/\"version\": \"${new#v}\"/" "$plugin" && rm -f "$plugin.bak"
+  git add "$plugin"
 fi
 echo "pre-commit: version $cur -> $new"

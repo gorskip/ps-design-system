@@ -5,7 +5,7 @@ description: Create Przeskalowani presentations and slides from the slide librar
 
 # Przeskalowani: slides
 
-**Read `.claude/skills/ps-design-system/SKILL.md` first.** It holds the rules for
+**Read the `ps-design-system` skill first** (`przeskalowani:ps-design-system` when installed as a plugin). It holds the rules for
 every surface: colours, white, gradients, typography, logo, tone, data, photography
 and canvases.
 
@@ -21,8 +21,8 @@ larger than on social, because a slide is read from across a room.
    layout. Build a new layout only when the user explicitly asks for one, and then
    only in the copy: colours, type sizes and spacing still come from the system, and
    the slide rules below still apply.
-3. Save one file outside this repo, as `ps-design-system` describes, using the deck
-   shell from `slides/deck-warsztat.html` with its paths pointing back here. Number the slides between the first and the last.
+3. Save one file outside the repository, as `ps-design-system` describes, using the deck
+   shell from `slides/deck-warsztat.html` with its paths pointing back to the system's files. Number the slides between the first and the last.
 4. Run `node bin/check-canvases.mjs`, then check each slide by eye.
 
 `deck-*` and `zestaw-*` files already in `slides/` are not showcases or templates.
@@ -115,7 +115,7 @@ fill the frame and carry none.
 
 **Mint never opens or closes a deck.** The first and last slide — welcome and
 thank-you — sit on cream, a dark field or beside a photo. Mint is for the slides
-in between. `bin/check-canvases.mjs` fails a deck or set in this repo that breaks this; it does
+in between. `bin/check-canvases.mjs` fails a deck or set in the repository that breaks this; it does
 not scan copies saved elsewhere, so check yours by eye.
 
 `--gradient` is for quote slides and covers only, and never more than one in a deck.

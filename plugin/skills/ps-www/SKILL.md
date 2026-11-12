@@ -5,7 +5,7 @@ description: Build, style, edit or review the Przeskalowani website (przeskalowa
 
 # Przeskalowani: website
 
-**Read `.claude/skills/ps-design-system/SKILL.md` first.** It holds the rules for
+**Read the `ps-design-system` skill first** (`przeskalowani:ps-design-system` when installed as a plugin). It holds the rules for
 every surface: colours, white, gradients, links, typography, logo, tone and data.
 
 Applies to the **website only**. `social/`, `slides/` and `forms/` are image
