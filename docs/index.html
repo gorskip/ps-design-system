@@ -320,7 +320,7 @@
       <span class="ps-logo__word">Przeskalowani</span>
     </a>
     <div class="ps-nav__actions">
-      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.10</span></span></span>
+      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.11</span></span></span>
       <button class="ps-btn ps-btn--secondary" id="themeToggle" aria-pressed="false">Tryb ciemny</button>
     </div>
   </div>
@@ -494,25 +494,13 @@ Niczego nie zmieniaj w repozytorium.</pre><button type="button" class="doc-copy"
 claude plugin install przeskalowani@przeskalowani-design-system</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
     </div>
     <p class="ps-small ps-muted" style="margin:var(--ps-space-4) 0 0;max-width:62ch"><strong>Sprawdź:</strong> w nowym czacie wpisz <kbd>/</kbd>. Na liście są skille <code>ps-*</code>, czasem z przedrostkiem <code>przeskalowani:</code>. Potem wklej przykład z tabeli <a href="#st-skille">Skille</a>.</p>
-    <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Włącz automatyczne aktualizacje.</strong> Claude Desktop nie ma na to przycisku, więc zleć to Claude. Robisz to raz. Otwórz zakładkę <strong>Code</strong> w Claude Desktop (albo Claude Code w terminalu), bo zwykły czat nie ma dostępu do plików na komputerze, wklej prompt podany niżej i zatwierdź zmianę pliku, gdy Claude o nią poprosi.</p>
-    <div class="doc-demo" style="margin-top:var(--ps-space-3)">
-      <span class="doc-label">Prompt dla Claude Code</span>
-      <div class="doc-prompt" data-prompt-box><pre data-prompt>Włącz automatyczne aktualizacje pluginu Przeskalowani Design System w Claude Code na tym komputerze. Zmień tylko jeden plik: ~/.claude/settings.json.
-
-1. Otwórz ~/.claude/settings.json. Jeśli go nie ma, utwórz go z zawartością {}.
-2. W obiekcie "extraKnownMarketplaces" znajdź wpis "przeskalowani-design-system". Jeśli nie ma obiektu albo wpisu, dodaj je, a wpisowi daj źródło: "source": { "source": "git", "url": "https://github.com/gorskip/ps-design-system.git" }.
-3. W tym wpisie ustaw "autoUpdate": true. Jeśli wpis już ma źródło, zostaw je bez zmian.
-4. Niczego innego nie zmieniaj: pozostałe ustawienia, ich kolejność i wcięcia zostają takie same. Plik musi pozostać poprawnym JSON-em, więc sprawdź to po zapisaniu.
-5. Nie instaluj, nie usuwaj i nie aktualizuj żadnych pluginów ani marketplace'ów.
-
-Na koniec pokaż mi wpis "przeskalowani-design-system" po zmianie i napisz jednym zdaniem, czy auto-update był już włączony wcześniej.</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
-    </div>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-3) 0 0;max-width:62ch">Od tej pory Claude sprawdza nową wersję pluginu w ciągu kilku minut od pierwszej wiadomości w sesji i pobiera ją sam.</p>
+    <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Włącz automatyczne aktualizacje.</strong> Claude Desktop nie ma na to przycisku, więc robi to skill <code>ps-update</code>. Otwórz zakładkę <strong>Code</strong> w Claude Desktop, wpisz <code>/ps-update</code>, wyślij i zatwierdź zmianę pliku, gdy Claude o nią poprosi. Robisz to raz. Skill przy okazji sprawdzi, czy plugin jest w najnowszej wersji.</p>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-3) 0 0;max-width:62ch">Zwykły czat nie ma dostępu do plików na komputerze, dlatego zakładka Code. Od tej pory Claude sprawdza nową wersję pluginu w ciągu kilku minut od pierwszej wiadomości w sesji i pobiera ją sam.</p>
     </div>
     <div class="doc-block" id="st-aktualizacja">
       <h3 class="doc-block__title">Aktualizacja</h3>
     <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0;max-width:62ch">Aktualizację robi skill <code>ps-update</code>. Porównuje wersje z GitHubem i aktualizuje to, co da się zaktualizować w danym miejscu, a o resztę prosi Ciebie. Uruchamiasz go w dwóch miejscach.</p>
-    <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Plugin.</strong> W zakładce <strong>Code</strong> w Claude Desktop wpisz <code>/ps-update</code> i wyślij, a potem otwórz nową sesję. Z włączonymi <a href="#st-plugin">automatycznymi aktualizacjami</a> plugin aktualizuje się też sam. Bez zakładki Code: <strong>Customize &gt; Plugins &gt; Add &gt; Manage marketplaces</strong>, <strong>⋯</strong> przy <code>przeskalowani-design-system</code> i <strong>Check for updates</strong>.</p>
+    <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Plugin.</strong> W zakładce <strong>Code</strong> w Claude Desktop wpisz <code>/ps-update</code> i wyślij. Skill sprawdza zainstalowaną wersję, aktualizuje plugin i upewnia się, że aktualizacja się udała. Potem otwórz nową sesję. Z włączonymi <a href="#st-plugin">automatycznymi aktualizacjami</a> plugin aktualizuje się też sam. Bez zakładki Code: <strong>Customize &gt; Plugins &gt; Add &gt; Manage marketplaces</strong>, <strong>⋯</strong> przy <code>przeskalowani-design-system</code> i <strong>Check for updates</strong>.</p>
     <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Design system.</strong> Aktualizuje się tylko w swoim czacie:</p>
     <ol style="display:grid;gap:var(--ps-space-6);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:decimal">
       <li>Otwórz <strong>Settings &gt; Capabilities &gt; Design systems &gt; Manage</strong> i kliknij <strong>Przeskalowani Design System</strong>.
@@ -2163,7 +2151,7 @@ Pracuj na kopii wzoru. Zmieniaj tylko treść, układ zostaw ze wzoru. Dolne 128
       </div>
     </div>
     <div class="ps-footer__bottom">
-      <span>System Projektowy Przeskalowani · <span data-version>v1.0.10</span></span>
+      <span>System Projektowy Przeskalowani · <span data-version>v1.0.11</span></span>
       <span>Montserrat · 8 kolorów · 7 komponentów</span>
     </div>
   </div>
