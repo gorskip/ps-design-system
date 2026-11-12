@@ -1,6 +1,6 @@
 # Przeskalowani Design System
 
-**Version:** v1.0.8
+**Version:** v1.0.9
 
 The source of truth for how Przeskalowani looks on the website, Instagram,
 LinkedIn, slides, A4 documents and Google Forms headers.

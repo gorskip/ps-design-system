@@ -320,7 +320,7 @@
       <span class="ps-logo__word">Przeskalowani</span>
     </a>
     <div class="ps-nav__actions">
-      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.8</span></span></span>
+      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.9</span></span></span>
       <button class="ps-btn ps-btn--secondary" id="themeToggle" aria-pressed="false">Tryb ciemny</button>
     </div>
   </div>
@@ -494,20 +494,20 @@ Niczego nie zmieniaj w repozytorium.</pre><button type="button" class="doc-copy"
 claude plugin install przeskalowani@przeskalowani-design-system</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
     </div>
     <p class="ps-small ps-muted" style="margin:var(--ps-space-4) 0 0;max-width:62ch"><strong>Sprawdź:</strong> w nowym czacie wpisz <kbd>/</kbd>. Na liście są skille <code>ps-*</code>, czasem z przedrostkiem <code>przeskalowani:</code>. Potem wklej przykład z tabeli <a href="#st-skille">Skille</a>.</p>
-    <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Włącz automatyczne aktualizacje.</strong> Claude Desktop nie ma na to przycisku, więc wklej poniższy kod do aplikacji Terminal na Macu i naciśnij Enter. Robisz to raz. Kod dopisuje jedną opcję do ustawień Claude i niczego innego nie zmienia, więc możesz go uruchomić ponownie bez szkody.</p>
+    <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Włącz automatyczne aktualizacje.</strong> Claude Desktop nie ma na to przycisku, więc zleć to Claude. Robisz to raz. Otwórz zakładkę <strong>Code</strong> w Claude Desktop (albo Claude Code w terminalu), bo zwykły czat nie ma dostępu do plików na komputerze, wklej prompt podany niżej i zatwierdź zmianę pliku, gdy Claude o nią poprosi.</p>
     <div class="doc-demo" style="margin-top:var(--ps-space-3)">
-      <span class="doc-label">Terminal</span>
-      <div class="doc-prompt" data-prompt-box><pre data-prompt>osascript -l JavaScript &lt;&lt;'EOF'
-ObjC.import('Foundation');
-const p = $('~/.claude/settings.json').stringByExpandingTildeInPath.js;
-const d = JSON.parse($.NSString.stringWithContentsOfFileEncodingError(p, $.NSUTF8StringEncoding, null).js || '{}');
-const m = (d.extraKnownMarketplaces ||= {});
-m['przeskalowani-design-system'] = { source: { source: 'git', url: 'https://github.com/gorskip/ps-design-system.git' }, ...m['przeskalowani-design-system'], autoUpdate: true };
-$(JSON.stringify(d, null, 2) + '\n').writeToFileAtomicallyEncodingError(p, true, $.NSUTF8StringEncoding, null);
-'Auto-update włączony.'
-EOF</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
+      <span class="doc-label">Prompt dla Claude Code</span>
+      <div class="doc-prompt" data-prompt-box><pre data-prompt>Włącz automatyczne aktualizacje pluginu Przeskalowani Design System w Claude Code na tym komputerze. Zmień tylko jeden plik: ~/.claude/settings.json.
+
+1. Otwórz ~/.claude/settings.json. Jeśli go nie ma, utwórz go z zawartością {}.
+2. W obiekcie "extraKnownMarketplaces" znajdź wpis "przeskalowani-design-system". Jeśli nie ma obiektu albo wpisu, dodaj je, a wpisowi daj źródło: "source": { "source": "git", "url": "https://github.com/gorskip/ps-design-system.git" }.
+3. W tym wpisie ustaw "autoUpdate": true. Jeśli wpis już ma źródło, zostaw je bez zmian.
+4. Niczego innego nie zmieniaj: pozostałe ustawienia, ich kolejność i wcięcia zostają takie same. Plik musi pozostać poprawnym JSON-em, więc sprawdź to po zapisaniu.
+5. Nie instaluj, nie usuwaj i nie aktualizuj żadnych pluginów ani marketplace'ów.
+
+Na koniec pokaż mi wpis "przeskalowani-design-system" po zmianie i napisz jednym zdaniem, czy auto-update był już włączony wcześniej.</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
     </div>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-3) 0 0;max-width:62ch">Terminal odpowie „Auto-update włączony.”. Od tej pory Claude sprawdza nową wersję pluginu w ciągu kilku minut od pierwszej wiadomości w sesji i pobiera ją sam.</p>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-3) 0 0;max-width:62ch">Od tej pory Claude sprawdza nową wersję pluginu w ciągu kilku minut od pierwszej wiadomości w sesji i pobiera ją sam.</p>
     </div>
     <div class="doc-block" id="st-aktualizacja">
       <h3 class="doc-block__title">Aktualizacja</h3>
@@ -2158,7 +2158,7 @@ Pracuj na kopii wzoru. Zmieniaj tylko treść, układ zostaw ze wzoru. Dolne 128
       </div>
     </div>
     <div class="ps-footer__bottom">
-      <span>System Projektowy Przeskalowani · <span data-version>v1.0.8</span></span>
+      <span>System Projektowy Przeskalowani · <span data-version>v1.0.9</span></span>
       <span>Montserrat · 8 kolorów · 7 komponentów</span>
     </div>
   </div>
