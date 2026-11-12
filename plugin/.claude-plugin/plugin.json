@@ -1,0 +1,10 @@
+{
+  "name": "przeskalowani",
+  "displayName": "Przeskalowani Design System",
+  "version": "1.0.5",
+  "description": "Skille Przeskalowani: zasady marki oraz grafiki na Instagram i LinkedIn, slajdy, dokumenty A4, nagłówki formularzy i strona WWW.",
+  "author": { "name": "Przeskalowani" },
+  "homepage": "https://github.com/gorskip/ps-design-system",
+  "repository": "https://github.com/gorskip/ps-design-system",
+  "keywords": ["przeskalowani", "design-system", "brand", "social", "slides"]
+}

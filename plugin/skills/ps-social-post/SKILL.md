@@ -5,7 +5,7 @@ description: Create Przeskalowani graphics for Instagram or LinkedIn, such as fe
 
 # Przeskalowani: social graphics
 
-**Read `.claude/skills/ps-design-system/SKILL.md` first.** It holds the rules for
+**Read the `ps-design-system` skill first** (`przeskalowani:ps-design-system` when installed as a plugin). It holds the rules for
 every surface: colours, white, gradients, typography, logo, tone, data, photography
 and canvases.
 
@@ -34,7 +34,7 @@ choose the type by content and the platform by where it will be posted.
 | `oferta` | Workshop or free test | `a` test, `b` workshop | `a` workshop |
 | `szablony` | Blank starting points | `a` portrait, `b` square, `c` quote, `d` carousel | none |
 
-Copy the file, save the copy outside this repo as `ps-design-system` describes, and
+Copy the file, save the copy outside the repository as `ps-design-system` describes, and
 change only the copy and the photo. Change the layout only when the user explicitly
 asks for a new one, in the copy; values and the rules below stay. If a type has no file for the platform, say
 so and offer the closest type there; do not resize one from the other platform.
