@@ -1,6 +1,6 @@
 # Przeskalowani Design System
 
-**Version:** v1.0.9
+**Version:** v1.0.10
 
 The source of truth for how Przeskalowani looks on the website, Instagram,
 LinkedIn, slides, A4 documents and Google Forms headers.
@@ -41,6 +41,7 @@ the founders.
 | A4 document: offer, programme, workbook, exercise sheet | `ps-docs` | Claude chat | `Przygotuj projekt A4 w design systemie Przeskalowani ze stron: powitanie-a, ogolny-a, cennik-b, podziekowanie-b.` |
 | Google Forms header (1600×400) | `ps-forms` | Claude chat | `Przygotuj nagłówek formularza w design systemie Przeskalowani na bazie form-01-zapisy.` |
 | Website page, section, component, email, HTML/CSS, WordPress theme, SEO | `ps-www` | Claude Code | `Użyj skilla ps-www i zbuduj sekcję oferty na stronę.` |
+| Update the plugin and the design system to the newest version | `ps-update` | Code tab, and the design system's own chat | `/ps-update` |
 
 Ask for templates by name (`instagram-liczby-a`, `cytat-b`, `podziekowanie-a`). In a chat, name the
 design system; the plugin picks the right skill. In Claude Code, name the skill.

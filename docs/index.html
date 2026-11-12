@@ -320,7 +320,7 @@
       <span class="ps-logo__word">Przeskalowani</span>
     </a>
     <div class="ps-nav__actions">
-      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.9</span></span></span>
+      <span class="ps-badge"><span class="ps-badge__dot"></span><span>System <span data-version>v1.0.10</span></span></span>
       <button class="ps-btn ps-btn--secondary" id="themeToggle" aria-pressed="false">Tryb ciemny</button>
     </div>
   </div>
@@ -511,16 +511,19 @@ Na koniec pokaż mi wpis "przeskalowani-design-system" po zmianie i napisz jedny
     </div>
     <div class="doc-block" id="st-aktualizacja">
       <h3 class="doc-block__title">Aktualizacja</h3>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0;max-width:62ch"><strong>Plugin</strong> z włączonymi <a href="#st-plugin">automatycznymi aktualizacjami</a> pobiera nowe wersje sam. Bez nich otwórz <strong>Customize &gt; Plugins &gt; Add &gt; Manage marketplaces</strong>, przy <code>przeskalowani-design-system</code> kliknij <strong>⋯</strong> i wybierz <strong>Check for updates</strong>. Wersja pluginu jest ta sama co w pasku na górze tej strony.</p>
-    <p class="ps-small ps-muted" style="margin:var(--ps-space-3) 0 0;max-width:62ch"><strong>Design system</strong> aktualizujesz tak:</p>
+    <p class="ps-small ps-muted" style="margin:var(--ps-space-2) 0 0;max-width:62ch">Aktualizację robi skill <code>ps-update</code>. Porównuje wersje z GitHubem i aktualizuje to, co da się zaktualizować w danym miejscu, a o resztę prosi Ciebie. Uruchamiasz go w dwóch miejscach.</p>
+    <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Plugin.</strong> W zakładce <strong>Code</strong> w Claude Desktop wpisz <code>/ps-update</code> i wyślij, a potem otwórz nową sesję. Z włączonymi <a href="#st-plugin">automatycznymi aktualizacjami</a> plugin aktualizuje się też sam. Bez zakładki Code: <strong>Customize &gt; Plugins &gt; Add &gt; Manage marketplaces</strong>, <strong>⋯</strong> przy <code>przeskalowani-design-system</code> i <strong>Check for updates</strong>.</p>
+    <p style="margin:var(--ps-space-6) 0 0;max-width:62ch"><strong>Design system.</strong> Aktualizuje się tylko w swoim czacie:</p>
     <ol style="display:grid;gap:var(--ps-space-6);max-width:62ch;margin:var(--ps-space-4) 0 0;padding-inline-start:1.25em;list-style:decimal">
       <li>Otwórz <strong>Settings &gt; Capabilities &gt; Design systems &gt; Manage</strong> i kliknij <strong>Przeskalowani Design System</strong>.
         <img src="img/aktualizacja-3-design-systems.png" alt="Lista design systemów z zaznaczonym Przeskalowani Design System" width="440" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
       <li>W prawym górnym rogu kliknij <strong>Chat</strong>.
         <img src="img/aktualizacja-4-chat.png" alt="Przycisk Chat w prawym górnym rogu design systemu" width="263" style="display:block;max-width:100%;height:auto;margin-top:var(--ps-space-3);border-radius:var(--ps-radius-md);border:1px solid var(--ps-color-border)"></li>
-      <li>Wklej prompt podany niżej. Claude pracuje sam, a na koniec podaje listę zmian i nową wersję.</li>
+      <li>Wpisz <code>/ps-update</code> i wyślij. Claude pracuje sam, a na koniec podaje wersje i listę zmian.</li>
       <li>Sprawdź, czy wersja na górze README systemu zgadza się z wersją w pasku na górze tej strony.</li>
     </ol>
+    <details style="margin-top:var(--ps-space-6);max-width:62ch">
+      <summary class="ps-small" style="cursor:pointer">Skilla <code>ps-update</code> nie ma w czacie design systemu? Wklej ten prompt.</summary>
     <div class="doc-demo" style="margin-top:var(--ps-space-6)">
       <span class="doc-label">Prompt dla Claude</span>
       <div class="doc-prompt" data-prompt-box><pre data-prompt>Zaktualizuj ten design system do najnowszej wersji z repozytorium GitHub gorskip/ps-design-system (gałąź main, repozytorium jest publiczne). Pracuj samodzielnie do końca, nie zadawaj mi pytań: przy każdej wątpliwości wybierz rozwiązanie zgodne z repozytorium i zapisz je w podsumowaniu.
@@ -539,6 +542,7 @@ Na koniec pokaż mi wpis "przeskalowani-design-system" po zmianie i napisz jedny
 
 Na koniec podaj krótką listę zmian, najwyżej 8 punktów: nowa wersja i commit, co dodano, co zmieniono, co usunięto i czego nie udało się przenieść.</pre><button type="button" class="doc-copy" data-copy>Kopiuj</button></div>
     </div>
+    </details>
     </div>
     <div class="doc-block" id="st-code">
       <h3 class="doc-block__title">Strona WWW: Claude Code</h3>
@@ -559,6 +563,7 @@ Na koniec podaj krótką listę zmian, najwyżej 8 punktów: nowa wersja i commi
         <tr><td><code style="white-space:nowrap">ps-docs</code></td><td>Dokumenty A4: oferty, programy, karty pracy.</td><td>Czat Claude</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>Przygotuj projekt A4 w design systemie Przeskalowani ze stron: powitanie-a, ogolny-a, cennik-b, podziekowanie-b.</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#dc-jak">Dokumenty</a></td></tr>
         <tr><td><code style="white-space:nowrap">ps-forms</code></td><td>Nagłówki formularzy Google.</td><td>Czat Claude</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>Przygotuj nagłówek formularza w design systemie Przeskalowani na bazie form-01-zapisy.</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#fm-jak">Formularze</a></td></tr>
         <tr><td><code style="white-space:nowrap">ps-www</code></td><td>Strony, sekcje i komponenty WWW, SEO i szybkość strony.</td><td>Claude Code</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>Użyj skilla ps-www i zbuduj sekcję oferty na stronę.</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#komponenty">Komponenty</a><br><a href="#uklady">Układy</a><br><a href="#podglad">Przykładowa strona</a></td></tr>
+        <tr><td><code style="white-space:nowrap">ps-update</code></td><td>Aktualizacja pluginu i design systemu do najnowszej wersji.</td><td>Code i czat design systemu</td><td><div class="doc-prompt doc-prompt--inline" data-prompt-box><span data-prompt>/ps-update</span><button type="button" class="doc-copy" data-copy>Kopiuj</button></div></td><td><a href="#st-aktualizacja">Aktualizacja</a></td></tr>
       </tbody>
     </table>
     </div>
@@ -2158,7 +2163,7 @@ Pracuj na kopii wzoru. Zmieniaj tylko treść, układ zostaw ze wzoru. Dolne 128
       </div>
     </div>
     <div class="ps-footer__bottom">
-      <span>System Projektowy Przeskalowani · <span data-version>v1.0.9</span></span>
+      <span>System Projektowy Przeskalowani · <span data-version>v1.0.10</span></span>
       <span>Montserrat · 8 kolorów · 7 komponentów</span>
     </div>
   </div>
