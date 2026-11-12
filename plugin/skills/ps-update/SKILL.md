@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Przeskalowani: update
 
-Plugin version: v1.0.11
+Plugin version: v1.0.12
 
 The Przeskalowani setup has two parts, and each updates differently:
 
@@ -15,9 +15,11 @@ The Przeskalowani setup has two parts, and each updates differently:
   the skill**, which may not be the installed plugin: inside a clone of the
   repository, the clone's copy runs instead. With a terminal, always check the
   installed plugin as step 1 describes.
-- **The design system** (tokens, CSS, templates, assets) lives in Claude, under
-  Settings > Capabilities > Design systems. Its version is the line at the top of
-  its README: `Version: vX.Y.Z · from gorskip/ps-design-system at <commit>`.
+- **The design system** (tokens, CSS, templates, assets) lives in Claude as an
+  artifact of the type "Design System", named **Przeskalowani Design System**. It
+  opens from Artifacts in the sidebar and has no chat of its own. Its version is the
+  line at the top of its `project/README.md`:
+  `Version: vX.Y.Z · from gorskip/ps-design-system at <commit>`.
 
 Both come from the public repository `gorskip/ps-design-system`.
 
@@ -50,8 +52,9 @@ the short report in step 4. Never change anything in the repository.
      If there is no such entry, the plugin isn't installed from that marketplace
      (it may come from the user's claude.ai account): say so.
    - **Without a terminal,** use the `Plugin version` line above.
-3. The design system's version is the `Version:` line at the top of its README, if
-   this conversation can see the design system. Otherwise it is unknown.
+3. The design system's version: find the design system as step 3 describes and read
+   the `Version:` line at the top of its `project/README.md`. If you can't reach it,
+   the version is unknown.
 
 Compare them as numbers: v1.0.10 is newer than v1.0.9. If the installed plugin still
 looks newer than GitHub, check that you read `VERSION` by commit and not from `main`.
@@ -111,38 +114,62 @@ Then they open a new chat.
 
 ## 3. Update the design system
 
-Skip this step when the design system's version equals the newest one.
+**Find it.** You need the Artifact tool, which Claude Code has in the Code tab of
+Claude Desktop. List the artifacts of the type "Design System" and take the one
+titled **Przeskalowani Design System** that is the user's own ("mine"); prefer the
+one marked as the user's default. If there are several of the user's own with that
+title, or none, stop and report what you found. Never create a new design system.
 
-**If this conversation can edit the Przeskalowani design system** (it is that design
-system's own chat, opened from Settings > Capabilities > Design systems > Manage >
-Przeskalowani Design System > Chat), update it in place:
+Skip the rest of this step when its version equals the newest one.
 
-1. From the design system's README, note the commit it came from. Read the commits on
-   `main` of `gorskip/ps-design-system` from that commit up to the newest one you
-   found in step 1, and read every file at that newest commit's `<sha>` address. Without a commit, compare
-   everything.
-2. Bring over the changes to the styles, merging them with what is already there
-   rather than rebuilding:
-   - tokens from `tokens/`,
+**Without the Artifact tool** (a regular chat, or Claude Code outside Claude
+Desktop), you can't update it from here. Tell the user to open the **Code** tab in
+Claude Desktop and type `/ps-update` there.
+
+**With the Artifact tool,** update it in place:
+
+1. **Learn the format.** Read the design system's own files first: `project/README.md`,
+   `project/design-system.json`, `project/tokens.json`, the section files
+   (`project/social.md`, `project/slides.md`, `project/docs.md`, `project/forms.md`,
+   `project/website.md`) and one component's `README.md` and `preview.html`. Read
+   `artifact-type/reference/format.md` and `artifact-type/reference/from-code.md`
+   too: they say how a design system of this type is laid out. Change only files under
+   `project/` and the root `SKILL.md`; the `artifact-type/` files and `index.html`
+   belong to the type and stay as they are.
+2. **Get the source.** Clone `https://github.com/gorskip/ps-design-system.git` into a
+   temporary folder outside the user's projects and check out the newest commit from
+   step 1. From the README's `Version:` line, note the commit the design system came
+   from, and list what changed since, with `git diff --stat <old>..<new>`. Without an
+   old commit, compare everything. Never commit or push anything to that clone.
+3. **Bring over the changes to the styles,** merging them with what is already there
+   rather than rebuilding, and only for files that changed:
+   - tokens from `tokens/` into `project/tokens.json`,
    - CSS from `ps-design-system.css`, `base/`, `components/`, `patterns/`,
-     `social/social.css` and `documents/documents.css`, with file paths changed to
-     this design system's assets,
+     `social/social.css` and `documents/documents.css` into
+     `project/components/bundle.css`, with file paths changed to this design system's
+     assets,
    - templates from `social/instagram`, `social/linkedin`, `slides/typy`,
-     `documents/typy` and `forms`, under their file names,
+     `documents/typy` and `forms` into their component's `preview.html`, keeping each
+     component's name,
    - new or changed photos, logos, fonts and QR codes from `assets/`.
-3. Don't bring over the skills or any `SKILL.md`: the plugin carries the rules. If
-   the design system holds rules copied from `SKILL.md` files in an earlier version,
-   remove them from its README and its Social, Slides, Documents, Forms and Website
-   sections, and keep the descriptions of the styles.
-4. Apart from that, delete only styles the repository no longer has.
-5. Set the line at the top of its README to
+4. **Remove the copied rules.** Don't bring over the skills or any `SKILL.md`: the
+   plugin carries the rules. If the design system holds rules copied from `SKILL.md`
+   files in an earlier version, remove them from `project/README.md`, the section
+   files and the root `SKILL.md`, and keep the descriptions of the styles: tokens,
+   colours with their contrast, type, logo files, assets and which template is which.
+   Add one line to `project/README.md` saying the rules for working with these styles
+   come from the Przeskalowani plugin and its `ps-*` skills.
+5. Apart from that, delete only styles the repository no longer has.
+6. Set the line at the top of `project/README.md` to
    `Version: <VERSION> · from gorskip/ps-design-system at <short commit>`.
-6. Save everything in this design system. Update it in place; never create a new one.
-
-**Otherwise,** you can't update it from here. Tell the user to open Settings >
-Capabilities > Design systems > Manage > Przeskalowani Design System > Chat and type
-`/ps-update` there. If the skill isn't offered in that chat, they paste the update
-prompt from the spec page, in the section *Aktualizacja*.
+7. **Publish once,** to the same artifact URL, with every changed file. Update it in
+   place; never create a new one. If the publish is refused because the design
+   system changed in the meantime, merge your changes onto the version it hands back
+   and publish again.
+8. **Check it worked.** Read `project/README.md` from the artifact again. Its
+   `Version:` line must show the newest version. Never report the design system as
+   updated until it does.
+9. Delete the temporary clone.
 
 ## 4. Report
 
