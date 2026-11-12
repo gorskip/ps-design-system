@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Przeskalowani: update
 
-Plugin version: v1.0.12
+Plugin version: v1.0.13
 
 The Przeskalowani setup has two parts, and each updates differently:
 
