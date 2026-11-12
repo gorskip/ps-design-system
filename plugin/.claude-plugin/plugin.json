@@ -1,7 +1,7 @@
 {
   "name": "przeskalowani",
   "displayName": "Przeskalowani Design System",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "Skille Przeskalowani: zasady marki oraz grafiki na Instagram i LinkedIn, slajdy, dokumenty A4, nagłówki formularzy i strona WWW.",
   "icon": "./.claude-plugin/icon.png",
   "author": {

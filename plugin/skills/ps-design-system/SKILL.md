@@ -21,8 +21,12 @@ from the repository, so find the files in this order and use the first that work
 2. **The Przeskalowani design system attached to this conversation.** It carries the
    tokens, CSS, templates and assets under the same file names.
 3. **GitHub.** Read a file at
-   `https://raw.githubusercontent.com/gorskip/ps-design-system/main/<path>`, or browse
-   `https://github.com/gorskip/ps-design-system`. The repository is public.
+   `https://raw.githubusercontent.com/gorskip/ps-design-system/<sha>/<path>`, where
+   `<sha>` is the newest commit on `main`, the `sha` field of
+   `https://api.github.com/repos/gorskip/ps-design-system/commits/main`. Don't put
+   `main` in place of `<sha>`: GitHub caches those addresses and can serve old files
+   after a change. You can also browse `https://github.com/gorskip/ps-design-system`.
+   The repository is public.
 
 If none of these works, say so and ask for the repository. Never rebuild a template,
 token or asset from memory of these skills.
